@@ -1,0 +1,9 @@
+groq
+langchain
+langcahin-community
+langchain-groq
+pyaudio
+dotenv
+transformers
+sentence-transformers
+torch
