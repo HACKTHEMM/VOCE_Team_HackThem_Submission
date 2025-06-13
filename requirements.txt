@@ -11,3 +11,9 @@ langchain
 langchain-groq
 langchain-core
 pandas
+chromadb
+sentence-transformers
+dotenv
+librosa
+whisper
+einops

@@ -44,9 +44,9 @@ def run_interface(csv_input_path: str, csv_output_path: str):
         print(f"\nQuestion: {question}\nResponse: {response_text}\n")
 
     df.to_csv(csv_output_path, index=False)
-    print(f"\n✅ Responses saved to: {csv_output_path}")
+    print(f"\nResponses saved to: {csv_output_path}")
 
-    print("\n📄 Updated CSV preview:")
+    print("\nUpdated CSV preview:")
     print(pd.read_csv(csv_output_path)[:5])
 
 

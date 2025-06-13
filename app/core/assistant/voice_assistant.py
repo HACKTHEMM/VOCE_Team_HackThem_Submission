@@ -2,8 +2,10 @@ import os
 import sys
 from typing import Optional
 from dotenv import load_dotenv
+from app.core.modules.adapters.stt import EnhancedRealTimeTranscriber
 from app.core.modules.adapters.tts import RealTimeTTS
 from app.core.modules.llm.language_processor import LanguageProcessor, QueryClassifier
+# from app.core.modules.adapters.audio_interface import STTAdapter, TTSAdapter, VoiceAssistant
 from app.core.modules.adapters.audio_interface import TTSAdapter, VoiceAssistant
 
 
@@ -20,20 +22,24 @@ class IntegratedVoiceAssistant:
         self.query_classifier = None
         self.voice_assistant = None  
         self._initialize_components()
-    
     def _initialize_components(self) -> None:
         try:
             print("Initializing Voice Assistant Components...")
-            print("Setting up Text-to-Speech...")
+            
             print("Setting up Language Processing (LangChain + Groq)...")
-            self.language_processor = LanguageProcessor(self.groq_api_key)
+            # Initialize language processor with double RAG enabled
+            self.language_processor = LanguageProcessor(
+                api_key=self.groq_api_key,
+                master_db_path="C:/Users/HP/Programs/Projects/matrix-hackathon/chromadb_storage",
+                #child
+                conversation_db_path="C:/Users/HP/Programs/Projects/matrix-hackathon/chromadb_storage"
+            )
+            
             print("Setting up Query Classifier...")
             self.query_classifier = QueryClassifier(self.language_processor)
-            print("Creating Audio Interface Adapters...")
+            
             print("Assembling Voice Assistant...")
-            self.voice_assistant = VoiceAssistant(
-                self.language_processor
-            )
+            self.voice_assistant = VoiceAssistant(self.language_processor)
             
             print("All components initialized successfully!")
             

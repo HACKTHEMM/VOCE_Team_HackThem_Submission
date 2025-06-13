@@ -5,6 +5,7 @@ from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 from datetime import datetime
 from typing import List, Optional, Dict, Any
+from chromadb.utils import embedding_functions
 
 load_dotenv()
 
@@ -321,12 +322,100 @@ class ConversationEmbeddingManager:
 
 
 class EmbeddingRAGPipeline:
-    
-    def __init__(self, collection_name: str = "rag_collection",
-                 persist_directory: str = "chromadb_storage", 
-                 model_name: str = 'jinaai/jina-embeddings-v3'):
+    def __init__(self, collection_name: str = "chromadb", persist_directory: Optional[str] = None):
         self.collection_name = collection_name
-        self.user_input_processor = UserInputProcessor(collection_name, persist_directory, model_name)
+        self.persist_directory = persist_directory or "chromadb_storage"
+        self.client = None
+        self.collection = None
+        self.embedding_model = None
+        
+    def initialize(self) -> bool:
+        try:
+            # Initialize ChromaDB client
+            os.makedirs(self.persist_directory, exist_ok=True)
+            self.client = chromadb.PersistentClient(path=self.persist_directory)
+            
+            # Initialize embedding model
+            self.embedding_model = SentenceTransformer('jinaai/jina-embeddings-v3')
+            print(f"Loading embedding model: jinaai/jina-embeddings-v3...")
+            
+            def embed_function(texts):
+                return self.embedding_model.encode(texts).tolist()
+            
+            # Get or create collection
+            self.collection = self.client.get_or_create_collection(
+                name=self.collection_name,
+                embedding_function=embed_function
+            )
+            
+            return True
+            
+        except Exception as e:
+            print(f"Error initializing EmbeddingRAGPipeline: {str(e)}")
+            return False
+    
+    def search_similar(self, query: str, n_results: int = 5) -> List[Dict[str, Any]]:
+        try:
+            if not self.collection:
+                return []
+                
+            results = self.collection.query(
+                query_texts=[query],
+                n_results=n_results
+            )
+            
+            similar_items = []
+            if results and "documents" in results and results["documents"]:
+                for i in range(len(results["documents"][0])):
+                    item = {
+                        'text': results["documents"][0][i],
+                        'distance': results["distances"][0][i] if "distances" in results else 0,
+                        'metadata': results["metadatas"][0][i] if "metadatas" in results else {}
+                    }
+                    similar_items.append(item)
+            
+            return similar_items
+            
+        except Exception as e:
+            print(f"Error searching similar items: {str(e)}")
+            return []
+    
+    def add_document(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> bool:
+        try:
+            if not self.collection:
+                return False
+                
+            doc_id = str(uuid.uuid4())
+            
+            self.collection.add(
+                documents=[text],
+                ids=[doc_id],
+                metadatas=[metadata] if metadata else None
+            )
+            
+            return True
+            
+        except Exception as e:
+            print(f"Error adding document: {str(e)}")
+            return False
+        
+    def process_query(self, query: str, **kwargs) -> Dict[str, Any]:
+        try:
+            # Get embeddings and search collection
+            results = self.collection.query(
+                query_texts=[query],
+                n_results=kwargs.get('n_results', 5)
+            )
+            
+            return {
+                'documents': results['documents'][0],
+                'metadata': results.get('metadatas', [{}])[0],
+                'distances': results.get('distances', [0])[0]
+            }
+        except Exception as e:
+            print(f"Error processing query: {str(e)}")
+            return {'documents': [], 'metadata': {}, 'distances': []}
+    
         
     def run_user_input_pipeline(self, user_inputs: List[str], metadata_list: List[Dict[str, Any]] = None) -> bool:
         print(f"Starting user input embedding generation for {len(user_inputs)} inputs...")
