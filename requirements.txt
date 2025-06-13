@@ -1,0 +1,13 @@
+groq
+pyaudio
+python-dotenv
+google-genai
+chromadb
+transformers
+torch
+sentence-transformers
+numpy
+langchain
+langchain-groq
+langchain-core
+pandas
