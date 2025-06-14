@@ -4,7 +4,33 @@ import sys
 import time
 import signal
 import shutil
+import atexit
 from pathlib import Path
+
+# Global variables to track processes
+backend_process = None
+frontend_process = None
+
+def cleanup_processes():
+    """Clean up all spawned processes."""
+    global backend_process, frontend_process
+    print("\n🧹 Cleaning up processes...")
+    
+    if backend_process:
+        terminate_process(backend_process, "Backend")
+        backend_process = None
+    
+    if frontend_process:
+        terminate_process(frontend_process, "Frontend")
+        frontend_process = None
+    
+    print("✓ Cleanup completed")
+
+def signal_handler(signum, frame):
+    """Handle interrupt signals (Ctrl+C, etc.)."""
+    print(f"\n⚠️  Received signal {signum}")
+    cleanup_processes()
+    sys.exit(0)
 
 def install_requirements():
     """Install Python requirements with proper error handling."""
@@ -23,6 +49,7 @@ def install_requirements():
 
 def run_backend():
     """Start the backend server using uvicorn."""
+    global backend_process
     try:
         print("Starting backend server...")
         # Use the current working directory explicitly
@@ -34,18 +61,23 @@ def run_backend():
             creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if os.name == 'nt' else 0
         )
         
+        # Store reference to the process globally
+        backend_process = proc
+        
         # Wait a moment for the process to start
         time.sleep(3)
         
         # Check if the process is still running (not terminated due to error)
         if proc.poll() is not None:
             print(f"✗ Backend server failed to start (exit code: {proc.returncode})")
+            backend_process = None
             return None
         
         print("✓ Backend server started successfully")
         return proc
     except Exception as e:
         print(f"✗ Failed to start backend server: {e}")
+        backend_process = None
         return None
 
 def find_npm_path():
@@ -71,6 +103,7 @@ def find_npm_path():
 
 def run_frontend():
     """Start the frontend development server."""
+    global frontend_process
     current_dir = os.getcwd()  # Save current directory
     frontend_dir = Path(current_dir) / "frontend"
     
@@ -115,10 +148,14 @@ def run_frontend():
         proc = subprocess.Popen([npm_cmd, "start"],
                               creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if os.name == 'nt' else 0)
         
+        # Store reference to the process globally
+        frontend_process = proc
+        
         # Wait a moment to ensure it starts
         time.sleep(2)
         if proc.poll() is not None:
             print(f"✗ Frontend server failed to start (exit code: {proc.returncode})")
+            frontend_process = None
             return None
             
         print("✓ Frontend server started successfully")
@@ -126,10 +163,12 @@ def run_frontend():
         
     except subprocess.CalledProcessError as e:
         print(f"✗ Failed to setup/start frontend: {e}")
+        frontend_process = None
         return None
     except FileNotFoundError:
         print("✗ npm not found. Please install Node.js and npm")
         print("Download from: https://nodejs.org/")
+        frontend_process = None
         return None
     finally:
         # Always restore the original directory
@@ -195,32 +234,57 @@ if __name__ == "__main__":
     print("🔧 VoiceBot Setup & Launch Script")
     print("=" * 40)
     
-    # Install backend requirements
-    if not install_requirements():
-        print("❌ Failed to install requirements. Exiting...")
-        sys.exit(1)
-
-    # Start backend server
-    backend_proc = run_backend()
-    if not backend_proc:
-        print("❌ Failed to start backend. Exiting...")
-        sys.exit(1)
-        
-    # Give backend time to start
-    print("Waiting for backend to initialize...")
-    time.sleep(5)
+    # Register cleanup function to run at exit
+    atexit.register(cleanup_processes)
     
-    # Check if backend is still running
-    if backend_proc.poll() is not None:
-        print("❌ Backend server stopped during initialization")
-        sys.exit(1)
+    # Register signal handlers for graceful shutdown
+    if os.name == 'nt':  # Windows
+        signal.signal(signal.SIGINT, signal_handler)
+        signal.signal(signal.SIGTERM, signal_handler)
+    else:  # Unix-like systems
+        signal.signal(signal.SIGINT, signal_handler)
+        signal.signal(signal.SIGTERM, signal_handler)
+        signal.signal(signal.SIGHUP, signal_handler)
+    
+    try:
+        # Install backend requirements
+        if not install_requirements():
+            print("❌ Failed to install requirements. Exiting...")
+            sys.exit(1)
 
-    # Start frontend server
-    frontend_proc = run_frontend()
-    if not frontend_proc:
-        print("❌ Failed to start frontend. Terminating backend...")
-        terminate_process(backend_proc, "Backend")
-        sys.exit(1)
+        # Start backend server
+        backend_proc = run_backend()
+        if not backend_proc:
+            print("❌ Failed to start backend. Exiting...")
+            sys.exit(1)
+            
+        # Give backend time to start
+        print("Waiting for backend to initialize...")
+        time.sleep(5)
+        
+        # Check if backend is still running
+        if backend_proc.poll() is not None:
+            print("❌ Backend server stopped during initialization")
+            sys.exit(1)
 
-    # Monitor both processes
-    monitor_processes(backend_proc, frontend_proc)
+        # Start frontend server
+        frontend_proc = run_frontend()
+        if not frontend_proc:
+            print("❌ Failed to start frontend. Terminating backend...")
+            terminate_process(backend_proc, "Backend")
+            sys.exit(1)
+
+        # Monitor both processes
+        monitor_processes(backend_proc, frontend_proc)
+        
+    except Exception as e:
+        print(f"❌ Unexpected error: {e}")
+        cleanup_processes()
+        sys.exit(1)
+    except SystemExit:
+        # Handle explicit sys.exit() calls
+        cleanup_processes()
+        raise
+    finally:
+        # Final cleanup (belt and suspenders approach)
+        cleanup_processes()

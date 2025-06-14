@@ -1,7 +1,7 @@
 import os
 import requests
 from typing import List, Dict, Any, Optional
-from serpapi import GoogleSearch
+from serpapi.google_search import GoogleSearch
 from dotenv import load_dotenv
 import json
 import time

@@ -17,4 +17,3 @@ einops
 edge-tts
 psutil
 google-search-results
-serpapi

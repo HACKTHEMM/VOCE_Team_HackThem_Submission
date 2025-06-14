@@ -36,12 +36,12 @@ language_dict = {
 }
 
 default_speakers = {
-    "English": "Jenny",
-    "Hindi": "Madhur"
+    "English": "Neerja",
+    "Hindi": "Swara"
 }
 
 class RealTimeTTS:
-    def __init__(self, api_key="GROQ_API_KEY", language="Hindi", speaker="Madhur", max_workers=3):
+    def __init__(self, api_key="GROQ_API_KEY", language="Hindi", speaker="Swara", max_workers=3):
         self.client = Groq(api_key=api_key)
         self.language = language
         self.speaker = speaker

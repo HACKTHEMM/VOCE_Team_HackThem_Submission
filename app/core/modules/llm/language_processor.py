@@ -31,12 +31,12 @@ from app.core.modules.web_scraper.web_scraper import (
 load_dotenv()
 
 class LanguageProcessor:    
-    def __init__(self, api_key: Optional[str] = load_yaml('GROQ_API_KEY'), model_name: str = load_yaml('MODEL_ID'),
+    def __init__(self, api_key: Optional[str] = None, model_name: str = load_yaml('MODEL_ID'),
                  use_conversation_context: bool = True, conversation_collection: str = "conversation_context",
                  use_master_db: bool = True, master_db_collection: str = "chromadb",
                  master_db_path: Optional[str] = None, conversation_db_path: Optional[str] = None,
                  response_language: str = "auto", allow_mixed_language: bool = True,
-                 use_web_scraper: bool = True, serpapi_key: Optional[str] = load_yaml('SERP_API_KEY'),
+                 use_web_scraper: bool = True, serpapi_key: Optional[str] = None,
                  max_workers: int = 4, enable_parallel_processing: bool = True):  # Enhanced parameters with threading
         
         # Threading and concurrency setup
