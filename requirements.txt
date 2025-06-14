@@ -1,3 +1,5 @@
+fastapi
+uvicorn
 groq
 pyaudio
 python-dotenv
@@ -13,3 +15,5 @@ langchain-core
 pandas
 einops
 edge-tts
+psutil
+google-search-results

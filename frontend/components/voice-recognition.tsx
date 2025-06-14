@@ -55,17 +55,19 @@ export function VoiceRecognition({
     
     if (SpeechRecognition) {
       setIsSupported(true)
-        const recognition = new SpeechRecognition()
+      const recognition = new SpeechRecognition()
       recognition.continuous = false
       recognition.interimResults = true
       recognition.lang = getLanguageCode(language)
-
       recognition.onstart = () => {
         console.log("Speech recognition started")
         setHasPermission(true)
         setErrorState(null)
         
         // Set timeout to prevent hanging
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
         timeoutRef.current = setTimeout(() => {
           if (recognitionRef.current) {
             recognitionRef.current.stop()
@@ -78,7 +80,6 @@ export function VoiceRecognition({
           }
         }, 10000) // 10 second timeout
       }
-
       recognition.onresult = (event: any) => {
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current)
@@ -95,30 +96,15 @@ export function VoiceRecognition({
         }
 
         if (finalTranscript.trim()) {
-          onListeningChange(false);
+          // Stop listening before processing the result
+          onListeningChange(false)
+          if (recognitionRef.current) {
+            recognitionRef.current.stop()
+          }
+          
+          // Pass the result to parent component
           onResult(finalTranscript.trim())
-          console.log(finalTranscript)
-          // sending transcript to backend.
-          const transcript = finalTranscript.trim();
-          const session_id = 1; // for now
-
-          fetch("http://localhost:8000/start-assistant/", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ transcript:transcript, session_id : session_id.toString() })
-          })
-          .then(response => response.json())
-          .then(data => {
-            // console.log("Response from backends", data.data);
-          })
-          .catch(error => {
-            console.error("Error sending transcript to backend:", error);
-          });
-
           setErrorState(null)
-          onListeningChange(true)
         }
       }
 

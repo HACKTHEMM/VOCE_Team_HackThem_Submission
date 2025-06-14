@@ -252,9 +252,11 @@ export default function ChatPage() {
     setIsAudioEnabled(newAudioState)
     console.log(`Audio ${newAudioState ? 'enabled' : 'disabled'}`)
   }
-
   const handleSendMessage = async (content: string) => {
     if (!content.trim()) return
+
+    // Prevent duplicate submissions
+    if (isTyping) return
 
     const userMessage: Message = {
       id: Date.now().toString(),

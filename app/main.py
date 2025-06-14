@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 from typing import Dict
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Query
@@ -54,33 +55,61 @@ async def root():
 
 @app.post("/start-assistant/")
 async def start_assistant(data : TranscriptReq):
+    # Start timing
+    start_time = time.time()
+    print(f'[{time.strftime("%Y-%m-%d %H:%M:%S")}] API call received - start-assistant')
+    
     print(f'hitting the start-assistant api.. ')
     if not assistant:
         raise HTTPException(status_code=500, detail="Assistant not initialized")
 
     try:
         print(f'Fetched transcript is : {data.transcript}\nSending it to voice assistant.')
+        
+        # Time the assistant processing
+        assistant_start_time = time.time()
         result = assistant.handle_transcription_with_audio(data.transcript)
+        assistant_end_time = time.time()
+        assistant_processing_time = assistant_end_time - assistant_start_time
+        
         # result is now a dict with {"text": response_text, "audio_file": file_path}
         response_text = result.get("text", "")
         audio_file_path = result.get("audio_file", "")
         
         print(f"\nResponse: {response_text}\n")
         print(f"\nAudio file path from main: {audio_file_path}\n")
+        
         session_responses[data.session_id] = {
             "text": response_text,
             "audio_file": audio_file_path
         }
+
+        # End timing
+        end_time = time.time()
+        total_execution_time = end_time - start_time
+        
+        # Log execution times
+        print(f"📊 EXECUTION TIME METRICS:")
+        print(f"   └─ Assistant processing time: {assistant_processing_time:.3f} seconds")
+        print(f"   └─ Total API execution time: {total_execution_time:.3f} seconds")
+        print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] API call completed - start-assistant")
 
         return {
             "success": True,
             "text": response_text,
             "audio_file": audio_file_path,
             "products": [],  # Add products if available from your assistant
-            "message": "Generated response based on transcript"
+            "message": "Generated response based on transcript",
+            "execution_time": {
+                "assistant_processing_time": assistant_processing_time,
+                "total_execution_time": total_execution_time
+            }
         }
         
     except Exception as e:
+        end_time = time.time()
+        total_execution_time = end_time - start_time
+        print(f"❌ ERROR after {total_execution_time:.3f} seconds: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to start assistant: {e}")
 
 
@@ -96,5 +125,17 @@ async def start_assistant(data : TranscriptReq):
 #  testing getting voice from frontend
 @app.post("/get-transcript")
 async def get_transcript(data : TranscriptReq):
+    start_time = time.time()
+    print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] API call received - get-transcript")
+    
     print(f"Received transcript: {data.transcript}")
-    return {"message": "Transcript received", "text": data.transcript}
+    
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"📊 get-transcript execution time: {execution_time:.3f} seconds")
+    
+    return {
+        "message": "Transcript received", 
+        "text": data.transcript,
+        "execution_time": execution_time
+    }
