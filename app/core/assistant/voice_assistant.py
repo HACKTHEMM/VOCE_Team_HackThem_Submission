@@ -8,31 +8,47 @@ from app.core.modules.llm.language_processor import LanguageProcessor, QueryClas
 # from app.core.modules.adapters.audio_interface import STTAdapter, TTSAdapter, VoiceAssistant
 from app.core.modules.adapters.audio_interface import TTSAdapter, VoiceAssistant
 
+from app.helper.get_config import load_yaml
+
 
 load_dotenv()
 print('Starting up Voice assistant!..')
 class IntegratedVoiceAssistant:
+    _instance = None
+    
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
     def __init__(self, groq_api_key: Optional[str] = None):
-        self.groq_api_key = groq_api_key or os.getenv("GROQ_API_KEY")
-        if not self.groq_api_key:
-            raise ValueError("GROQ_API_KEY is required. Set it in your .env file or pass it as parameter.")
-        self.stt_instance = None
-        # self.tts_instance = None
-        self.language_processor = None
-        self.query_classifier = None
-        self.voice_assistant = None  
-        self._initialize_components()
+        if not hasattr(self, 'is_initialized'):
+            self.groq_api_key = groq_api_key or os.getenv("GROQ_API_KEY")
+            if not self.groq_api_key:
+                raise ValueError("GROQ_API_KEY is required. Set it in your .env file or pass it as parameter.")
+            self.stt_instance = None
+            self.language_processor = None
+            self.query_classifier = None
+            self.voice_assistant = None
+            self.is_initialized = False
+            self._initialize_components()
+        
+
     def _initialize_components(self) -> None:
+        """Initialize all voice assistant components"""
+        if self.is_initialized:
+            print("Components already initialized, skipping...")
+            return
+            
         try:
             print("Initializing Voice Assistant Components...")
             
             print("Setting up Language Processing (LangChain + Groq)...")
-            # Initialize language processor with double RAG enabled
             self.language_processor = LanguageProcessor(
                 api_key=self.groq_api_key,
-                master_db_path="C:/Users/HP/Programs/Projects/matrix-hackathon/chromadb_storage",
-                #child
-                conversation_db_path="C:/Users/HP/Programs/Projects/matrix-hackathon/chromadb_storage"
+                model_name=load_yaml('MODEL_ID'),
+                master_db_path=load_yaml('MASTER_DB_PATH'),
+                conversation_db_path=load_yaml('CHILD_DB_PATH')
             )
             
             print("Setting up Query Classifier...")
@@ -41,13 +57,16 @@ class IntegratedVoiceAssistant:
             print("Assembling Voice Assistant...")
             self.voice_assistant = VoiceAssistant(self.language_processor)
             
-            print("All components initialized successfully!")
+            self.is_initialized = True
+            print("✓ All components initialized successfully!")
             
         except Exception as e:
-            print(f"Error initializing components: {e}")
+            print(f"✗ Error initializing components: {e}")            
             sys.exit(1)
 
     def get_voice_assistant(self) -> VoiceAssistant:
+        if not self.is_initialized:
+            self._initialize_components()
         return self.voice_assistant
     
     def run(self) -> None:

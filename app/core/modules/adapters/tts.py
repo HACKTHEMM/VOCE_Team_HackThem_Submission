@@ -75,6 +75,53 @@ class RealTimeTTS:
         while self.is_running:
             try:
                 text = self.text_queue.get(timeout=1)
+                # try:
+                #     print(f"Converting to speech: {text[:50]}{'...' if len(text) > 50 else ''}")
+                #     self.is_playing = True
+                #     response = self.client.audio.speech.create(
+                #         model="playai-tts",
+                #         voice="Basil-PlayAI",
+                #         response_format="wav",
+                #         input=text,
+                #     )
+
+                #     audio_dir = Path("static/audio")
+                #     audio_dir.mkdir(parents=True, exist_ok=True)
+                #     # generating unique filename
+                #     unique_filename = f"{uuid.uuid4().hex}.wav"
+                #     audio_file_path = audio_dir / unique_filename
+                #     response.write_to_file(str(audio_file_path))
+                #     # this will return to main
+                #     print(f'writing audio to path : {str(audio_file_path)}')
+                #     self.last_audio_file_path = str(audio_file_path)
+                #     # print(f"[{timestamp}] Played: {text}")
+                    
+                #     # Set playing to false first
+                #     self.is_playing = False
+                    
+                #     # Call the callback when playback finishes with a small delay
+                #     if self.playback_finished_callback:
+                #         # Use threading to avoid blocking and add delay for audio cleanup
+                #         def delayed_callback():
+                #             time.sleep(0.3)  # Wait for audio system cleanup
+                #             self.playback_finished_callback()
+                        
+                #         callback_thread = threading.Thread(target=delayed_callback)
+                #         callback_thread.daemon = True
+                #         callback_thread.start()
+                        
+                # except Exception as e:
+                #     print(f"TTS error: {e}")
+                #     self.is_playing = False
+                #     # Still call callback on error to resume STT
+                #     if self.playback_finished_callback:
+                #         def delayed_callback():
+                #             time.sleep(0.1)
+                #             self.playback_finished_callback()
+                #         callback_thread = threading.Thread(target=delayed_callback)
+                #         callback_thread.daemon = True
+                #         callback_thread.start()
+                        
                 self.text_queue.task_done()
             except queue.Empty:
                 continue
@@ -99,6 +146,7 @@ class RealTimeTTS:
             stream.close()
             wf.close()
             
+            # Small delay to ensure audio buffers are cleared
             time.sleep(0.1)
             
         except Exception as e:

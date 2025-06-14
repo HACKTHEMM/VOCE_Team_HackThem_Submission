@@ -5,9 +5,40 @@ from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 from datetime import datetime
 from typing import List, Optional, Dict, Any
-from chromadb.utils import embedding_functions
+import os
 
 load_dotenv()
+
+class SharedEmbeddingManager:
+    """Singleton to manage shared embedding model across all RAG components"""
+    _instance = None
+    _embedding_model_instance = None
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+    
+    def get_embedding_model(self, model_name: str = 'jinaai/jina-embeddings-v3'):
+        if self._embedding_model_instance is None:
+            print(f"Loading shared embedding model: {model_name}...")
+            try:
+                # Create the EmbeddingModel instance once
+                self._embedding_model_instance = EmbeddingModel(model_name)
+                # Load the model
+                if self._embedding_model_instance.load_model():
+                    print("✓ Shared embedding model loaded successfully!")
+                else:
+                    print("✗ Failed to load shared embedding model")
+                    self._embedding_model_instance = None
+                    return None
+            except Exception as e:
+                print(f"✗ Error loading shared embedding model: {e}")
+                self._embedding_model_instance = None
+                return None
+        else:
+            print("✓ Using existing shared embedding model")
+        return self._embedding_model_instance
 
 
 class EmbeddingModel:
@@ -45,6 +76,9 @@ class ChromaDBManager:
         self.client = None
         self.collection = None
         
+        # Ensure directory exists
+        os.makedirs(self.persist_directory, exist_ok=True)
+        
     def initialize_client(self) -> bool:
         try:
             self.client = chromadb.PersistentClient(path=self.persist_directory)
@@ -78,7 +112,7 @@ class ChromaDBManager:
                 documents=documents,
                 embeddings=embeddings,
                 ids=ids,
-                metadatas=metadatas
+                metadatas=metadatas or [{}] * len(documents)
             )
             print(f"Successfully stored {len(embeddings)} embeddings")
             return True
@@ -104,7 +138,7 @@ class ChromaDBManager:
             return results
         except Exception as e:
             print(f"Error searching for similar embeddings: {str(e)}")
-            return {"documents": [], "distances": [], "ids": []}
+            return {"documents": [], "distances": [], "ids": [], "metadatas": []}
 
 
 class UserInputProcessor:
@@ -211,15 +245,20 @@ class ConversationEmbeddingManager:
                  persist_directory: str = "chromadb_storage",
                  model_name: str = 'jinaai/jina-embeddings-v3'):
         self.collection_name = collection_name
-        self.embedding_model = EmbeddingModel(model_name)
+        self.model_name = model_name
+        # CHANGE THIS LINE - Use shared embedding manager
+        self.shared_embedding_manager = SharedEmbeddingManager()
+        self.embedding_model = None  # Will be set in initialize()
         self.chromadb_manager = ChromaDBManager(persist_directory)
         self.is_initialized = False
         
     def initialize(self) -> bool:
         if self.is_initialized:
             return True
-            
-        if not self.embedding_model.load_model():
+        
+        # CHANGE THIS SECTION - Get shared embedding model
+        self.embedding_model = self.shared_embedding_manager.get_embedding_model(self.model_name)
+        if not self.embedding_model:
             return False
             
         if not self.chromadb_manager.initialize_client():
@@ -320,103 +359,41 @@ class ConversationEmbeddingManager:
             print(f"Error getting relevant context: {str(e)}")
             return []
 
-
 class EmbeddingRAGPipeline:
-    def __init__(self, collection_name: str = "chromadb", persist_directory: Optional[str] = None):
+    
+    def __init__(self, collection_name: str = "rag_collection",
+                 persist_directory: str = "chromadb_storage", 
+                 model_name: str = 'jinaai/jina-embeddings-v3'):
         self.collection_name = collection_name
-        self.persist_directory = persist_directory or "chromadb_storage"
-        self.client = None
-        self.collection = None
-        self.embedding_model = None
+        self.persist_directory = persist_directory
+        self.model_name = model_name
+        # CHANGE THIS SECTION - Use shared embedding manager
+        self.shared_embedding_manager = SharedEmbeddingManager()
+        self.user_input_processor = None  # Will be created with shared model
+        self.is_initialized = False
         
     def initialize(self) -> bool:
-        try:
-            # Initialize ChromaDB client
-            os.makedirs(self.persist_directory, exist_ok=True)
-            self.client = chromadb.PersistentClient(path=self.persist_directory)
-            
-            # Initialize embedding model
-            self.embedding_model = SentenceTransformer('jinaai/jina-embeddings-v3')
-            print(f"Loading embedding model: jinaai/jina-embeddings-v3...")
-            
-            def embed_function(texts):
-                return self.embedding_model.encode(texts).tolist()
-            
-            # Get or create collection
-            self.collection = self.client.get_or_create_collection(
-                name=self.collection_name,
-                embedding_function=embed_function
-            )
-            
+        """Initialize the pipeline"""
+        if self.is_initialized:
             return True
-            
-        except Exception as e:
-            print(f"Error initializing EmbeddingRAGPipeline: {str(e)}")
-            return False
-    
-    def search_similar(self, query: str, n_results: int = 5) -> List[Dict[str, Any]]:
-        try:
-            if not self.collection:
-                return []
-                
-            results = self.collection.query(
-                query_texts=[query],
-                n_results=n_results
-            )
-            
-            similar_items = []
-            if results and "documents" in results and results["documents"]:
-                for i in range(len(results["documents"][0])):
-                    item = {
-                        'text': results["documents"][0][i],
-                        'distance': results["distances"][0][i] if "distances" in results else 0,
-                        'metadata': results["metadatas"][0][i] if "metadatas" in results else {}
-                    }
-                    similar_items.append(item)
-            
-            return similar_items
-            
-        except Exception as e:
-            print(f"Error searching similar items: {str(e)}")
-            return []
-    
-    def add_document(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> bool:
-        try:
-            if not self.collection:
-                return False
-                
-            doc_id = str(uuid.uuid4())
-            
-            self.collection.add(
-                documents=[text],
-                ids=[doc_id],
-                metadatas=[metadata] if metadata else None
-            )
-            
-            return True
-            
-        except Exception as e:
-            print(f"Error adding document: {str(e)}")
-            return False
         
-    def process_query(self, query: str, **kwargs) -> Dict[str, Any]:
-        try:
-            # Get embeddings and search collection
-            results = self.collection.query(
-                query_texts=[query],
-                n_results=kwargs.get('n_results', 5)
-            )
+        # CHANGE THIS SECTION - Get shared embedding model and pass to processor
+        shared_embedding_model = self.shared_embedding_manager.get_embedding_model(self.model_name)
+        if not shared_embedding_model:
+            return False
             
-            return {
-                'documents': results['documents'][0],
-                'metadata': results.get('metadatas', [{}])[0],
-                'distances': results.get('distances', [0])[0]
-            }
-        except Exception as e:
-            print(f"Error processing query: {str(e)}")
-            return {'documents': [], 'metadata': {}, 'distances': []}
-    
+        # Create UserInputProcessor with shared embedding model
+        # You'll need to modify UserInputProcessor to accept a pre-loaded embedding model
+        self.user_input_processor = UserInputProcessor(
+            self.collection_name, 
+            self.persist_directory, 
+            self.model_name,
+            shared_embedding_model=shared_embedding_model  # Pass the shared model
+        )
         
+        self.is_initialized = self.user_input_processor.initialize()
+        return self.is_initialized
+            
     def run_user_input_pipeline(self, user_inputs: List[str], metadata_list: List[Dict[str, Any]] = None) -> bool:
         print(f"Starting user input embedding generation for {len(user_inputs)} inputs...")
         start_time = time.time()
@@ -445,6 +422,7 @@ class EmbeddingRAGPipeline:
         return self.user_input_processor.search_similar_inputs(query, n_results)
 
 
+# REST OF YOUR CONVENIENCE FUNCTIONS REMAIN THE SAME
 def process_user_inputs(user_inputs: List[str], collection_name: str = "user_inputs",
                        metadata_list: List[Dict[str, Any]] = None) -> bool:
     pipeline = EmbeddingRAGPipeline(collection_name=collection_name)

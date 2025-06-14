@@ -1,6 +1,6 @@
+print('Setting up things. This will take a while..')
 import time 
 st = time.time()
-print(f'Starting Up..')
 import pandas as pd
 import sys
 from dotenv import load_dotenv
@@ -15,7 +15,7 @@ def init_components():
     return assistant
 
 
-def run_interface(csv_input_path: str, csv_output_path: str):
+def run_inferance(csv_input_path: str = "./test.csv" , csv_output_path: str = "./output.csv") :
     load_dotenv()
 
     try:
@@ -51,4 +51,4 @@ def run_interface(csv_input_path: str, csv_output_path: str):
 
 
 if __name__ == "__main__":
-    run_interface(csv_input_path='./test.csv', csv_output_path='./output.csv')
+    run_inferance(csv_input_path='./test.csv', csv_output_path='./output.csv')
