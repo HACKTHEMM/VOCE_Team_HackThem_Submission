@@ -95,7 +95,7 @@ def run_frontend():
         # Check if node_modules exists, if not install dependencies
         if not os.path.exists("node_modules"):
             print("Installing frontend dependencies...")
-            subprocess.check_call([npm_cmd, "install"], 
+            subprocess.check_call([npm_cmd, "install","--force"], 
                                 stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
             print("✓ Frontend dependencies installed")
         else:

@@ -1,3 +1,5 @@
 MODEL_ID : 'meta-llama/llama-4-scout-17b-16e-instruct'
 MASTER_DB_PATH : "app/chromadb_storage/master_db"
 CHILD_DB_PATH : "app/chromadb_storage/conversation_db"
+GROQ_API_KEY : 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
+SERP_API_KEY : 98819cb36f974c389e31797ebc7a6f208e9dcbb6bc99e8aedab9a28002bc6e54

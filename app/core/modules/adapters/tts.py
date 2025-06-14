@@ -14,10 +14,14 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from groq import Groq
 from pathlib import Path
 from dotenv import load_dotenv
+from app.helper.get_config import load_yaml
 
 load_dotenv()
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if not GROQ_API_KEY:
+    GROQ_API_KEY = load_yaml('GROQ_API_KEY')
+
 
 language_dict = {
     "English": {

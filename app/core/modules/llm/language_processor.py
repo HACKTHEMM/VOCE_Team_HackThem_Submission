@@ -31,12 +31,12 @@ from app.core.modules.web_scraper.web_scraper import (
 load_dotenv()
 
 class LanguageProcessor:    
-    def __init__(self, api_key: Optional[str] = None, model_name: str = load_yaml('MODEL_ID'),
+    def __init__(self, api_key: Optional[str] = load_yaml('GROQ_API_KEY'), model_name: str = load_yaml('MODEL_ID'),
                  use_conversation_context: bool = True, conversation_collection: str = "conversation_context",
                  use_master_db: bool = True, master_db_collection: str = "chromadb",
                  master_db_path: Optional[str] = None, conversation_db_path: Optional[str] = None,
                  response_language: str = "auto", allow_mixed_language: bool = True,
-                 use_web_scraper: bool = True, serpapi_key: Optional[str] = None,
+                 use_web_scraper: bool = True, serpapi_key: Optional[str] = load_yaml('SERP_API_KEY'),
                  max_workers: int = 4, enable_parallel_processing: bool = True):  # Enhanced parameters with threading
         
         # Threading and concurrency setup
@@ -55,7 +55,10 @@ class LanguageProcessor:
         # Basic setup
         self.api_key = api_key or os.getenv("GROQ_API_KEY")
         if not self.api_key:
-            raise ValueError("GROQ_API_KEY is required")
+            try:
+                self.api_key = load_yaml('GROQ_API_KEY')
+            except:
+                raise ValueError("GROQ_API_KEY is required")
         
         # Web scraper setup
         self.use_web_scraper = use_web_scraper
@@ -114,10 +117,15 @@ class LanguageProcessor:
     
     def _get_language_aware_system_prompt(self) -> str:
         """Get system prompt based on language preference"""
-        base_prompt = """You are a smart, friendly, and persuasive voice assistant with access to a detailed knowledge base of the company lenden. 
-        Your role is to answer custom queries with clarity and empathy, and guide them through the onboarding or sales process using your knowledge.
-        Don't use more than 20 words unless necessary. And ***NEVER EVER USE ',' IN YOUR RESPONSE***.
-        Don't create fake facts use the knowledge you have been provided to answer."""
+        base_prompt = """You are a smart, approachable, and persuasive virtual assistant designed to represent LenDen Club. "
+        "Your role is to: \n"
+        "- Provide clear, empathetic, and accurate answers to user queries, strictly using the provided knowledge base.\n"
+        "- Assist users in navigating the onboarding process and guide them through the sales journey in a friendly, professional manner.\n"
+        "- Avoid creating any fake facts or assumptions. Always base your responses solely on the information available in the knowledge base.\n"
+        "- Engage users with a tone that reflects trust, confidence, and alignment with LenDen Club's values.\n"
+        "- If you encounter a query outside the scope of the knowledge base, politely inform the user and suggest appropriate next steps, "
+        "such as contacting customer support.\n"
+        "Always prioritize clarity, empathy, and a customer-centric approach in every interaction."""
         
         if self.response_language == "hindi":
             if self.allow_mixed_language:
@@ -130,11 +138,11 @@ class LanguageProcessor:
             language_instruction = "\n\nIMPORTANT: Respond in Hinglish (mix of Hindi and English) as commonly used in India. Use Hindi for basic communication and English for technical/business terms when natural."
         elif self.response_language == "auto":
             if self.allow_mixed_language:
-                language_instruction = "\n\nIMPORTANT: Respond in the same language style as the user's query. If user mixes Hindi and English (Hinglish), respond similarly. If pure Hindi, respond in Hindi. If English, respond in English."
+                language_instruction = "\n\nIMPORTANT: Respond in the same language style as the user's query. If user mixes Hindi and English (Hinglish), respond similarly. If pure Hindi, respond in Hindi. If English, respond in English. If user writes Hindi words using English letters (Romanized Hindi), detect this and respond in proper Hindi script (Devanagari)."
             else:
-                language_instruction = "\n\nIMPORTANT: Respond in the same language as the user's query. If user asks in Hindi, respond in Hindi. If in English, respond in English."
+                language_instruction = "\n\nIMPORTANT: Respond in the same language as the user's query. If user asks in Hindi, respond in Hindi. If in English, respond in English. If user writes Hindi words using English letters (Romanized Hindi), detect this and respond in proper Hindi script (Devanagari)."
         else:
-            language_instruction = f"\n\nIMPORTANT: Always respond in {self.response_language}."
+            language_instruction = f"\n\nIMPORTANT: Always respond in {self.response_language}. If detecting Hindi words written in English letters (like 'kaise ho' or 'aap kya kar rahe ho'), respond in proper Hindi script (Devanagari)."
         
         return base_prompt + language_instruction
     
@@ -389,20 +397,34 @@ class LanguageProcessor:
     
     def _get_temporary_language_prompt(self, language: str) -> str:
         """Get temporary system prompt for specific language"""
-        base_prompt = """You are a smart, friendly, and persuasive voice assistant with access to a detailed knowledge base of the company lenden. 
-        Your role is to answer custom queries with clarity and empathy, and guide them through the onboarding or sales process using your knowledge.
-        Don't use more than 20 words unless necessary.
-        Don't create fake facts use the knowledge you have been provided to answer."""
+        base_prompt = """You are a smart, approachable, and persuasive virtual assistant designed to represent LenDen Club. "
+        "Your role is to: \n"
+        "- Provide clear, empathetic, and accurate answers to user queries, strictly using the provided knowledge base.\n"
+        "- Assist users in navigating the onboarding process and guide them through the sales journey in a friendly, professional manner.\n"
+        "- Avoid creating any fake facts or assumptions. Always base your responses solely on the information available in the knowledge base.\n"
+        "- Engage users with a tone that reflects trust, confidence, and alignment with LenDen Club's values.\n"
+        "- If you encounter a query outside the scope of the knowledge base, politely inform the user and suggest appropriate next steps, "
+        "such as contacting customer support.\n"
+        "Always prioritize clarity, empathy, and a customer-centric approach in every interaction."""
         
-        if language == "hindi":
+        if self.response_language == "hindi":
             if self.allow_mixed_language:
-                return base_prompt + "\n\nCRITICAL: Respond primarily in Hindi (हिंदी) but common English words (like company, loan, process) are acceptable when natural."
+                language_instruction = "\n\nIMPORTANT: Respond primarily in Hindi (हिंदी) but you can use common English words when natural (like 'company', 'loan', 'process'). This mixed style (Hinglish) is acceptable and natural for Indian users."
             else:
-                return base_prompt + "\n\nCRITICAL: You MUST respond ONLY in Hindi (हिंदी) using Devanagari script. Never use English words or Roman script."
-        elif language == "hinglish":
-            return base_prompt + "\n\nCRITICAL: Respond in Hinglish (Hindi-English mix). Use Hindi for basic communication और English for technical terms जब natural लगे।"
+                language_instruction = "\n\nIMPORTANT: Always respond in pure Hindi (हिंदी में जवाब दें). Use Devanagari script only. Maintain a friendly and professional tone in Hindi."
+        elif self.response_language == "english":
+            language_instruction = "\n\nIMPORTANT: Always respond in English only."
+        elif self.response_language == "hinglish":
+            language_instruction = "\n\nIMPORTANT: Respond in Hinglish (mix of Hindi and English) as commonly used in India. Use Hindi for basic communication and English for technical/business terms when natural."
+        elif self.response_language == "auto":
+            if self.allow_mixed_language:
+                language_instruction = "\n\nIMPORTANT: Respond in the same language style as the user's query. If user mixes Hindi and English (Hinglish), respond similarly. If pure Hindi, respond in Hindi. If English, respond in English. If user writes Hindi words using English letters (Romanized Hindi), detect this and respond in proper Hindi script (Devanagari)."
+            else:
+                language_instruction = "\n\nIMPORTANT: Respond in the same language as the user's query. If user asks in Hindi, respond in Hindi. If in English, respond in English. If user writes Hindi words using English letters (Romanized Hindi), detect this and respond in proper Hindi script (Devanagari)."
         else:
-            return base_prompt + f"\n\nIMPORTANT: Respond only in {language}."
+            language_instruction = f"\n\nIMPORTANT: Always respond in {self.response_language}. If detecting Hindi words written in English letters (like 'kaise ho' or 'aap kya kar rahe ho'), respond in proper Hindi script (Devanagari)."
+        
+        return base_prompt + language_instruction
     
     def _contains_hindi(self, text: str) -> bool:
         """Check if text contains Hindi characters"""

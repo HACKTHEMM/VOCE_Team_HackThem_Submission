@@ -7,8 +7,11 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from app.models.transcript import TranscriptReq
-
+from app.helper.get_config import load_yaml
 load_dotenv()
+
+os.environ['GROQ_API_KEY'] = load_yaml('GROQ_API_KEY')
+os.environ['SERP_API_KEY'] = load_yaml('SERP_API_KEY')
 
 app = FastAPI(title="Enhanced Voice Assistant API")
 if not os.path.exists('static'):
@@ -29,6 +32,7 @@ assistant = None
 @app.on_event("startup")
 async def startup_event():
     if not os.getenv("GROQ_API_KEY"):
+        os.environ['GROQ_API_KEY'] = load_yaml('GROQ_API_KEY')
         print("Error: GROQ_API_KEY not found!")
         print("Please set your Groq API key in the .env file or as an environment variable.")
         sys.exit(1)

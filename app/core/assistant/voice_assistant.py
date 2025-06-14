@@ -30,6 +30,8 @@ class IntegratedVoiceAssistant:
             if not hasattr(self, 'is_initialized'):
                 self.groq_api_key = groq_api_key or os.getenv("GROQ_API_KEY")
                 if not self.groq_api_key:
+                    self.groq_api_key = load_yaml('GROQ_API_KEY')
+                if not self.groq_api_key:
                     raise ValueError("GROQ_API_KEY is required. Set it in your .env file or pass it as parameter.")
                 self.stt_instance = None
                 self.language_processor = None
