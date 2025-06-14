@@ -60,7 +60,7 @@ async def start_assistant(data : TranscriptReq):
 
     try:
         print(f'Fetched transcript is : {data.transcript}\nSending it to voice assistant.')
-        result = assistant.handle_transcription(data.transcript)
+        result = assistant.handle_transcription_with_audio(data.transcript)
         # result is now a dict with {"text": response_text, "audio_file": file_path}
         response_text = result.get("text", "")
         audio_file_path = result.get("audio_file", "")

@@ -101,8 +101,49 @@ class VoiceAssistant:
     def __init__(self, language_processor):
         self.language_processor = language_processor
         self.conversation_context = {}
+          # Initialize TTS adapter
+        from app.core.modules.adapters.tts import RealTimeTTS
+        # Initialize with auto language detection enabled
+        self.tts_instance = RealTimeTTS(language="English", speaker="Jenny")
+        self.tts_instance.enable_auto_language_detection(True)  # Enable automatic language detection
+        self.tts_adapter = TTSAdapter(self.tts_instance)
         
-    def handle_transcription(self, transcription: str) -> dict:
+    def handle_transcription_with_audio(self, transcription: str) -> dict:
+        try:
+            print(f"Processing: {transcription}")
+            
+            # Process query with both RAG systems
+            response = self.language_processor.process_query(
+                user_input=transcription,
+                context=self.conversation_context
+            )
+            
+            # Update conversation context
+            self.conversation_context.update({
+                'last_query': transcription,
+                'last_response': response
+            })
+            
+            # Generate audio file using TTS
+            try:
+                audio_file_path = self.tts_adapter.speak_text(response)
+                print(f"Audio generated at: {audio_file_path}")
+                return {"text": response, "audio_file": audio_file_path}
+            except Exception as tts_error:
+                print(f"TTS Error: {tts_error}")
+                return {"text": response, "audio_file": ""}
+            
+        except Exception as e:
+            print(f"Error in handle_transcription: {str(e)}")
+            error_response = "I apologize, but I encountered an error processing your request."
+            try:
+                audio_file_path = self.tts_adapter.speak_text(error_response)
+                return {"text": error_response, "audio_file": audio_file_path}
+            except Exception as tts_error:
+                print(f"TTS Error in error handling: {tts_error}")
+                return {"text": error_response, "audio_file": ""}
+            
+    def handle_transcription_only(self, transcription: str) -> dict:
         try:
             print(f"Processing: {transcription}")
             
@@ -121,41 +162,17 @@ class VoiceAssistant:
             return {"text": response}
             
         except Exception as e:
-            print(f"Error in handle_transcription: {str(e)}")
-            return {"text": "I apologize, but I encountered an error processing your request."}
+            return {"text": "error : {e}"}
+            
         
     def start_conversation(self) -> None:
-        # if self.is_active:
-        #     print("Voice assistant is already active")
-        #     return
-        
-        # self.is_active = True
         print("Starting Voice Assistant...")
-        # print("=" * 60)
         print("🎤 Voice Assistant Active")
-        # print("• Speak naturally and I'll respond")
-        # print("• Say 'stop listening' or 'goodbye' to end")
-        # print("• Press Ctrl+C to force stop")
-        # print("=" * 60)
-        
         self.tts_adapter.start()
-        # time.sleep(1)
-        
-        # try:
-        #     self.stt_adapter.start()
-        # except KeyboardInterrupt:
-        #     self.stop_conversation()
     
     def stop_conversation(self) -> None:
-        if not self.is_active:
-            return
-        
         print("\n🛑 Stopping Voice Assistant...")
-        self.is_active = False
-        
-        self.stt_adapter.stop()
         self.tts_adapter.stop()
-        
         print("Voice Assistant stopped. Goodbye!")
     
     def set_language_context(self, context: Dict[str, Any]) -> None:

@@ -38,7 +38,7 @@ def run_inferance(csv_input_path: str = "./test.csv" , csv_output_path: str = ".
     
     for i, row in df.iterrows():
         question = row["question"]
-        result = assistant.handle_transcription(question)
+        result = assistant.handle_transcription_only(question)
         response_text = result.get("text", "")
         df.at[i, "response"] = response_text
         print(f"\nQuestion: {question}\nResponse: {response_text}\n")
