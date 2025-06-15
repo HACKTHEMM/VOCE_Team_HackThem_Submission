@@ -35,23 +35,38 @@ export default function APIPage() {
     setCopiedCode(id)
     setTimeout(() => setCopiedCode(""), 2000)
   }
-
   const endpoints = [
     {
       method: "POST",
-      path: "/api/v1/chat",
-      description: "Start a conversation with the AI assistant",
-      params: ["message", "language", "context"],
-      response: "Streaming AI response with conversation state",
+      path: "/start-assistant/",
+      description: "Start a conversation with the AI voice assistant",
+      params: ["transcript", "session_id"],
+      response: "AI response with text, audio file path, and audio URLs",
       icon: <MessageSquare className="h-4 w-4" />
     },
     {
       method: "GET",
-      path: "/api/v1/conversations",
-      description: "Get user's conversation history",
-      params: ["limit", "offset", "date_from"],
-      response: "Array of conversation objects with metadata",
+      path: "/get-audio/{session_id}",
+      description: "Get generated audio file for a session",
+      params: ["session_id"],
+      response: "WAV audio file for direct playback",
+      icon: <Play className="h-4 w-4" />
+    },
+    {
+      method: "GET",
+      path: "/get-latest-response/{session_id}",
+      description: "Get latest response data including audio URLs",
+      params: ["session_id"],
+      response: "Response text, audio URLs, and metadata",
       icon: <Database className="h-4 w-4" />
+    },
+    {
+      method: "POST",
+      path: "/get-transcript",
+      description: "Test endpoint for transcript processing",
+      params: ["transcript", "session_id"],
+      response: "Acknowledgment of received transcript",
+      icon: <Terminal className="h-4 w-4" />
     },
     {
       method: "POST",

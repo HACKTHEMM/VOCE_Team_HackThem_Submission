@@ -11,6 +11,9 @@ interface VoiceRecognitionProps {
   isListening: boolean
   language?: string
   size?: "sm" | "md" | "lg"
+  // Add audio control props
+  isAudioPlaying?: boolean
+  onStopAudio?: () => void
 }
 
 export function VoiceRecognition({
@@ -19,6 +22,9 @@ export function VoiceRecognition({
   isListening,
   language = "en-US",
   size = "md",
+  // Add audio control props with defaults
+  isAudioPlaying = false,
+  onStopAudio,
 }: VoiceRecognitionProps) {
   const [pulseIntensity, setPulseIntensity] = useState(0)
   const [isSupported, setIsSupported] = useState(false)
@@ -221,9 +227,7 @@ export function VoiceRecognition({
     } else {
       setPulseIntensity(0)
     }
-  }, [isListening, errorState])
-
-  // Toggle listening state
+  }, [isListening, errorState])  // Toggle listening state
   const handleToggle = async () => {
     if (!isSupported) {
       toast({
@@ -235,24 +239,43 @@ export function VoiceRecognition({
     }
 
     if (!isListening) {
-      try {
-        // Request microphone permission first
-        await navigator.mediaDevices.getUserMedia({ audio: true })
-        setHasPermission(true)
-        setErrorState(null)
-        onListeningChange(true)
-      } catch (error) {
-        console.error("Toggle error:", error)
-        setErrorState("permission-denied")
-        setHasPermission(false)
-        toast({
-          title: "Microphone Access Required",
-          description: "Please allow microphone access to use voice input.",
-          variant: "destructive",
-        })
+      // If audio is playing, stop it first before starting voice input
+      if (isAudioPlaying && onStopAudio) {
+        console.log("🔇 Stopping TTS audio to start voice input")
+        // Stop audio immediately and the parent will update isAudioPlaying state
+        onStopAudio()
+        
+        // Add a small delay to ensure audio is stopped before starting voice recognition
+        setTimeout(() => {
+          startVoiceRecognition()
+        }, 100)
+        return
       }
+
+      // Normal flow when no audio is playing
+      startVoiceRecognition()
     } else {
       onListeningChange(false)
+    }
+  }
+
+  // Separate function for starting voice recognition
+  const startVoiceRecognition = async () => {
+    try {
+      // Request microphone permission first
+      await navigator.mediaDevices.getUserMedia({ audio: true })
+      setHasPermission(true)
+      setErrorState(null)
+      onListeningChange(true)
+    } catch (error) {
+      console.error("Toggle error:", error)
+      setErrorState("permission-denied")
+      setHasPermission(false)
+      toast({
+        title: "Microphone Access Required",
+        description: "Please allow microphone access to use voice input.",
+        variant: "destructive",
+      })
     }
   }
 
@@ -261,7 +284,6 @@ export function VoiceRecognition({
     md: "w-16 h-16",
     lg: "w-24 h-24",
   }
-
   const iconSizes = {
     sm: "h-5 w-5",
     md: "h-6 w-6",
@@ -271,8 +293,13 @@ export function VoiceRecognition({
     if (errorState) {
       return "bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 shadow-xl shadow-red-500/30"
     }
+    // Prioritize listening state - if listening, always show blue regardless of audio state
     if (isListening) {
       return "bg-gradient-to-r from-blue-600 via-violet-600 to-blue-700 hover:from-blue-700 hover:via-violet-700 hover:to-blue-800 shadow-xl shadow-blue-500/40 animate-pulse"
+    }
+    // Special highlighting when audio is playing to indicate click will interrupt
+    if (isAudioPlaying) {
+      return "bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 hover:from-orange-600 hover:via-red-600 hover:to-orange-700 shadow-xl shadow-orange-500/40 animate-pulse"
     }
     return "bg-gradient-to-r from-blue-500 via-violet-500 to-blue-600 hover:from-blue-600 hover:via-violet-600 hover:to-blue-700 shadow-xl shadow-blue-500/30"
   }
@@ -282,7 +309,6 @@ export function VoiceRecognition({
     if (isListening) return <MicOff className={`${iconSizes[size]} text-white`} />
     return <Mic className={`${iconSizes[size]} text-white`} />
   }
-
   const getStatusText = () => {
     if (!isSupported) return "Browser not supported"
     if (errorState === "permission-denied") return "Microphone access denied"
@@ -291,13 +317,14 @@ export function VoiceRecognition({
     if (errorState === "recognition-error") return "Recognition failed"
     if (errorState === "start-failed") return "Failed to start"
     if (errorState) return "Error occurred"
+    if (isAudioPlaying && !isListening) return "Click to interrupt audio"
     return null
   }
 
   const isDisabled = !isSupported
+  
   return (
-    <div className="relative flex items-center justify-center">
-      {/* Enhanced outer pulse rings */}
+    <div className="relative flex items-center justify-center">      {/* Enhanced outer pulse rings - prioritize listening state */}
       {isListening && !errorState && (
         <>
           <div
@@ -327,6 +354,24 @@ export function VoiceRecognition({
         </>
       )}
 
+      {/* Audio interruption indicator rings - only show when audio is playing AND not listening */}
+      {isAudioPlaying && !isListening && !errorState && (
+        <>
+          <div className="absolute rounded-full bg-gradient-to-r from-orange-500/30 via-red-500/30 to-orange-500/30 animate-ping" 
+               style={{
+                 width: "140%",
+                 height: "140%",
+                 animationDuration: "1.5s",
+               }} />
+          <div className="absolute rounded-full bg-gradient-to-r from-orange-400/20 via-red-400/20 to-orange-400/20 animate-ping" 
+               style={{
+                 width: "180%",
+                 height: "180%",
+                 animationDuration: "2.5s",
+               }} />
+        </>
+      )}
+
       {/* Enhanced main button */}
       <Button
         onClick={handleToggle}
@@ -340,7 +385,13 @@ export function VoiceRecognition({
         style={{
           transform: isListening && !errorState ? `scale(${1 + pulseIntensity * 0.002})` : "scale(1)",
         }}
-        aria-label={isListening ? "Stop listening" : "Start voice input"}
+        aria-label={
+          isListening 
+            ? "Stop listening" 
+            : isAudioPlaying 
+              ? "Stop audio & start voice input" 
+              : "Start voice input"
+        }
       >
         <div className="relative">
           {getIcon()}
