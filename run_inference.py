@@ -2,7 +2,6 @@ print('Setting up things. This will take a while..')
 import time 
 st = time.time()
 import pandas as pd
-import sys
 from dotenv import load_dotenv
 from app.core.assistant.voice_assistant import IntegratedVoiceAssistant
 
@@ -21,8 +20,7 @@ def run_inferance(csv_input_path: str = "./test.csv" , csv_output_path: str = ".
     try:
         assistant = init_components()
     except Exception as e:
-        raise RuntimeError('Error while initializing components.')
-
+        raise RuntimeError(f'Error while initializing components: {e}')
     try:
         df = pd.read_csv(csv_input_path)
         print("Loaded questions:")
@@ -34,8 +32,9 @@ def run_inferance(csv_input_path: str = "./test.csv" , csv_output_path: str = ".
     et = time.time()
     print(f'time : {et-st}')
     print(f'Reading {csv_output_path} now and generating responses.')
-    df["response"] = df.get("response", "").astype(str)
-    
+    print(f'Reading {csv_output_path} now and generating responses.')
+    if "response" not in df.columns:
+        df["response"] = ""
     for i, row in df.iterrows():
         question = row["question"]
         result = assistant.handle_transcription_only(question)
