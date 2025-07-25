@@ -116,16 +116,16 @@ export default function ChatPage() {
     console.log(`Message ID: ${messageId}`)
     console.log(`Audio enabled: ${isAudioEnabled}`)
     console.log(`Audio endpoint: http://localhost:8000/get-audio/${sessionId}`)
-    
+
     // Always stop any currently playing audio first
     stopAudio()
-    
+
     // Check if audio is enabled
     if (!isAudioEnabled) {
       console.log("❌ Audio is disabled - not starting playback")
       return
     }
-    
+
     if (!sessionId) {
       console.log("❌ No session ID provided")
       return
@@ -135,14 +135,14 @@ export default function ChatPage() {
       // Create new audio element
       const audio = new Audio()
       console.log("🎵 Created new Audio element")
-      
+
       // Set audio properties - use the new get-audio endpoint
       audio.src = `http://localhost:8000/get-audio/${sessionId}`
       audio.preload = 'auto'
       audio.volume = 1.0
-      
+
       console.log("🎵 Audio src set to new endpoint, starting load...")
-      
+
       // Set up event handlers with proper cleanup
       const cleanup = () => {
         audio.onloadstart = null
@@ -154,7 +154,7 @@ export default function ChatPage() {
         audio.onabort = null
         audio.onstalled = null
       }
-      
+
       audio.onloadstart = () => {
         console.log("📥 Audio loading started")
         // Only update state if audio is still enabled
@@ -168,7 +168,7 @@ export default function ChatPage() {
           return
         }
       }
-      
+
       audio.oncanplaythrough = () => {
         console.log("✅ Audio ready to play through")
         // Double-check audio is still enabled before playing
@@ -244,16 +244,16 @@ export default function ChatPage() {
     console.log(`Message ID: ${messageId}`)
     console.log(`Audio enabled: ${isAudioEnabled}`)
     console.log(`Full URL: http://localhost:8000${audioUrl}`)
-    
+
     // Always stop any currently playing audio first
     stopAudio()
-    
+
     // Check if audio is enabled
     if (!isAudioEnabled) {
       console.log("❌ Audio is disabled - not starting playback")
       return
     }
-    
+
     if (!audioUrl) {
       console.log("❌ No audio URL provided")
       return
@@ -263,14 +263,14 @@ export default function ChatPage() {
       // Create new audio element
       const audio = new Audio()
       console.log("🎵 Created new Audio element")
-      
+
       // Set audio properties - use the provided audio URL
       audio.src = `http://localhost:8000${audioUrl}`
       audio.preload = 'auto'
       audio.volume = 1.0
-      
+
       console.log("🎵 Audio src set to URL endpoint, starting load...")
-      
+
       // Set up event handlers with proper cleanup
       const cleanup = () => {
         audio.onloadstart = null
@@ -282,7 +282,7 @@ export default function ChatPage() {
         audio.onabort = null
         audio.onstalled = null
       }
-      
+
       audio.onloadstart = () => {
         console.log("📥 Audio loading started")
         // Only update state if audio is still enabled
@@ -296,7 +296,7 @@ export default function ChatPage() {
           return
         }
       }
-      
+
       audio.oncanplaythrough = () => {
         console.log("✅ Audio ready to play through")
         // Double-check audio is still enabled before playing
@@ -369,13 +369,13 @@ export default function ChatPage() {
   const toggleAudio = () => {
     const newAudioState = !isAudioEnabled
     console.log(`Audio toggling from ${isAudioEnabled} to ${newAudioState}`)
-    
+
     // If disabling audio, stop any currently playing audio immediately
     if (!newAudioState) {
       console.log("🔇 Disabling audio - stopping current playback")
       stopAudio()
     }
-    
+
     setIsAudioEnabled(newAudioState)
     console.log(`Audio ${newAudioState ? 'enabled' : 'disabled'}`)
   }
@@ -426,12 +426,12 @@ export default function ChatPage() {
       const assistantMessage: Message = {
         id: assistantMessageId,
         type: "assistant",
-        content: data.text || "Sorry, I couldn't generate a response.",        timestamp: new Date(),
+        content: data.text || "Sorry, I couldn't generate a response.", timestamp: new Date(),
         products: data.products || [],
         sentiment: "positive",
         audioFile: data.audio_file || "",
       }
-      
+
       // Add message first
       setMessages((prev) => [...prev, assistantMessage])
       setIsTyping(false)
@@ -451,7 +451,7 @@ export default function ChatPage() {
         })
       }
       console.log("Current isAudioEnabled:", isAudioEnabled)
-      
+
       // Then handle audio - with a small delay to ensure state is updated
       setTimeout(() => {
         if ((data.audio_file || data.audio_url) && isAudioEnabled) {
@@ -476,7 +476,7 @@ export default function ChatPage() {
     } catch (error) {
       console.error("Error in chat flow:", error)
       setIsTyping(false)
-      
+
       // Add error message
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -498,16 +498,16 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-all duration-700">
-      {/* Enhanced Background Pattern */}
+    <div className="min-h-screen bg-gradient-to-br from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] dark:from-[#1E1E1E] dark:via-[#2A2A2A] dark:to-[#1E1E1E] transition-all duration-700">
+      {/* Classic Background Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 right-4 sm:top-20 sm:right-20 w-48 h-48 sm:w-72 sm:h-72 bg-gradient-to-br from-blue-400/8 to-violet-600/8 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-10 left-4 sm:bottom-20 sm:left-20 w-48 h-48 sm:w-72 sm:h-72 bg-gradient-to-tr from-cyan-400/8 to-blue-600/8 rounded-full blur-3xl animate-float" style={{animationDelay: '3s'}}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-r from-violet-400/5 to-blue-400/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute top-10 right-4 sm:top-20 sm:right-20 w-48 h-48 sm:w-72 sm:h-72 bg-gradient-to-br from-[#BBA588]/8 to-[#8E735B]/8 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-10 left-4 sm:bottom-20 sm:left-20 w-48 h-48 sm:w-72 sm:h-72 bg-gradient-to-tr from-[#7C6D64]/8 to-[#BBA588]/8 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-r from-[#8E735B]/5 to-[#BBA588]/5 rounded-full blur-3xl animate-pulse-slow"></div>
       </div>
 
       {/* Enhanced Header */}
-      <header className="relative border-b border-white/10 dark:border-slate-800/30 glass-strong sticky top-0 z-50 backdrop-blur-xl">
+      <header className="relative border-b border-[#BBA588]/10 dark:border-[#BBA588]/30 glass-classic sticky top-0 z-50 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
             <div className="flex items-center space-x-2 sm:space-x-6 min-w-0 flex-1">
@@ -515,20 +515,20 @@ export default function ChatPage() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:bg-white/40 dark:hover:bg-slate-800/40 rounded-xl p-2 sm:p-3 shrink-0"
+                  className="text-[#7C6D64] hover:text-[#2D2C2A] dark:text-[#BBA588] dark:hover:text-[#ECE8D9] transition-all duration-300 hover:bg-[#BBA588]/20 dark:hover:bg-[#BBA588]/10 rounded-xl p-2 sm:p-3 shrink-0 font-serif"
                 >
                   <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </Link>
               <div className="flex items-center space-x-2 sm:space-x-4 min-w-0">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 via-violet-600 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/20 shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#BBA588] via-[#8E735B] to-[#7C6D64] rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg shadow-[#BBA588]/20 shrink-0">
                   <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <h1 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white truncate">SalesSpeak Chat</h1>
+                  <h1 className="text-lg sm:text-xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] truncate font-serif-display">Voce Chat</h1>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shrink-0"></div>
-                    <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium truncate">AI Assistant Online</span>
+                    <div className="w-2 h-2 bg-[#8E735B] rounded-full animate-pulse shrink-0"></div>
+                    <span className="text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588] font-medium truncate font-serif">AI Assistant Online</span>
                   </div>
                 </div>
               </div>
@@ -538,17 +538,16 @@ export default function ChatPage() {
               <div className="hidden sm:block">
                 <ApiStatus />
               </div>
-              
+
               {/* Audio Toggle Button */}
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={toggleAudio}
-                className={`relative transition-all duration-300 hover:bg-white/40 dark:hover:bg-slate-800/40 rounded-xl p-2 sm:p-3 ${
-                  isAudioEnabled 
-                    ? 'text-blue-600 dark:text-blue-400' 
-                    : 'text-slate-400 dark:text-slate-600'
-                }`}
+                className={`relative transition-all duration-300 hover:bg-[#BBA588]/20 dark:hover:bg-[#BBA588]/10 rounded-xl p-2 sm:p-3 ${isAudioEnabled
+                  ? 'text-[#8E735B] dark:text-[#BBA588]'
+                  : 'text-[#7C6D64]/50 dark:text-[#BBA588]/50'
+                  }`}
                 title={isAudioEnabled ? "Disable audio" : "Enable audio"}
               >
                 {isAudioEnabled ? (
@@ -557,7 +556,7 @@ export default function ChatPage() {
                   <VolumeX className="h-4 w-4 sm:h-5 sm:w-5" />
                 )}
                 {isAudioPlaying && isAudioEnabled && (
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#8E735B] rounded-full animate-pulse"></div>
                 )}
               </Button>
 
@@ -567,7 +566,7 @@ export default function ChatPage() {
               </div>
             </div>
           </div>
-          
+
           {/* Mobile-only bottom row for hidden elements */}
           <div className="sm:hidden pb-3 flex items-center justify-between">
             <ApiStatus />
@@ -583,18 +582,18 @@ export default function ChatPage() {
           <div className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4 sm:space-y-6 scrollbar-thin">
             {/* Offline Warning */}
             {!isOnline && (
-              <Alert className="border-yellow-300/50 glass-strong border border-yellow-200/50 dark:border-yellow-600/30 shadow-lg animate-in slide-in-from-top-4 duration-500">
-                <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
-                <AlertDescription className="text-yellow-800 dark:text-yellow-200">
+              <Alert className="glass-classic border-[#BBA588]/50 dark:border-[#8E735B]/30 shadow-lg animate-in slide-in-from-top-4 duration-500">
+                <AlertTriangle className="h-4 w-4 text-[#8E735B] dark:text-[#BBA588]" />
+                <AlertDescription className="text-[#2D2C2A] dark:text-[#ECE8D9] font-serif">
                   You're currently offline. Voice recognition won't work, but you can still type messages.
                 </AlertDescription>
               </Alert>
             )}            {messages.map((message) => (
               <div key={message.id} className="animate-in slide-in-from-bottom-4 duration-500">
-                <MessageBubble message={message} />                
+                <MessageBubble message={message} />
                 {message.products && message.products.length > 0 && (
                   <div className="mt-4 sm:mt-6">
-                    <div className="mb-2 text-sm text-blue-600 dark:text-blue-400 font-medium">
+                    <div className="mb-2 text-sm text-[#8E735B] dark:text-[#BBA588] font-medium font-serif">
                       Found {message.products.length} products:
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
@@ -605,11 +604,11 @@ export default function ChatPage() {
                         } catch (error) {
                           console.error(`Error rendering product ${index}:`, error, product)
                           return (
-                            <div key={`error-product-${index}`} className="p-4 border-2 border-red-200 rounded-lg bg-red-50 dark:bg-red-900/20">
-                              <p className="text-red-600 dark:text-red-400 text-sm">
+                            <div key={`error-product-${index}`} className="p-4 border-2 border-[#BBA588]/50 rounded-lg bg-[#F3F1E9] dark:bg-[#1E1E1E]/20">
+                              <p className="text-[#8E735B] dark:text-[#BBA588] text-sm font-serif">
                                 Error displaying product {index}. Check console for details.
                               </p>
-                              <pre className="text-xs mt-2 overflow-auto">{JSON.stringify(product, null, 2)}</pre>
+                              <pre className="text-xs mt-2 overflow-auto font-mono">{JSON.stringify(product, null, 2)}</pre>
                             </div>
                           )
                         }
@@ -617,52 +616,52 @@ export default function ChatPage() {
                     </div>
                   </div>
                 )}
-                
+
                 {/* Show if no products */}
                 {message.type === "assistant" && (!message.products || message.products.length === 0) && (
-                  <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                  <div className="mt-2 text-xs text-[#7C6D64] dark:text-[#BBA588] font-serif">
                     No products in this response.
                   </div>
                 )}
               </div>
             ))}
             {isTyping && (
-              <div className="flex items-center space-x-3 text-slate-500 dark:text-slate-400 animate-in slide-in-from-bottom-4 duration-300">
+              <div className="flex items-center space-x-3 text-[#7C6D64] dark:text-[#BBA588] animate-in slide-in-from-bottom-4 duration-300">
                 <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full animate-bounce" />
-                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
-                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+                  <div className="w-2 h-2 bg-gradient-to-r from-[#BBA588] to-[#8E735B] rounded-full animate-bounce" />
+                  <div className="w-2 h-2 bg-gradient-to-r from-[#BBA588] to-[#8E735B] rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
+                  <div className="w-2 h-2 bg-gradient-to-r from-[#BBA588] to-[#8E735B] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
                 </div>
-                <span className="text-sm font-medium">Assistant is thinking...</span>
+                <span className="text-sm font-medium font-serif">Assistant is thinking...</span>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
           {/* Input Area */}
-          <div className="border-t border-white/20 dark:border-slate-800/50 glass-strong p-3 sm:p-6">
+          <div className="border-t border-[#BBA588]/20 dark:border-[#BBA588]/20 glass-classic p-3 sm:p-6">
             <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
               {/* Enhanced Voice Input Section */}
               <div className="flex items-center justify-center">
                 <div className="flex flex-col items-center space-y-3 sm:space-y-4">
                   <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-violet-400/20 to-cyan-400/20 rounded-full blur-xl sm:blur-2xl animate-pulse-slow group-hover:blur-lg sm:group-hover:blur-xl transition-all duration-500"></div>
-                      <div className="relative bg-white/20 dark:bg-slate-900/20 backdrop-blur-lg border border-white/30 dark:border-slate-700/30 rounded-full p-3 sm:p-4 shadow-xl">                      <VoiceRecognition
-                        isListening={isListening}
-                        onListeningChange={handleVoiceListeningChange}
-                        onResult={handleVoiceResult}
-                        language={currentLanguage}
-                        size="md"
-                        isAudioPlaying={isAudioPlaying}
-                        onStopAudio={stopAudio}
-                      />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#BBA588]/20 via-[#8E735B]/20 to-[#7C6D64]/20 rounded-full blur-xl sm:blur-2xl animate-pulse-slow group-hover:blur-lg sm:group-hover:blur-xl transition-all duration-500"></div>
+                    <div className="relative bg-[#F3F1E9]/20 dark:bg-[#1E1E1E]/20 backdrop-blur-lg border border-[#BBA588]/30 dark:border-[#BBA588]/20 rounded-full p-3 sm:p-4 shadow-xl">                      <VoiceRecognition
+                      isListening={isListening}
+                      onListeningChange={handleVoiceListeningChange}
+                      onResult={handleVoiceResult}
+                      language={currentLanguage}
+                      size="md"
+                      isAudioPlaying={isAudioPlaying}
+                      onStopAudio={stopAudio}
+                    />
                     </div>
                   </div>
                   <div className="text-center space-y-1 px-4">
-                    <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
+                    <p className="text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-medium font-serif">
                       {isListening ? "🎤 Listening... Click to stop" : "Click to start speaking"}
                     </p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-xs text-[#7C6D64] dark:text-[#BBA588] font-serif">
                       Speak naturally in {currentLanguage === 'hi' ? 'Hindi or English' : 'English'}
                     </p>
                   </div>
@@ -673,9 +672,9 @@ export default function ChatPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-center px-4">
                   <div className="flex items-center space-x-2 sm:space-x-3 w-full max-w-sm">
-                    <div className="h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-600 to-transparent flex-1"></div>
-                    <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium px-2 whitespace-nowrap">or type your message</span>
-                    <div className="h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-600 to-transparent flex-1"></div>
+                    <div className="h-px bg-gradient-to-r from-transparent via-[#BBA588] dark:via-[#8E735B] to-transparent flex-1"></div>
+                    <span className="text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588] font-medium px-2 whitespace-nowrap font-serif">or type your message</span>
+                    <div className="h-px bg-gradient-to-r from-transparent via-[#BBA588] dark:via-[#8E735B] to-transparent flex-1"></div>
                   </div>
                 </div>
                 <TextInputFallback
@@ -687,30 +686,30 @@ export default function ChatPage() {
 
               {/* Status Messages */}
               {isListening && (
-                <div className="text-center text-slate-500 dark:text-slate-400 text-sm animate-pulse px-4">
+                <div className="text-center text-[#7C6D64] dark:text-[#BBA588] text-sm animate-pulse px-4">
                   <p className="flex items-center justify-center space-x-2">
-                    <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                    <span>Listening... Speak clearly</span>
+                    <span className="w-2 h-2 bg-[#8E735B] rounded-full animate-pulse"></span>
+                    <span className="font-serif">Listening... Speak clearly</span>
                   </p>
                 </div>
               )}
 
               {/* Audio Status */}
               {!isAudioEnabled && (
-                <div className="text-center text-slate-500 dark:text-slate-400 text-xs px-4">
+                <div className="text-center text-[#7C6D64] dark:text-[#BBA588] text-xs px-4">
                   <p className="flex items-center justify-center space-x-2">
                     <VolumeX className="h-3 w-3" />
-                    <span>Audio responses are disabled</span>
+                    <span className="font-serif">Audio responses are disabled</span>
                   </p>
                 </div>
               )}
 
               {/* Audio Playing Status */}
               {isAudioPlaying && isAudioEnabled && (
-                <div className="text-center text-green-600 dark:text-green-400 text-xs px-4">
+                <div className="text-center text-[#8E735B] dark:text-[#BBA588] text-xs px-4">
                   <p className="flex items-center justify-center space-x-2">
                     <Volume2 className="h-3 w-3 animate-pulse" />
-                    <span>Playing audio response...</span>
+                    <span className="font-serif">Playing audio response...</span>
                   </p>
                 </div>
               )}

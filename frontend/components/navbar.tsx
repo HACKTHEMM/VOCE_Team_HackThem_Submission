@@ -5,17 +5,17 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { 
-  Sheet, 
-  SheetContent, 
+import {
+  Sheet,
+  SheetContent,
   SheetTrigger,
   SheetTitle,
-  SheetDescription 
+  SheetDescription
 } from "@/components/ui/sheet"
-import { 
-  ArrowLeft, 
-  Mic, 
-  Menu, 
+import {
+  ArrowLeft,
+  Mic,
+  Menu,
   X
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -41,7 +41,7 @@ export function Navbar({ showBackButton = true, variant = "default" }: NavbarPro
   const isLandingPage = pathname === "/"
 
   return (
-    <nav className="relative border-b border-white/10 dark:border-slate-800/30 glass-subtle sticky top-0 z-50 backdrop-blur-xl">
+    <nav className="relative border-b border-[#BBA588]/20 dark:border-[#BBA588]/10 glass-classic sticky top-0 z-50 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Left section */}
@@ -49,9 +49,9 @@ export function Navbar({ showBackButton = true, variant = "default" }: NavbarPro
             {/* Back button for non-landing pages */}
             {showBackButton && !isLandingPage && (
               <Link href="/">
-                <Button 
-                  variant="ghost" 
-                  className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:bg-white/40 dark:hover:bg-slate-800/40 rounded-xl px-4 py-2.5 font-medium lg:flex hidden"
+                <Button
+                  variant="ghost"
+                  className="text-[#5A5A5A] hover:text-[#2D2C2A] dark:text-[#B6B6B6] dark:hover:text-[#ECE8D9] transition-all duration-300 hover:bg-[#F3F1E9]/40 dark:hover:bg-[#1E1E1E]/40 rounded-xl px-4 py-2.5 font-medium lg:flex hidden font-serif"
                 >
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Back
@@ -61,14 +61,14 @@ export function Navbar({ showBackButton = true, variant = "default" }: NavbarPro
 
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 via-violet-600 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/20 dark:shadow-blue-500/10">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#BBA588] via-[#8E735B] to-[#7C6D64] rounded-2xl flex items-center justify-center shadow-lg shadow-[#BBA588]/20 dark:shadow-[#BBA588]/10">
                 <Mic className="h-6 w-6 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-700 to-violet-700 dark:from-white dark:via-blue-300 dark:to-violet-300 bg-clip-text text-transparent">
-                  SalesSpeak
+                <span className="text-2xl font-bold bg-gradient-to-r from-[#2D2C2A] via-[#8E735B] to-[#7C6D64] dark:from-[#ECE8D9] dark:via-[#BBA588] dark:to-[#8E735B] bg-clip-text text-transparent font-serif-display">
+                  Voce
                 </span>
-                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">AI Sales Assistant</span>
+                <span className="text-xs text-[#5A5A5A] dark:text-[#B6B6B6] font-medium font-serif">Classic AI Assistant</span>
               </div>
             </Link>
           </div>
@@ -81,38 +81,38 @@ export function Navbar({ showBackButton = true, variant = "default" }: NavbarPro
               <Link href="/contact">
                 <Button
                   variant="ghost"
-                  className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:bg-white/40 dark:hover:bg-slate-800/40 rounded-xl px-6 py-2.5 font-medium"
+                  className="text-[#5A5A5A] hover:text-[#2D2C2A] dark:text-[#B6B6B6] dark:hover:text-[#ECE8D9] transition-all duration-300 hover:bg-[#F3F1E9]/40 dark:hover:bg-[#1E1E1E]/40 rounded-xl px-6 py-2.5 font-medium font-serif"
                 >
                   Contact
                 </Button>
               </Link>
-              
+
               <SignedOut>
                 <SignInButton mode="modal">
                   <Button
                     variant="ghost"
-                    className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:bg-white/40 dark:hover:bg-slate-800/40 rounded-xl px-6 py-2.5 font-medium"
+                    className="text-[#5A5A5A] hover:text-[#2D2C2A] dark:text-[#B6B6B6] dark:hover:text-[#ECE8D9] transition-all duration-300 hover:bg-[#F3F1E9]/40 dark:hover:bg-[#1E1E1E]/40 rounded-xl px-6 py-2.5 font-medium font-serif"
                   >
                     Sign In
                   </Button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <Button className="bg-gradient-to-r from-blue-600 via-violet-600 to-blue-700 hover:from-blue-700 hover:via-violet-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl shadow-blue-500/25 hover:shadow-blue-500/35 transition-all duration-300 transform hover:scale-105 rounded-xl px-8 py-2.5 font-semibold">
+                  <Button className="btn-classic text-white shadow-lg hover:shadow-xl shadow-[#BBA588]/25 hover:shadow-[#BBA588]/35 transition-all duration-300 transform hover:scale-105 rounded-xl px-8 py-2.5 font-semibold font-serif-display">
                     Get Started
                   </Button>
                 </SignUpButton>
               </SignedOut>
-              
+
               <SignedIn>
                 <Link href="/chat">
-                  <Button className="bg-gradient-to-r from-blue-600 via-violet-600 to-blue-700 hover:from-blue-700 hover:via-violet-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl shadow-blue-500/25 hover:shadow-blue-500/35 transition-all duration-300 transform hover:scale-105 rounded-xl px-8 py-2.5 font-semibold">
+                  <Button className="btn-classic text-white shadow-lg hover:shadow-xl shadow-[#BBA588]/25 hover:shadow-[#BBA588]/35 transition-all duration-300 transform hover:scale-105 rounded-xl px-8 py-2.5 font-semibold font-serif-display">
                     Dashboard
                   </Button>
                 </Link>
-                <UserButton 
+                <UserButton
                   appearance={{
                     elements: {
-                      avatarBox: "w-10 h-10 border-2 border-white/20 hover:border-blue-500/40 transition-all duration-300"
+                      avatarBox: "w-10 h-10 border-2 border-[#BBA588]/20 hover:border-[#BBA588]/40 transition-all duration-300"
                     }
                   }}
                 />
@@ -125,73 +125,73 @@ export function Navbar({ showBackButton = true, variant = "default" }: NavbarPro
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="md:hidden w-10 h-10 px-0 bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
+                  className="md:hidden w-10 h-10 px-0 bg-[#F3F1E9]/10 dark:bg-[#1E1E1E]/10 backdrop-blur-lg border border-[#BBA588]/20 hover:bg-[#F3F1E9]/20 dark:hover:bg-[#1E1E1E]/20 transition-all duration-300"
                 >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[320px] sm:w-[400px]">
+              <SheetContent side="right" className="w-[320px] sm:w-[400px] bg-[#F3F1E9] dark:bg-[#1E1E1E] border-[#BBA588]/20">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <SheetDescription className="sr-only">
                   Navigate through the website sections
                 </SheetDescription>
-                
+
                 <div className="flex flex-col space-y-6 mt-6">
                   {/* Mobile Back Button */}
                   {showBackButton && !isLandingPage && (
                     <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button 
-                        variant="ghost" 
-                        className="w-full justify-start text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300 hover:bg-white/40 dark:hover:bg-slate-800/40 rounded-xl px-4 py-2.5 font-medium"
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-[#5A5A5A] hover:text-[#2D2C2A] dark:text-[#B6B6B6] dark:hover:text-[#ECE8D9] transition-all duration-300 hover:bg-[#F3F1E9]/40 dark:hover:bg-[#1E1E1E]/40 rounded-xl px-4 py-2.5 font-medium font-serif"
                       >
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         Back to Home
                       </Button>
                     </Link>
                   )}                  {/* Mobile Navigation Links */}
-                      {/* Mobile CTA Buttons */}
-                  <div className="space-y-3 pt-6 border-t border-slate-200 dark:border-slate-800">
+                  {/* Mobile CTA Buttons */}
+                  <div className="space-y-3 pt-6 border-t border-[#BBA588]/20 dark:border-[#BBA588]/10">
                     <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                       <Button
                         variant="outline"
-                        className="w-full text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 rounded-xl py-2.5"
+                        className="w-full text-[#5A5A5A] hover:text-[#2D2C2A] dark:text-[#B6B6B6] dark:hover:text-[#ECE8D9] border-[#BBA588]/30 dark:border-[#BBA588]/20 hover:border-[#BBA588]/40 dark:hover:border-[#BBA588]/30 rounded-xl py-2.5 font-serif"
                       >
                         Contact Us
                       </Button>
                     </Link>
-                    
+
                     <SignedOut>
                       <SignInButton mode="modal">
                         <Button
                           variant="outline"
-                          className="w-full text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 rounded-xl py-2.5"
+                          className="w-full text-[#5A5A5A] hover:text-[#2D2C2A] dark:text-[#B6B6B6] dark:hover:text-[#ECE8D9] border-[#BBA588]/30 dark:border-[#BBA588]/20 hover:border-[#BBA588]/40 dark:hover:border-[#BBA588]/30 rounded-xl py-2.5 font-serif"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Sign In
                         </Button>
                       </SignInButton>
                       <SignUpButton mode="modal">
-                        <Button 
-                          className="w-full bg-gradient-to-r from-blue-600 via-violet-600 to-blue-700 hover:from-blue-700 hover:via-violet-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl shadow-blue-500/25 hover:shadow-blue-500/35 transition-all duration-300 rounded-xl py-2.5 font-semibold"
+                        <Button
+                          className="w-full btn-classic shadow-lg hover:shadow-xl shadow-[#BBA588]/25 hover:shadow-[#BBA588]/35 transition-all duration-300 rounded-xl py-2.5 font-semibold font-serif-display"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           Get Started
                         </Button>
                       </SignUpButton>
                     </SignedOut>
-                    
+
                     <SignedIn>
                       <Link href="/chat" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Button className="w-full bg-gradient-to-r from-blue-600 via-violet-600 to-blue-700 hover:from-blue-700 hover:via-violet-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl shadow-blue-500/25 hover:shadow-blue-500/35 transition-all duration-300 rounded-xl py-2.5 font-semibold">
+                        <Button className="w-full btn-classic shadow-lg hover:shadow-xl shadow-[#BBA588]/25 hover:shadow-[#BBA588]/35 transition-all duration-300 rounded-xl py-2.5 font-semibold font-serif-display">
                           Dashboard
                         </Button>
                       </Link>
                       <div className="flex justify-center pt-2">
-                        <UserButton 
+                        <UserButton
                           appearance={{
                             elements: {
-                              avatarBox: "w-12 h-12 border-2 border-white/20 hover:border-blue-500/40 transition-all duration-300"
+                              avatarBox: "w-12 h-12 border-2 border-[#BBA588]/20 hover:border-[#BBA588]/40 transition-all duration-300"
                             }
                           }}
                         />

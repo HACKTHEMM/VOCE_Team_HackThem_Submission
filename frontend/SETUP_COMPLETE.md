@@ -1,8 +1,8 @@
-# 🎉 SalesSpeak Authentication Setup Complete!
+# 🎉 Voce Authentication Setup Complete!
 
 ## ✅ What's Ready
 
-Your SalesSpeak application now has a **professional authentication system** with:
+Your Voce application now has a **professional authentication system** with:
 
 ### 🎨 **Beautiful Login & Signup Pages**
 - **Glassmorphism design** with modern UI/UX
@@ -27,7 +27,7 @@ Your SalesSpeak application now has a **professional authentication system** wit
 ### **Step 1: Get Clerk API Keys**
 1. Go to [https://clerk.com](https://clerk.com)
 2. Create a free account
-3. Create a new application called "SalesSpeak"
+3. Create a new application called "Voce"
 4. Copy your **Publishable Key** and **Secret Key**
 
 ### **Step 2: Configure Authentication**
@@ -61,7 +61,7 @@ For Google sign-in, follow the detailed guide in:
 
 ## 📞 **Ready to Go!**
 
-Once you've added your Clerk keys, your SalesSpeak application will have:
+Once you've added your Clerk keys, your Voce application will have:
 - ✅ **Email/Password authentication**
 - ✅ **Google OAuth** (if configured)
 - ✅ **Beautiful, professional UI**

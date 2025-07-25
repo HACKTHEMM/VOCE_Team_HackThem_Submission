@@ -17,7 +17,7 @@ export default function AboutPage() {
     },
     {
       name: "Priya Sharma",
-      role: "CTO & Co-founder", 
+      role: "CTO & Co-founder",
       bio: "Ex-Google engineer specializing in multilingual NLP and speech recognition",
       image: "/placeholder-user.jpg"
     },
@@ -67,7 +67,7 @@ export default function AboutPage() {
     {
       year: "2024",
       title: "First Product Launch",
-      description: "Launched SalesSpeak with support for 5 Indian languages"
+      description: "Launched Voce with support for 5 Indian languages"
     },
     {
       year: "2024",
@@ -79,33 +79,34 @@ export default function AboutPage() {
       title: "Global Expansion",
       description: "Expanding to serve Indian diaspora businesses worldwide"
     }
-  ]  
+  ]
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-violet-50/50 dark:from-slate-950 dark:via-blue-950/50 dark:to-violet-950/50 transition-all duration-700">
-      {/* Enhanced Background Pattern */}
+    <div className="min-h-screen bg-gradient-to-br from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] dark:from-[#1E1E1E] dark:via-[#2A2A2A] dark:to-[#1E1E1E] transition-all duration-700">
+      {/* Classic Background Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-48 -right-48 w-96 h-96 gradient-mesh rounded-full blur-3xl opacity-30 animate-float"></div>
-        <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-gradient-to-tr from-cyan-400/20 via-blue-500/20 to-violet-600/20 rounded-full blur-3xl opacity-30 animate-float" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-violet-600/10 rounded-full blur-2xl animate-pulse-slow"></div>      </div>
+        <div className="absolute -top-48 -right-48 w-96 h-96 gradient-classic-mesh rounded-full blur-3xl opacity-30 animate-float"></div>
+        <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-gradient-to-tr from-[#BBA588]/20 via-[#8E735B]/20 to-[#7C6D64]/20 rounded-full blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-[#BBA588]/10 to-[#8E735B]/10 rounded-full blur-2xl animate-pulse-slow"></div>
+      </div>
 
       <Navbar />
 
       <div className="relative z-10">        {/* Hero Section */}
         <div className="pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto text-center">
-            <Badge className="mb-6 sm:mb-8 bg-gradient-to-r from-blue-50 via-violet-50 to-cyan-50 text-blue-700 border-blue-200/60 dark:from-blue-900/20 dark:via-violet-900/20 dark:to-cyan-900/20 dark:text-blue-300 dark:border-blue-600/20 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-semibold shadow-lg shadow-blue-500/10 rounded-full animate-fade-in">
-              🚀 Our Story
+            <Badge className="mb-6 sm:mb-8 bg-gradient-to-r from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] text-[#8E735B] border-[#BBA588]/60 dark:from-[#1E1E1E]/80 dark:via-[#2A2A2A]/80 dark:to-[#1E1E1E]/80 dark:text-[#BBA588] dark:border-[#BBA588]/20 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-semibold shadow-lg shadow-[#BBA588]/10 rounded-full animate-fade-in font-serif">
+              🏛️ Our Story
             </Badge>
-            
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 sm:mb-10 md:mb-12 leading-tight">
-              <span className="block text-slate-900 dark:text-white mb-2 sm:mb-3 md:mb-4 animate-fade-in" style={{animationDelay: '0.2s'}}>About</span>
-              <span className="block bg-gradient-to-r from-blue-600 via-violet-600 via-cyan-600 to-blue-700 bg-clip-text text-transparent animate-gradient animate-fade-in" style={{animationDelay: '0.4s'}}>
-                SalesSpeak
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 sm:mb-10 md:mb-12 leading-tight font-serif-display">
+              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 sm:mb-3 md:mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>About</span>
+              <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent animate-gradient animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                Voce
               </span>
             </h1>
-            
-            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg md:text-xl lg:text-2xl max-w-5xl mx-auto leading-relaxed font-light animate-fade-in px-4 sm:px-0" style={{animationDelay: '0.6s'}}>
-              We're revolutionizing business communication with AI-powered voice technology that understands India's rich linguistic landscape.
+
+            <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl lg:text-2xl max-w-5xl mx-auto leading-relaxed font-serif animate-fade-in px-4 sm:px-0" style={{ animationDelay: '0.6s' }}>
+              We're revolutionizing business communication with timeless AI-powered voice technology that understands elegance and sophistication.
             </p>
           </div>
         </div>        {/* Mission Section */}
@@ -113,41 +114,41 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-center">
               <div className="animate-slide-up order-2 lg:order-1">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6 sm:mb-8 md:mb-10">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 md:mb-10 font-serif-display">
                   Our Mission
                 </h2>
-                <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 md:mb-10">
-                  We believe that every customer deserves to be heard and understood in their native language. Our AI-powered voice technology breaks down language barriers, enabling businesses to connect with customers on a deeper, more personal level.
+                <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 md:mb-10 font-serif">
+                  We believe that every customer deserves to be heard and understood with elegance and sophistication. Our timeless AI-powered voice technology creates meaningful connections through refined communication.
                 </p>
-                <Card className="glass-subtle border-white/40 dark:border-slate-700/40 hover:border-blue-300/60 dark:hover:border-blue-600/60 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 rounded-2xl sm:rounded-3xl">
+                <Card className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 rounded-2xl sm:rounded-3xl">
                   <CardContent className="p-4 sm:p-6 md:p-8">
                     <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-6">
                       <div className="flex-shrink-0 mx-auto sm:mx-0">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500/20 to-violet-500/20 backdrop-blur-sm rounded-xl sm:rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-lg shadow-blue-500/10">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#BBA588]/20 to-[#8E735B]/20 backdrop-blur-sm rounded-xl sm:rounded-2xl flex items-center justify-center text-[#8E735B] dark:text-[#BBA588] shadow-lg shadow-[#BBA588]/10">
                           <Target className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
                         </div>
                       </div>
                       <div className="text-center sm:text-left">
-                        <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-900 dark:text-white mb-2 sm:mb-3">
-                          Democratizing AI Voice Technology
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 sm:mb-3 font-serif-display">
+                          Democratizing Timeless AI Technology
                         </h3>
-                        <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed">
-                          Making advanced conversational AI accessible to businesses of all sizes across India.
+                        <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm sm:text-base md:text-lg leading-relaxed font-serif">
+                          Making sophisticated conversational AI accessible with classic elegance and professional refinement.
                         </p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               </div>
-              
-              <div className="relative animate-scale-in order-1 lg:order-2" style={{animationDelay: '0.2s'}}>
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-violet-400/20 to-cyan-400/20 rounded-2xl sm:rounded-3xl blur-2xl"></div>
-                <Card className="relative glass-strong border-white/40 dark:border-slate-700/40 rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105">
+
+              <div className="relative animate-scale-in order-1 lg:order-2" style={{ animationDelay: '0.2s' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#BBA588]/20 via-[#8E735B]/20 to-[#7C6D64]/20 rounded-2xl sm:rounded-3xl blur-2xl"></div>
+                <Card className="relative glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105">
                   <CardContent className="p-4 sm:p-6 md:p-8">
-                    <div className="aspect-video bg-gradient-to-br from-blue-50 to-violet-100 dark:from-blue-900/20 dark:to-violet-900/20 rounded-xl sm:rounded-2xl flex items-center justify-center">
+                    <div className="aspect-video bg-gradient-to-br from-[#F3F1E9] to-[#ECE8D9] dark:from-[#1E1E1E]/80 dark:to-[#2A2A2A]/80 rounded-xl sm:rounded-2xl flex items-center justify-center">
                       <div className="text-center">
-                        <Mic className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 text-blue-600 dark:text-blue-400 mx-auto mb-3 sm:mb-4" />
-                        <p className="text-slate-600 dark:text-slate-300 font-medium text-sm sm:text-base">AI Voice Technology</p>
+                        <Mic className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 text-[#8E735B] dark:text-[#BBA588] mx-auto mb-3 sm:mb-4" />
+                        <p className="text-[#5A5A5A] dark:text-[#B6B6B6] font-medium text-sm sm:text-base font-serif">Classic AI Voice Technology</p>
                       </div>
                     </div>
                   </CardContent>
@@ -159,11 +160,11 @@ export default function AboutPage() {
         <div className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16 md:mb-20">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-600 bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8 font-serif-display">
                 Our Values
               </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-                The principles that guide everything we do and shape our vision for the future of AI communication.
+              <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 sm:px-0 font-serif">
+                The timeless principles that guide everything we do and shape our vision for sophisticated AI communication.
               </p>
             </div>
 
@@ -171,17 +172,17 @@ export default function AboutPage() {
               {values.map((value, index) => (
                 <Card
                   key={index}
-                  className="group glass-strong border-white/40 dark:border-slate-700/40 hover:border-blue-300/60 dark:hover:border-blue-600/60 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-2 rounded-2xl sm:rounded-3xl animate-fade-in"
-                  style={{animationDelay: `${index * 0.1}s`}}
+                  className="group glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-2 rounded-2xl sm:rounded-3xl animate-fade-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardContent className="p-4 sm:p-6 md:p-8 text-center">
-                    <div className="p-3 sm:p-4 bg-gradient-to-br from-blue-500/20 to-violet-500/20 backdrop-blur-sm rounded-xl sm:rounded-2xl text-blue-600 dark:text-blue-400 mb-4 sm:mb-6 inline-block group-hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-500/10">
+                    <div className="p-3 sm:p-4 bg-gradient-to-br from-[#BBA588]/20 to-[#8E735B]/20 backdrop-blur-sm rounded-xl sm:rounded-2xl text-[#8E735B] dark:text-[#BBA588] mb-4 sm:mb-6 inline-block group-hover:scale-110 transition-all duration-300 shadow-lg shadow-[#BBA588]/10">
                       {value.icon}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-200 mb-3 sm:mb-4 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 sm:mb-4 group-hover:text-[#8E735B] dark:group-hover:text-[#BBA588] transition-colors duration-300 font-serif-display">
                       {value.title}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">{value.description}</p>
+                    <p className="text-[#5A5A5A] dark:text-[#B6B6B6] leading-relaxed text-sm sm:text-base font-serif">{value.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -191,11 +192,11 @@ export default function AboutPage() {
         <div className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16 md:mb-20">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-600 bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8 font-serif-display">
                 Meet Our Team
               </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-                Passionate experts dedicated to revolutionizing business communication through AI innovation.
+              <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 sm:px-0 font-serif">
+                Distinguished experts dedicated to revolutionizing business communication through timeless AI innovation.
               </p>
             </div>
 
@@ -203,18 +204,18 @@ export default function AboutPage() {
               {team.map((member, index) => (
                 <Card
                   key={index}
-                  className="group glass-strong border-white/40 dark:border-slate-700/40 hover:border-blue-300/60 dark:hover:border-blue-600/60 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-2 rounded-2xl sm:rounded-3xl animate-fade-in"
-                  style={{animationDelay: `${index * 0.1}s`}}
+                  className="group glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-2 rounded-2xl sm:rounded-3xl animate-fade-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardContent className="p-4 sm:p-6 md:p-8 text-center">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-500/20 to-violet-500/20 backdrop-blur-sm rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-500/10">
-                      <Users className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 text-blue-600 dark:text-blue-400" />
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-[#BBA588]/20 to-[#8E735B]/20 backdrop-blur-sm rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg shadow-[#BBA588]/10">
+                      <Users className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 text-[#8E735B] dark:text-[#BBA588]" />
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-200 mb-1 sm:mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 sm:mb-2 group-hover:text-[#8E735B] dark:group-hover:text-[#BBA588] transition-colors duration-300 font-serif-display">
                       {member.name}
                     </h3>
-                    <p className="text-blue-600 dark:text-blue-400 font-semibold mb-3 sm:mb-4 text-sm sm:text-base">{member.role}</p>
-                    <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">{member.bio}</p>
+                    <p className="text-[#8E735B] dark:text-[#BBA588] font-semibold mb-3 sm:mb-4 text-sm sm:text-base font-serif">{member.role}</p>
+                    <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-xs sm:text-sm leading-relaxed font-serif">{member.bio}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -224,11 +225,11 @@ export default function AboutPage() {
         <div className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16 md:mb-20">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-600 bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8 font-serif-display">
                 Our Journey
               </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-                Key milestones in our mission to transform business communication.
+              <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 sm:px-0 font-serif">
+                Key milestones in our mission to transform business communication with timeless elegance.
               </p>
             </div>
 
@@ -236,17 +237,17 @@ export default function AboutPage() {
               {milestones.map((milestone, index) => (
                 <Card
                   key={index}
-                  className="group glass-strong border-white/40 dark:border-slate-700/40 hover:border-blue-300/60 dark:hover:border-blue-600/60 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-2 rounded-2xl sm:rounded-3xl animate-fade-in"
-                  style={{animationDelay: `${index * 0.1}s`}}
+                  className="group glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-2 rounded-2xl sm:rounded-3xl animate-fade-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardContent className="p-4 sm:p-6 md:p-8 text-center">
-                    <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent mb-3 sm:mb-4 group-hover:scale-110 transition-all duration-300">
+                    <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#8E735B] to-[#BBA588] bg-clip-text text-transparent mb-3 sm:mb-4 group-hover:scale-110 transition-all duration-300 font-serif-display">
                       {milestone.year}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-200 mb-3 sm:mb-4 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 sm:mb-4 group-hover:text-[#8E735B] dark:group-hover:text-[#BBA588] transition-colors duration-300 font-serif-display">
                       {milestone.title}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">{milestone.description}</p>
+                    <p className="text-[#5A5A5A] dark:text-[#B6B6B6] leading-relaxed text-sm sm:text-base font-serif">{milestone.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -255,20 +256,20 @@ export default function AboutPage() {
         </div>        {/* CTA Section */}
         <div className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-600 bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8 font-serif-display">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 md:mb-12 leading-relaxed px-4 sm:px-0">
-              Join thousands of businesses already using SalesSpeak to revolutionize their customer interactions.
+            <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl mb-8 sm:mb-10 md:mb-12 leading-relaxed px-4 sm:px-0 font-serif">
+              Join distinguished businesses already using Voce to revolutionize their customer interactions with timeless elegance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
               <Link href="/chat">
-                <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-blue-600 via-violet-600 to-blue-700 hover:from-blue-700 hover:via-violet-700 hover:to-blue-800 text-white text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 shadow-2xl hover:shadow-3xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 transform hover:scale-105 rounded-xl sm:rounded-2xl font-semibold">
+                <Button size="lg" className="w-full sm:w-auto btn-classic text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 shadow-2xl hover:shadow-3xl shadow-[#BBA588]/25 hover:shadow-[#BBA588]/40 transition-all duration-300 transform hover:scale-105 rounded-xl sm:rounded-2xl font-semibold font-serif-display">
                   Try Demo Now
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-white/60 dark:hover:bg-slate-800/60 text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl transition-all duration-300 hover:shadow-xl backdrop-blur-sm font-semibold">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto btn-classic-outline text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl transition-all duration-300 hover:shadow-xl backdrop-blur-sm font-semibold font-serif-display">
                   Contact Us
                 </Button>
               </Link>
@@ -276,7 +277,7 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   )

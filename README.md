@@ -1,4 +1,4 @@
-# SalesSpeak - Conversational AI Sales Assistant
+# Voce - Conversational AI Sales Assistant
 
 A sophisticated conversational agent that helps users make better decisions while buying products online through natural voice interactions and intelligent product recommendations.
 
@@ -216,7 +216,7 @@ Content-Type: application/json
 ## 📁 Project Structure
 
 
-SalesSpeak_HackThem_submission/
+Voce_HackThem_submission/
 ├── README.md                     # This file
 ├── requirements.txt              # Python dependencies
 ├── config.yaml                   # Configuration settings

@@ -6,10 +6,10 @@ import { Badge } from "@/components/ui/badge"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
-import { 
-  
-  Calendar, 
-  Download, 
+import {
+
+  Calendar,
+  Download,
   ExternalLink,
   Award,
   Newspaper,
@@ -32,15 +32,15 @@ import Link from "next/link"
 export default function PressPage() {
   const pressReleases = [
     {
-      title: "SalesSpeak Raises $25M Series B to Accelerate AI Voice Technology Expansion",
+      title: "Voce Raises $25M Series B to Accelerate AI Voice Technology Expansion",
       date: "December 10, 2024",
       excerpt: "Leading voice AI platform secures funding from top-tier VCs to expand across Asia-Pacific markets and enhance multilingual capabilities.",
       type: "Funding News",
       featured: true
     },
     {
-      title: "SalesSpeak Achieves SOC 2 Type II Certification for Enterprise Security",
-      date: "November 28, 2024", 
+      title: "Voce Achieves SOC 2 Type II Certification for Enterprise Security",
+      date: "November 28, 2024",
       excerpt: "Platform demonstrates commitment to data security and privacy with industry-leading certification.",
       type: "Company News",
       featured: false
@@ -48,19 +48,19 @@ export default function PressPage() {
     {
       title: "Partnership with Microsoft Azure Brings Advanced AI to Enterprise Customers",
       date: "November 15, 2024",
-      excerpt: "Strategic partnership enables enterprise customers to deploy SalesSpeak's voice AI technology at scale.",
+      excerpt: "Strategic partnership enables enterprise customers to deploy Voce's voice AI technology at scale.",
       type: "Partnership",
       featured: false
     },
     {
-      title: "SalesSpeak Named 'AI Startup of the Year' by TechCrunch India",
+      title: "Voce Named 'AI Startup of the Year' by TechCrunch India",
       date: "October 22, 2024",
       excerpt: "Recognition highlights company's innovation in multilingual voice AI and impact on Indian businesses.",
       type: "Award",
       featured: false
     },
     {
-      title: "SalesSpeak Expands to Support 15 Indian Languages with 95%+ Accuracy",
+      title: "Voce Expands to Support 15 Indian Languages with 95%+ Accuracy",
       date: "October 8, 2024",
       excerpt: "Major product update includes enhanced speech recognition for regional languages across India.",
       type: "Product News",
@@ -80,7 +80,7 @@ export default function PressPage() {
     {
       title: "Product Screenshots",
       description: "UI screenshots and product demos",
-      type: "images", 
+      type: "images",
       icon: <ImageIcon className="h-6 w-6" />,
       files: ["High-res PNG", "Web-optimized"],
       downloadUrl: "#"
@@ -122,7 +122,7 @@ export default function PressPage() {
   const mediaCoverage = [
     {
       outlet: "TechCrunch",
-      title: "How SalesSpeak is Democratizing AI Voice Technology in India",
+      title: "How Voce is Democratizing AI Voice Technology in India",
       date: "December 5, 2024",
       type: "Feature Article",
       logo: "TC",
@@ -130,7 +130,7 @@ export default function PressPage() {
     },
     {
       outlet: "The Economic Times",
-      title: "Voice AI Startup SalesSpeak Targets $100M Revenue by 2025",
+      title: "Voice AI Startup Voce Targets $100M Revenue by 2025",
       date: "November 25, 2024",
       type: "Business News",
       logo: "ET",
@@ -138,7 +138,7 @@ export default function PressPage() {
     },
     {
       outlet: "YourStory",
-      title: "From IIT to AI: The SalesSpeak Journey",
+      title: "From IIT to AI: The Voce Journey",
       date: "November 12, 2024",
       type: "Founder Story",
       logo: "YS",
@@ -146,7 +146,7 @@ export default function PressPage() {
     },
     {
       outlet: "Inc42",
-      title: "SalesSpeak's Multilingual AI: Breaking Down Language Barriers",
+      title: "Voce's Multilingual AI: Breaking Down Language Barriers",
       date: "October 30, 2024",
       type: "Product Review",
       logo: "I42",
@@ -154,7 +154,7 @@ export default function PressPage() {
     },
     {
       outlet: "BusinessWorld",
-      title: "The Future of Sales is Conversational: SalesSpeak's Vision",
+      title: "The Future of Sales is Conversational: Voce's Vision",
       date: "October 15, 2024",
       type: "Industry Analysis",
       logo: "BW",
@@ -162,7 +162,7 @@ export default function PressPage() {
     },
     {
       outlet: "Forbes India",
-      title: "30 Under 30: SalesSpeak's Young Founders Making Waves",
+      title: "30 Under 30: Voce's Young Founders Making Waves",
       date: "September 28, 2024",
       type: "Recognition",
       logo: "FI",
@@ -206,44 +206,44 @@ export default function PressPage() {
     { label: "Funding Raised", value: "$30M" }
   ]
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-violet-50/50 dark:from-slate-950 dark:via-blue-950/50 dark:to-violet-950/50 transition-all duration-700">
-      {/* Enhanced Background Pattern */}
+    <div className="min-h-screen bg-gradient-to-br from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] dark:from-[#1E1E1E] dark:via-[#2A2A2A] dark:to-[#1E1E1E] transition-all duration-700">
+      {/* Classic Background Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-48 -right-48 w-96 h-96 gradient-mesh rounded-full blur-3xl opacity-30 animate-float"></div>
-        <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-gradient-to-tr from-cyan-400/20 via-blue-500/20 to-violet-600/20 rounded-full blur-3xl opacity-30 animate-float" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-violet-600/10 rounded-full blur-2xl animate-pulse-slow"></div>
+        <div className="absolute -top-48 -right-48 w-96 h-96 gradient-classic-mesh rounded-full blur-3xl opacity-30 animate-float"></div>
+        <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-gradient-to-tr from-[#BBA588]/20 via-[#8E735B]/20 to-[#7C6D64]/20 rounded-full blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-[#BBA588]/10 to-[#8E735B]/10 rounded-full blur-2xl animate-pulse-slow"></div>
       </div>
       <Navbar />      <div className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">{/* Header */}
           <div className="text-center mb-12 md:mb-16">
-            <Badge className="mb-4 md:mb-6 bg-gradient-to-r from-blue-100 to-violet-100 text-blue-800 border-blue-200/50 dark:from-blue-900/30 dark:to-violet-900/30 dark:text-blue-300 dark:border-blue-600/30 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-medium shadow-md">
+            <Badge className="mb-4 md:mb-6 bg-gradient-to-r from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] text-[#8E735B] border-[#BBA588]/60 dark:from-[#1E1E1E]/80 dark:via-[#2A2A2A]/80 dark:to-[#1E1E1E]/80 dark:text-[#BBA588] dark:border-[#BBA588]/20 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-medium shadow-md font-serif">
               📰 Press & Media
             </Badge>
-            
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 px-4">
-              <span className="block text-slate-900 dark:text-white mb-2">Press</span>
-              <span className="block bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-600 bg-clip-text text-transparent">
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 px-4 font-serif-display">
+              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-2">Press</span>
+              <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent">
                 Resources
               </span>
             </h1>
-            
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
-              Find the latest news, press releases, media assets, and information about SalesSpeak. 
+
+            <p className="text-lg md:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] max-w-3xl mx-auto leading-relaxed px-4 font-serif">
+              Find the latest news, press releases, media assets, and information about Voce.
               We're always happy to connect with journalists and media professionals.
             </p>
           </div>          {/* Company Stats */}
           <div className="mb-12 md:mb-16">
-            <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-6 md:mb-8 text-center px-4">
+            <h2 className="text-xl md:text-2xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 md:mb-8 text-center px-4 font-serif-display">
               Company at a Glance
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-6">
               {companyStats.map((stat, index) => (
-                <Card key={index} className="glass-strong border-white/30 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                <Card key={index} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
                   <CardContent className="p-4 md:p-6">
-                    <div className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
+                    <div className="text-2xl md:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 font-serif-display">
                       {stat.value}
                     </div>
-                    <div className="text-xs md:text-sm text-slate-600 dark:text-slate-300">
+                    <div className="text-xs md:text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">
                       {stat.label}
                     </div>
                   </CardContent>
@@ -253,47 +253,47 @@ export default function PressPage() {
           </div>          {/* Press Releases */}
           <div className="mb-12 md:mb-16">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 md:mb-8 px-4 gap-4">
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] font-serif-display">
                 Latest Press Releases
               </h2>
-              <Badge variant="secondary" className="px-3 py-1 w-fit">
+              <Badge variant="secondary" className="px-3 py-1 w-fit bg-gradient-to-r from-[#BBA588]/20 to-[#8E735B]/20 text-[#8E735B] dark:text-[#BBA588] border-[#BBA588]/40 font-serif">
                 {pressReleases.length} releases
               </Badge>
             </div>
 
             <div className="space-y-4 md:space-y-6">
               {pressReleases.map((release, index) => (
-                <Card key={index} className={`glass-strong border-white/30 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-all duration-300 ${release.featured ? 'ring-2 ring-blue-500/20' : ''}`}>
+                <Card key={index} className={`glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg hover:shadow-xl transition-all duration-300 ${release.featured ? 'ring-2 ring-[#BBA588]/30' : ''}`}>
                   <CardContent className="p-4 md:p-6">
                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
                       <div className="flex-1">
                         <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-3">
-                          <Badge 
-                            className={`text-xs w-fit ${release.featured ? 'bg-gradient-to-r from-yellow-100 to-orange-100 text-yellow-800' : 'bg-gray-100 text-gray-700'}`}
+                          <Badge
+                            className={`text-xs w-fit font-serif ${release.featured ? 'bg-gradient-to-r from-[#BBA588]/30 to-[#8E735B]/30 text-[#8E735B] dark:text-[#BBA588]' : 'bg-[#7C6D64]/20 text-[#7C6D64] dark:text-[#B6B6B6]'}`}
                           >
                             {release.featured ? '⭐ Featured' : release.type}
                           </Badge>
-                          <div className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
+                          <div className="flex items-center space-x-2 text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">
                             <Calendar className="h-4 w-4" />
                             <span>{release.date}</span>
                           </div>
                         </div>
-                        
-                        <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white mb-3">
+
+                        <h3 className="text-lg md:text-xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 font-serif-display">
                           {release.title}
                         </h3>
-                        
-                        <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+
+                        <p className="text-[#5A5A5A] dark:text-[#B6B6B6] leading-relaxed font-serif">
                           {release.excerpt}
                         </p>
                       </div>
-                      
+
                       <div className="flex flex-row sm:flex-col lg:flex-row items-start lg:items-center space-x-2 sm:space-x-0 sm:space-y-2 lg:space-y-0 lg:space-x-2 lg:ml-6">
-                        <Button variant="outline" size="sm" className="glass border-white/30 flex-1 sm:flex-none">
+                        <Button variant="outline" size="sm" className="btn-classic-outline flex-1 sm:flex-none font-serif-display">
                           <Download className="h-4 w-4 mr-2" />
                           PDF
                         </Button>
-                        <Button size="sm" className="bg-gradient-to-r from-blue-500 to-violet-500 text-white flex-1 sm:flex-none">
+                        <Button size="sm" className="btn-classic flex-1 sm:flex-none font-serif-display">
                           Read More
                           <ExternalLink className="h-4 w-4 ml-2" />
                         </Button>
@@ -305,38 +305,38 @@ export default function PressPage() {
             </div>
           </div>          {/* Media Coverage */}
           <div className="mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6 md:mb-8 px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 md:mb-8 px-4 font-serif-display">
               Media Coverage
             </h2>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
               {mediaCoverage.map((coverage, index) => (
-                <Card key={index} className="glass-strong border-white/30 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                <Card key={index} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
                   <CardContent className="p-4 md:p-6">
                     <div className="flex items-center space-x-3 mb-4">
-                      <div className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br ${coverage.color} rounded-lg flex items-center justify-center shadow-lg flex-shrink-0`}>
-                        <span className="text-white font-bold text-xs md:text-sm">{coverage.logo}</span>
+                      <div className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#BBA588]/30 to-[#8E735B]/30 rounded-lg flex items-center justify-center shadow-lg flex-shrink-0`}>
+                        <span className="text-[#F3F1E9] dark:text-[#ECE8D9] font-bold text-xs md:text-sm font-serif">{coverage.logo}</span>
                       </div>
                       <div className="min-w-0">
-                        <div className="font-semibold text-slate-900 dark:text-white truncate">
+                        <div className="font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] truncate font-serif-display">
                           {coverage.outlet}
                         </div>
-                        <Badge variant="outline" className="text-xs mt-1">
+                        <Badge variant="outline" className="text-xs mt-1 bg-[#7C6D64]/20 text-[#7C6D64] dark:text-[#B6B6B6] border-[#7C6D64]/40 font-serif">
                           {coverage.type}
                         </Badge>
                       </div>
                     </div>
-                    
-                    <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 transition-colors line-clamp-3">
+
+                    <h3 className="text-base md:text-lg font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 group-hover:text-[#8E735B] dark:group-hover:text-[#BBA588] transition-colors line-clamp-3 font-serif-display">
                       {coverage.title}
                     </h3>
-                    
-                    <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+
+                    <div className="flex items-center justify-between text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">
                       <div className="flex items-center space-x-2 min-w-0">
                         <Calendar className="h-4 w-4 flex-shrink-0" />
                         <span className="truncate">{coverage.date}</span>
                       </div>
-                      <Button variant="ghost" size="sm" className="p-0 text-blue-600 hover:text-blue-700 flex-shrink-0">
+                      <Button variant="ghost" size="sm" className="p-0 text-[#8E735B] hover:text-[#BBA588] dark:text-[#BBA588] dark:hover:text-[#8E735B] flex-shrink-0">
                         <ExternalLink className="h-4 w-4" />
                       </Button>
                     </div>
@@ -346,26 +346,26 @@ export default function PressPage() {
             </div>
           </div>          {/* Awards & Recognition */}
           <div className="mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6 md:mb-8 px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 md:mb-8 px-4 font-serif-display">
               Awards & Recognition
             </h2>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
               {awards.map((award, index) => (
-                <Card key={index} className="glass-strong border-white/30 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-all duration-300">
+                <Card key={index} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg hover:shadow-xl transition-all duration-300">
                   <CardContent className="p-4 md:p-6">
                     <div className="flex items-start space-x-4">
-                      <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-yellow-500/20 to-orange-600/30 rounded-lg flex items-center justify-center shadow-lg flex-shrink-0">
-                        <Award className="h-5 w-5 md:h-6 md:w-6 text-yellow-600" />
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#BBA588]/20 to-[#8E735B]/30 rounded-lg flex items-center justify-center shadow-lg flex-shrink-0">
+                        <Award className="h-5 w-5 md:h-6 md:w-6 text-[#8E735B] dark:text-[#BBA588]" />
                       </div>
                       <div className="min-w-0">
-                        <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-1">
+                        <h3 className="text-base md:text-lg font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 font-serif-display">
                           {award.title}
                         </h3>
-                        <div className="text-sm text-slate-600 dark:text-slate-300 mb-2">
+                        <div className="text-sm text-[#5A5A5A] dark:text-[#B6B6B6] mb-2 font-serif">
                           {award.organization} • {award.year}
                         </div>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                        <p className="text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">
                           {award.description}
                         </p>
                       </div>
@@ -376,38 +376,38 @@ export default function PressPage() {
             </div>
           </div>          {/* Media Kit */}
           <div className="mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6 md:mb-8 px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 md:mb-8 px-4 font-serif-display">
               Media Kit & Assets
             </h2>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
               {mediaKit.map((asset, index) => (
-                <Card key={index} className="glass-strong border-white/30 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                <Card key={index} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
                   <CardContent className="p-4 md:p-6">
                     <div className="flex items-start space-x-3 mb-4">
-                      <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-blue-500/20 to-violet-600/30 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                      <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-[#BBA588]/20 to-[#8E735B]/30 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0 text-[#8E735B] dark:text-[#BBA588]">
                         {asset.icon}
                       </div>
                       <div className="min-w-0">
-                        <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white">
+                        <h3 className="text-base md:text-lg font-bold text-[#2D2C2A] dark:text-[#ECE8D9] font-serif-display">
                           {asset.title}
                         </h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-300">
+                        <p className="text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">
                           {asset.description}
                         </p>
                       </div>
                     </div>
-                    
+
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                       <div className="flex flex-wrap gap-1">
                         {asset.files.map((file, fileIndex) => (
-                          <Badge key={fileIndex} variant="secondary" className="text-xs">
+                          <Badge key={fileIndex} variant="secondary" className="text-xs bg-[#7C6D64]/20 text-[#7C6D64] dark:text-[#B6B6B6] border-[#7C6D64]/40 font-serif">
                             {file}
                           </Badge>
                         ))}
                       </div>
-                      
-                      <Button size="sm" className="bg-gradient-to-r from-blue-500 to-violet-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
+
+                      <Button size="sm" className="btn-classic shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto font-serif-display">
                         <Download className="h-4 w-4 mr-2" />
                         Download
                       </Button>
@@ -418,53 +418,53 @@ export default function PressPage() {
             </div>
           </div>          {/* Media Contact */}
           <div className="text-center">
-            <Card className="glass-strong border-white/30 dark:border-slate-700/50 shadow-2xl">
+            <Card className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-2xl">
               <CardContent className="p-6 sm:p-8 md:p-12">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Mail className="h-6 w-6 md:h-8 md:w-8 text-white" />
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#8E735B] to-[#BBA588] rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Mail className="h-6 w-6 md:h-8 md:w-8 text-[#F3F1E9]" />
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-4 font-serif-display">
                   Media Inquiries
                 </h2>
-                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto px-4">
-                  Looking for more information, interviews, or custom assets? 
+                <p className="text-lg md:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] mb-8 max-w-2xl mx-auto px-4 font-serif">
+                  Looking for more information, interviews, or custom assets?
                   Our media team is here to help.
                 </p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                   <div className="text-center">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-green-500/20 to-emerald-600/30 rounded-lg flex items-center justify-center mx-auto mb-3">
-                      <Mail className="h-5 w-5 md:h-6 md:w-6 text-green-600" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#8E735B]/20 to-[#BBA588]/30 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <Mail className="h-5 w-5 md:h-6 md:w-6 text-[#8E735B] dark:text-[#BBA588]" />
                     </div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Press Contact</h4>
-                    <p className="text-slate-600 dark:text-slate-300 text-sm break-all">press@salesspeak.ai</p>
+                    <h4 className="font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 font-serif-display">Press Contact</h4>
+                    <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm break-all font-serif">press@Voce.ai</p>
                   </div>
-                  
+
                   <div className="text-center">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-500/20 to-cyan-600/30 rounded-lg flex items-center justify-center mx-auto mb-3">
-                      <Building className="h-5 w-5 md:h-6 md:w-6 text-blue-600" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#BBA588]/20 to-[#7C6D64]/30 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <Building className="h-5 w-5 md:h-6 md:w-6 text-[#8E735B] dark:text-[#BBA588]" />
                     </div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Partnership</h4>
-                    <p className="text-slate-600 dark:text-slate-300 text-sm break-all">partnerships@salesspeak.ai</p>
+                    <h4 className="font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 font-serif-display">Partnership</h4>
+                    <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm break-all font-serif">partnerships@Voce.ai</p>
                   </div>
-                  
+
                   <div className="text-center">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-purple-500/20 to-violet-600/30 rounded-lg flex items-center justify-center mx-auto mb-3">
-                      <Users className="h-5 w-5 md:h-6 md:w-6 text-purple-600" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#7C6D64]/20 to-[#8E735B]/30 rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <Users className="h-5 w-5 md:h-6 md:w-6 text-[#8E735B] dark:text-[#BBA588]" />
                     </div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-1">General</h4>
-                    <p className="text-slate-600 dark:text-slate-300 text-sm break-all">hello@salesspeak.ai</p>
+                    <h4 className="font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 font-serif-display">General</h4>
+                    <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm break-all font-serif">hello@Voce.ai</p>
                   </div>
                 </div>
-                
+
                 <Link href="/contact">
-                  <Button size="lg" className="bg-gradient-to-r from-blue-500 via-violet-500 to-purple-500 hover:from-blue-600 hover:via-violet-600 hover:to-purple-600 text-base md:text-lg px-6 md:px-8 py-2 md:py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <Button size="lg" className="btn-classic text-base md:text-lg px-6 md:px-8 py-2 md:py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-serif-display">
                     Contact Media Team
                   </Button>
                 </Link>
-                
-                <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
-                  <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 px-4">
+
+                <div className="mt-8 pt-8 border-t border-[#BBA588]/30 dark:border-[#BBA588]/20">
+                  <p className="text-xs md:text-sm text-[#5A5A5A] dark:text-[#B6B6B6] px-4 font-serif">
                     Response within 24 hours | High-resolution assets available | Interview coordination
                   </p>
                 </div>

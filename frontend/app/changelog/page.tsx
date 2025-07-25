@@ -5,10 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
-import { 
-  Calendar, 
-  Zap, 
-  Bug, 
+import {
+  Calendar,
+  Zap,
+  Bug,
   Plus,
   ArrowUpRight,
   Shield,
@@ -167,7 +167,7 @@ export default function ChangelogPage() {
           description: "AI can now analyze and describe product images shared in chat"
         },
         {
-          type: "feature", 
+          type: "feature",
           title: "Visual Product Search",
           description: "Upload photos to find similar products across integrated platforms"
         },
@@ -188,71 +188,71 @@ export default function ChangelogPage() {
   const getTypeIcon = (type: string) => {
     switch (type) {
       case 'feature':
-        return <Plus className="h-4 w-4 text-green-600" />
+        return <Plus className="h-4 w-4 text-[#8E735B] dark:text-[#BBA588]" />
       case 'improvement':
-        return <ArrowUpRight className="h-4 w-4 text-blue-600" />
+        return <ArrowUpRight className="h-4 w-4 text-[#7C6D64] dark:text-[#BBA588]" />
       case 'fix':
-        return <Bug className="h-4 w-4 text-orange-600" />
+        return <Bug className="h-4 w-4 text-[#BBA588] dark:text-[#8E735B]" />
       case 'security':
-        return <Shield className="h-4 w-4 text-red-600" />
+        return <Shield className="h-4 w-4 text-[#8E735B] dark:text-[#7C6D64]" />
       default:
-        return <Sparkles className="h-4 w-4 text-purple-600" />
+        return <Sparkles className="h-4 w-4 text-[#7C6D64] dark:text-[#BBA588]" />
     }
   }
 
   const getTypeBadge = (type: string) => {
     const styles = {
-      'major': 'bg-gradient-to-r from-purple-500 to-pink-500 text-white',
-      'minor': 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white',
-      'patch': 'bg-gradient-to-r from-green-500 to-emerald-500 text-white'
+      'major': 'bg-gradient-to-r from-[#8E735B] to-[#BBA588] text-white',
+      'minor': 'bg-gradient-to-r from-[#BBA588] to-[#7C6D64] text-white',
+      'patch': 'bg-gradient-to-r from-[#7C6D64] to-[#8E735B] text-white'
     }
     return styles[type as keyof typeof styles] || styles.minor
   }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-blue-50 to-cyan-50 dark:from-slate-950 dark:via-blue-950 dark:to-violet-950 transition-all duration-500">
-      {/* Enhanced Background Pattern */}
+    <div className="min-h-screen bg-gradient-to-br from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] dark:from-[#1E1E1E] dark:via-[#2A2A2A] dark:to-[#1E1E1E] transition-all duration-700">
+      {/* Classic Background Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-violet-600/20 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gradient-to-br from-violet-400/15 to-pink-500/15 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-bl from-purple-400/10 to-indigo-500/10 rounded-full blur-2xl animate-float"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#BBA588]/20 to-[#8E735B]/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gradient-to-br from-[#8E735B]/15 to-[#7C6D64]/15 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-[#BBA588]/20 to-[#8E735B]/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-bl from-[#7C6D64]/10 to-[#BBA588]/10 rounded-full blur-2xl animate-float"></div>
       </div>      {/* Enhanced Navigation */}
       <Navbar />      <div className="relative pt-16 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 sm:mb-16">
-            <Badge className="mb-4 sm:mb-6 bg-gradient-to-r from-blue-100 to-violet-100 text-blue-800 border-blue-200/50 dark:from-blue-900/30 dark:to-violet-900/30 dark:text-blue-300 dark:border-blue-600/30 px-4 py-2 text-sm font-medium shadow-md">
+            <Badge className="mb-4 sm:mb-6 bg-gradient-to-r from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] text-[#8E735B] border-[#BBA588]/60 dark:from-[#1E1E1E]/80 dark:via-[#2A2A2A]/80 dark:to-[#1E1E1E]/80 dark:text-[#BBA588] dark:border-[#BBA588]/20 px-4 py-2 text-sm font-medium shadow-md rounded-full font-serif">
               📋 Product Updates
             </Badge>
-            
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8">
-              <span className="block text-slate-900 dark:text-white mb-2">Product</span>
-              <span className="block bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-600 bg-clip-text text-transparent">
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif-display">
+              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-2">Product</span>
+              <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent">
                 Changelog
               </span>
             </h1>
-            
-            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
-              Stay updated with the latest features, improvements, and fixes. 
-              We ship new updates every week to make SalesSpeak better for you.
+
+            <p className="text-lg sm:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] max-w-3xl mx-auto leading-relaxed px-4 font-serif">
+              Stay updated with the latest features, improvements, and fixes.
+              We ship new updates every week to make Voce better for you.
             </p>
           </div>          {/* Subscribe to Updates */}
           <div className="mb-12 sm:mb-16">
-            <Card className="glass-strong border-white/30 dark:border-slate-700/50 shadow-2xl">
+            <Card className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-2xl rounded-2xl">
               <CardContent className="p-6 sm:p-8 text-center">
                 <div className="flex items-center justify-center mb-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-violet-600 rounded-xl flex items-center justify-center">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#BBA588] to-[#8E735B] rounded-xl flex items-center justify-center shadow-lg">
                     <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                   </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-slate-900 dark:text-white">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-[#2D2C2A] dark:text-[#ECE8D9] font-serif-display">
                   Stay in the Loop
                 </h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm sm:text-base px-4">
+                <p className="text-[#5A5A5A] dark:text-[#B6B6B6] mb-6 text-sm sm:text-base px-4 font-serif">
                   Get notified about new features, updates, and important announcements
                 </p>
                 <Link href="/contact">
-                  <Button className="bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600">
+                  <Button className="btn-classic text-white shadow-lg hover:shadow-xl transition-all duration-300 font-serif">
                     Subscribe to Updates
                   </Button>
                 </Link>
@@ -261,43 +261,45 @@ export default function ChangelogPage() {
           </div>          {/* Changelog Entries */}
           <div className="space-y-8 sm:space-y-12">
             {releases.map((release, index) => (
-              <Card key={index} className="glass border-white/30 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Card key={index} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
                 <CardHeader className="pb-4">
                   <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:items-center justify-between">
                     <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                      <Badge className={`${getTypeBadge(release.type)} px-3 py-1 font-semibold self-start sm:self-auto`}>
+                      <Badge className={`${getTypeBadge(release.type)} px-3 py-1 font-semibold self-start sm:self-auto font-serif`}>
                         {release.version}
                       </Badge>
-                      <div className="flex items-center text-slate-500 dark:text-slate-400 text-sm">
+                      <div className="flex items-center text-[#7C6D64] dark:text-[#BBA588] text-sm">
                         <Calendar className="h-4 w-4 mr-1" />
-                        {new Date(release.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
+                        <span className="font-serif">
+                          {new Date(release.date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <CardTitle className="text-xl sm:text-2xl text-slate-900 dark:text-white leading-tight">
+                  <CardTitle className="text-xl sm:text-2xl text-[#2D2C2A] dark:text-[#ECE8D9] leading-tight font-serif-display">
                     {release.title}
                   </CardTitle>
-                  <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+                  <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm sm:text-base font-serif">
                     {release.description}
                   </p>
                 </CardHeader>
-                
+
                 <CardContent>
                   <div className="space-y-4">
                     {release.changes.map((change, changeIndex) => (
-                      <div key={changeIndex} className="flex items-start space-x-3 p-3 sm:p-4 bg-white/50 dark:bg-slate-800/30 rounded-lg">
+                      <div key={changeIndex} className="flex items-start space-x-3 p-3 sm:p-4 bg-[#F3F1E9]/50 dark:bg-[#1E1E1E]/30 rounded-lg border border-[#BBA588]/20 dark:border-[#BBA588]/10">
                         <div className="flex-shrink-0 mt-0.5">
                           {getTypeIcon(change.type)}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-slate-900 dark:text-white mb-1 text-sm sm:text-base leading-tight">
+                          <h4 className="font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 text-sm sm:text-base leading-tight font-serif-display">
                             {change.title}
                           </h4>
-                          <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+                          <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-xs sm:text-sm leading-relaxed font-serif">
                             {change.description}
                           </p>
                         </div>
@@ -309,16 +311,16 @@ export default function ChangelogPage() {
             ))}
           </div>          {/* Archive Notice */}
           <div className="mt-12 sm:mt-16 text-center">
-            <Card className="glass border-white/30 dark:border-slate-700/50">
+            <Card className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 rounded-2xl">
               <CardContent className="p-6 sm:p-8">
-                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-slate-900 dark:text-white">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 text-[#2D2C2A] dark:text-[#ECE8D9] font-serif-display">
                   Looking for Older Releases?
                 </h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm sm:text-base px-4">
+                <p className="text-[#5A5A5A] dark:text-[#B6B6B6] mb-6 text-sm sm:text-base px-4 font-serif">
                   View our complete release history and archived changelogs
                 </p>
                 <Link href="/contact">
-                  <Button variant="outline" className="border-2 border-slate-300 hover:bg-white/20">
+                  <Button variant="outline" className="btn-classic-outline font-serif">
                     Contact Support for Archive Access
                   </Button>
                 </Link>              </CardContent>

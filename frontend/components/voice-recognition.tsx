@@ -58,7 +58,7 @@ export function VoiceRecognition({
   // Initialize speech recognition
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-    
+
     if (SpeechRecognition) {
       setIsSupported(true)
       const recognition = new SpeechRecognition()
@@ -69,7 +69,7 @@ export function VoiceRecognition({
         console.log("Speech recognition started")
         setHasPermission(true)
         setErrorState(null)
-        
+
         // Set timeout to prevent hanging
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current)
@@ -93,7 +93,7 @@ export function VoiceRecognition({
         }
 
         let finalTranscript = ""
-        
+
         for (let i = event.resultIndex; i < event.results.length; i++) {
           const transcript = event.results[i][0].transcript
           if (event.results[i].isFinal) {
@@ -107,7 +107,7 @@ export function VoiceRecognition({
           if (recognitionRef.current) {
             recognitionRef.current.stop()
           }
-          
+
           // Pass the result to parent component
           onResult(finalTranscript.trim())
           setErrorState(null)
@@ -167,7 +167,7 @@ export function VoiceRecognition({
       recognition.onend = () => {
         console.log("Speech recognition ended")
         onListeningChange(false)
-        
+
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current)
           timeoutRef.current = null
@@ -244,7 +244,7 @@ export function VoiceRecognition({
         console.log("🔇 Stopping TTS audio to start voice input")
         // Stop audio immediately and the parent will update isAudioPlaying state
         onStopAudio()
-        
+
         // Add a small delay to ensure audio is stopped before starting voice recognition
         setTimeout(() => {
           startVoiceRecognition()
@@ -293,15 +293,15 @@ export function VoiceRecognition({
     if (errorState) {
       return "bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 shadow-xl shadow-red-500/30"
     }
-    // Prioritize listening state - if listening, always show blue regardless of audio state
+    // Prioritize listening state - if listening, always show bronze regardless of audio state
     if (isListening) {
-      return "bg-gradient-to-r from-blue-600 via-violet-600 to-blue-700 hover:from-blue-700 hover:via-violet-700 hover:to-blue-800 shadow-xl shadow-blue-500/40 animate-pulse"
+      return "bg-gradient-to-r from-[#BBA588] via-[#8E735B] to-[#7C6D64] hover:from-[#A69479] hover:via-[#7D6652] hover:to-[#6B5E58] shadow-xl shadow-[#BBA588]/40 animate-pulse"
     }
     // Special highlighting when audio is playing to indicate click will interrupt
     if (isAudioPlaying) {
       return "bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 hover:from-orange-600 hover:via-red-600 hover:to-orange-700 shadow-xl shadow-orange-500/40 animate-pulse"
     }
-    return "bg-gradient-to-r from-blue-500 via-violet-500 to-blue-600 hover:from-blue-600 hover:via-violet-600 hover:to-blue-700 shadow-xl shadow-blue-500/30"
+    return "bg-gradient-to-r from-[#BBA588] via-[#8E735B] to-[#BBA588] hover:from-[#A69479] hover:via-[#7D6652] hover:to-[#A69479] shadow-xl shadow-[#BBA588]/30"
   }
 
   const getIcon = () => {
@@ -322,13 +322,13 @@ export function VoiceRecognition({
   }
 
   const isDisabled = !isSupported
-  
+
   return (
     <div className="relative flex items-center justify-center">      {/* Enhanced outer pulse rings - prioritize listening state */}
       {isListening && !errorState && (
         <>
           <div
-            className="absolute rounded-full bg-gradient-to-r from-blue-500/20 via-violet-500/20 to-cyan-500/20 animate-ping"
+            className="absolute rounded-full bg-gradient-to-r from-[#BBA588]/20 via-[#8E735B]/20 to-[#7C6D64]/20 animate-ping"
             style={{
               width: `${130 + pulseIntensity * 0.8}%`,
               height: `${130 + pulseIntensity * 0.8}%`,
@@ -336,7 +336,7 @@ export function VoiceRecognition({
             }}
           />
           <div
-            className="absolute rounded-full bg-gradient-to-r from-blue-400/15 via-violet-400/15 to-cyan-400/15 animate-ping"
+            className="absolute rounded-full bg-gradient-to-r from-[#BBA588]/15 via-[#8E735B]/15 to-[#7C6D64]/15 animate-ping"
             style={{
               width: `${160 + pulseIntensity * 0.5}%`,
               height: `${160 + pulseIntensity * 0.5}%`,
@@ -344,7 +344,7 @@ export function VoiceRecognition({
             }}
           />
           <div
-            className="absolute rounded-full bg-gradient-to-r from-blue-300/10 via-violet-300/10 to-cyan-300/10 animate-ping"
+            className="absolute rounded-full bg-gradient-to-r from-[#BBA588]/10 via-[#8E735B]/10 to-[#7C6D64]/10 animate-ping"
             style={{
               width: `${200 + pulseIntensity * 0.3}%`,
               height: `${200 + pulseIntensity * 0.3}%`,
@@ -357,18 +357,18 @@ export function VoiceRecognition({
       {/* Audio interruption indicator rings - only show when audio is playing AND not listening */}
       {isAudioPlaying && !isListening && !errorState && (
         <>
-          <div className="absolute rounded-full bg-gradient-to-r from-orange-500/30 via-red-500/30 to-orange-500/30 animate-ping" 
-               style={{
-                 width: "140%",
-                 height: "140%",
-                 animationDuration: "1.5s",
-               }} />
-          <div className="absolute rounded-full bg-gradient-to-r from-orange-400/20 via-red-400/20 to-orange-400/20 animate-ping" 
-               style={{
-                 width: "180%",
-                 height: "180%",
-                 animationDuration: "2.5s",
-               }} />
+          <div className="absolute rounded-full bg-gradient-to-r from-orange-500/30 via-red-500/30 to-orange-500/30 animate-ping"
+            style={{
+              width: "140%",
+              height: "140%",
+              animationDuration: "1.5s",
+            }} />
+          <div className="absolute rounded-full bg-gradient-to-r from-orange-400/20 via-red-400/20 to-orange-400/20 animate-ping"
+            style={{
+              width: "180%",
+              height: "180%",
+              animationDuration: "2.5s",
+            }} />
         </>
       )}
 
@@ -386,10 +386,10 @@ export function VoiceRecognition({
           transform: isListening && !errorState ? `scale(${1 + pulseIntensity * 0.002})` : "scale(1)",
         }}
         aria-label={
-          isListening 
-            ? "Stop listening" 
-            : isAudioPlaying 
-              ? "Stop audio & start voice input" 
+          isListening
+            ? "Stop listening"
+            : isAudioPlaying
+              ? "Stop audio & start voice input"
               : "Start voice input"
         }
       >
@@ -407,7 +407,7 @@ export function VoiceRecognition({
           {[...Array(7)].map((_, i) => (
             <div
               key={i}
-              className="w-1 bg-gradient-to-t from-blue-500 via-violet-500 to-cyan-500 rounded-full transition-all duration-150"
+              className="w-1 bg-gradient-to-t from-[#BBA588] via-[#8E735B] to-[#7C6D64] rounded-full transition-all duration-150"
               style={{
                 height: `${6 + pulseIntensity * 0.3 * (Math.random() * 2 + 0.5)}px`,
                 opacity: 0.7 + pulseIntensity * 0.003,
@@ -425,7 +425,7 @@ export function VoiceRecognition({
             className={
               errorState
                 ? "text-red-400 dark:text-red-400"
-                : "text-slate-500 dark:text-slate-400"
+                : "text-[#7C6D64] dark:text-[#BBA588]"
             }
           >
             {getStatusText()}
