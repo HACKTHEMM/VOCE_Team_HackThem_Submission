@@ -66,7 +66,8 @@ class LanguageProcessor:
         """
         base_prompt = (
             "You are a helpful and friendly travel assistant. Your goal is to provide insightful and "
-            "practical information to travelers based on the provided real-time web context. "
+            "practical information to travelers. Use the 'USER INTENT ANALYSIS' to understand what the user wants "
+            "and use the 'REAL-TIME WEB CONTEXT' to form your answer. "
             "Answer questions about destinations, including things to do, food recommendations, cultural tips, and logistics. "
             "If the context doesn't contain the answer, politely say you couldn't find the information."
         )
@@ -95,10 +96,22 @@ class LanguageProcessor:
                 detected_language = self._detect_input_language(user_input)
                 current_language = force_language or detected_language
 
-                # === Web Context Retrieval ===
+                # === Web Context and Intent Retrieval ===
                 web_context_str = ""
+                intent_context_str = ""
                 if self.use_web_scraper and use_web_context:
-                    web_context_str = self._get_web_context(user_input, max_web_results)
+                    web_data = self._get_web_context(user_input, max_web_results)
+                    web_context_str = web_data.get("context_str", "")
+                    query_analysis = web_data.get("analysis")
+                    
+                    if query_analysis:
+                        intent = query_analysis.get('intent', 'general')
+                        location = query_analysis.get('location', 'not specified')
+                        intent_context_str = (
+                            f"\n\n=== USER INTENT ANALYSIS ===\n"
+                            f"Detected Intent: {intent}\n"
+                            f"Detected Location: {location}"
+                        )
 
                 # === Prepare Final Input and Generate Response ===
                 conversation_context = self._get_formatted_conversation_history()
@@ -107,7 +120,7 @@ class LanguageProcessor:
                     context_str = "\n".join([f"{k}: {v}" for k, v in context.items()])
                     formatted_input = f"Provided Context:\n{context_str}\n\n{formatted_input}"
 
-                full_context = f"{conversation_context}{web_context_str}".strip()
+                full_context = f"{conversation_context}{intent_context_str}{web_context_str}".strip()
                 if full_context:
                     formatted_input += f"\n\n=== CONTEXT FOR YOUR ANSWER ===\n{full_context}"
 
@@ -132,7 +145,7 @@ class LanguageProcessor:
                 error_message = "I apologize, but I encountered an error. Please try again."
                 return {"text": error_message, "language": "english"}
 
-    def _get_web_context(self, user_input: str, max_results: int) -> str:
+    def _get_web_context(self, user_input: str, max_results: int) -> Dict[str, Any]:
         """Retrieves context from the web, using a cache to avoid redundant lookups."""
         query_key = hashlib.md5(user_input.lower().encode()).hexdigest()
         
@@ -146,32 +159,31 @@ class LanguageProcessor:
         try:
             print(f"▷ Fetching new web context for query: '{user_input[:30]}...'")
             web_data = get_travel_data_for_voce(query=user_input)
-            if not web_data.get("success"):
-                return ""
             
-            aggregated_data = web_data.get("aggregated_data", {})
-            if not aggregated_data:
-                return ""
-
-            # Use summary snippets as the primary context
-            summary_snippets = aggregated_data.get("summary_snippets", [])
-            
-            if not summary_snippets:
-                return ""
+            context_str = ""
+            if web_data.get("success"):
+                aggregated_data = web_data.get("aggregated_data", {})
+                summary_snippets = aggregated_data.get("summary_snippets", [])
                 
-            web_context = "\n\n=== REAL-TIME WEB CONTEXT ===\n" + "\n".join(
-                [f"- {item.strip()}" for i, item in enumerate(list(set(summary_snippets))[:max_results], 1) if item.strip()]
-            )
+                if summary_snippets:
+                    context_str = "\n\n=== REAL-TIME WEB CONTEXT ===\n" + "\n".join(
+                        [f"- {item.strip()}" for i, item in enumerate(list(set(summary_snippets))[:max_results], 1) if item.strip()]
+                    )
+
+            output_data = {
+                'context_str': context_str,
+                'analysis': web_data.get('query_analysis')
+            }
 
             with self.web_cache_lock:
-                self.web_cache[query_key] = {'data': web_context, 'timestamp': time.time()}
+                self.web_cache[query_key] = {'data': output_data, 'timestamp': time.time()}
             
             print(f"✓ Web context retrieved and cached for query: '{user_input[:30]}...'")
-            return web_context
+            return output_data
 
         except Exception as e:
             print(f"Warning: Error retrieving web context: {e}")
-            return ""
+            return {"context_str": "", "analysis": None}
 
     def _start_cache_cleanup_thread(self):
         """Starts a background thread to periodically clean expired items from the web cache."""
