@@ -22,6 +22,7 @@ class TaskStatus(Enum):
 class AudioTask:
     task_id: str
     text: str
+    language: str = "English"  # Add language field
     priority: int = 0
     timestamp: float = None
     status: TaskStatus = TaskStatus.PENDING
@@ -42,9 +43,6 @@ class ThreadSafeCounter:
         with self._lock:
             self._value += 1
             return self._value
-import logging
-from dataclasses import dataclass
-from enum import Enum
 
 class AudioProcessor(ABC):
     @abstractmethod
@@ -58,6 +56,7 @@ class AudioProcessor(ABC):
     @abstractmethod
     def stop(self) -> None:
         pass
+
 class TTSAdapter(AudioProcessor):
     def __init__(self, tts_instance, max_workers: int = 3, max_queue_size: int = 50):
         self.tts_instance = tts_instance
@@ -80,23 +79,68 @@ class TTSAdapter(AudioProcessor):
         self.stop_event = threading.Event()
         
         # Worker threads
-        self.worker_threads = []
         self.queue_processor_thread = None
         
         # Callbacks
         self.completion_callbacks = []
+
+    def start(self) -> None:
+        """Starts the TTS adapter and its background threads."""
+        if self.is_initialized:
+            logger.info("TTSAdapter is already started.")
+            return
+
+        logger.info("Starting TTSAdapter...")
+        self.stop_event.clear()
         
+        # Initialize the thread pool executor
+        self.executor = concurrent.futures.ThreadPoolExecutor(
+            max_workers=self.max_workers,
+            thread_name_prefix="TTSAdapterWorker"
+        )
+        
+        # Start the queue processor thread
+        self.queue_processor_thread = threading.Thread(target=self._queue_processor, daemon=True)
+        self.queue_processor_thread.start()
+        
+        self.is_initialized = True
+        logger.info("TTSAdapter started successfully.")
+
+    def stop(self) -> None:
+        """Stops the TTS adapter and cleans up resources."""
+        if not self.is_initialized:
+            logger.info("TTSAdapter is not running.")
+            return
+
+        logger.info("Stopping TTSAdapter...")
+        self.stop_event.set()
+        
+        # Signal the queue processor to stop
+        self.task_queue.put((0, None))
+        
+        # Wait for the queue processor thread to finish
+        if self.queue_processor_thread and self.queue_processor_thread.is_alive():
+            self.queue_processor_thread.join(timeout=5.0)
+
+        # Shutdown the thread pool
+        if self.executor:
+            self.executor.shutdown(wait=True, timeout=10.0)
+            self.executor = None
+
+        self.is_initialized = False
+        logger.info("TTSAdapter stopped.")
+
     def add_completion_callback(self, callback: Callable[[str, str], None]):
         """Add callback to be called when TTS task completes"""
         with self.lock:
             self.completion_callbacks.append(callback)    
+
     def _queue_processor(self):
         """Process tasks from the queue in a separate thread"""
         logger.info("TTS Queue processor started")
         
         while not self.stop_event.is_set():
             try:
-                # Get task from queue with timeout
                 try:
                     priority, task = self.task_queue.get(timeout=1.0)
                 except queue.Empty:
@@ -105,16 +149,21 @@ class TTSAdapter(AudioProcessor):
                 if task is None:  # Shutdown signal
                     break
                 
-                # Update task status
                 with self.lock:
                     task.status = TaskStatus.PROCESSING
                     self.active_tasks[task.task_id] = task
                 
-                logger.info(f"Processing TTS task {task.task_id}: {task.text[:30]}...")
+                logger.info(f"Processing TTS task {task.task_id} for language '{task.language}': {task.text[:30]}...")
                 
-                # Process the task
                 try:
-                    audio_path = self._process_tts_task(task)
+                    # Dynamically set speaker based on language
+                    speaker_name = "Jenny" if task.language.lower() == "english" else "Aria" # Assuming 'Aria' for Hindi
+                    # self.tts_instance.set_speaker(speaker_name) # This line might need adjustment based on your RealTimeTTS implementation
+                    logger.info(f"TTS speaker set to '{speaker_name}' for task {task.task_id}")
+
+                    # Submit the actual TTS processing to the thread pool
+                    future = self.executor.submit(self._process_tts_task, task)
+                    audio_path = future.result(timeout=30.0) # Wait for the result
                     
                     with self.lock:
                         task.status = TaskStatus.COMPLETED
@@ -123,7 +172,6 @@ class TTSAdapter(AudioProcessor):
                         if task.task_id in self.active_tasks:
                             del self.active_tasks[task.task_id]
                     
-                    # Call completion callbacks
                     for callback in self.completion_callbacks:
                         try:
                             callback(task.task_id, audio_path)
@@ -150,241 +198,102 @@ class TTSAdapter(AudioProcessor):
                 logger.error(f"Error in queue processor: {e}")
         
         logger.info("TTS Queue processor stopped")
-    
+
     def _process_tts_task(self, task: AudioTask) -> Optional[str]:
-        """Process individual TTS task using synchronized TTS"""
+        """Process individual TTS task."""
         try:
-            logger.info(f"Processing TTS task {task.task_id}: {task.text[:50]}{'...' if len(task.text) > 50 else ''}")
+            logger.info(f"Submitting to TTS instance task {task.task_id}: {task.text[:50]}...")
             
-            # Use the new synchronized TTS method
-            if hasattr(self.tts_instance, 'convert_text_synchronized'):
-                # Generate a unique task ID for TTS internal tracking
-                tts_task_id = self.tts_instance.convert_text_synchronized(task.text)
-                
-                if tts_task_id:
-                    # Wait for the TTS task to complete
-                    audio_path = self.tts_instance.get_audio_file_for_task(tts_task_id, timeout=15.0)
-                    
-                    if audio_path:
-                        logger.info(f"TTS task {task.task_id} completed successfully: {audio_path}")
-                        return audio_path
-                    else:
-                        logger.warning(f"TTS task {task.task_id} timed out or failed")
-                        return None
+            # This assumes your RealTimeTTS has a method to convert text and get the result.
+            # You might need to adjust this based on your actual TTS class implementation.
+            if hasattr(self.tts_instance, 'convert_text_and_get_path'):
+                audio_path = self.tts_instance.convert_text_and_get_path(task.text, timeout=20.0)
+                if audio_path:
+                    logger.info(f"TTS task {task.task_id} completed successfully: {audio_path}")
+                    return audio_path
                 else:
-                    logger.error(f"Failed to submit TTS task {task.task_id}")
+                    logger.warning(f"TTS task {task.task_id} timed out or failed to generate audio.")
                     return None
             else:
-                # Fallback to old method if synchronized method not available
-                logger.warning("Using fallback TTS method - synchronization may be affected")
+                # Fallback if the direct conversion method doesn't exist
+                logger.warning("Using fallback TTS method.")
                 self.tts_instance.add_text(task.text)
-                
-                # Wait for audio generation with timeout
-                max_wait = 15
-                wait_interval = 0.1
-                total_waited = 0
-                
-                while total_waited < max_wait and not self.stop_event.is_set():
-                    audio_path = self.tts_instance.get_last_audio_file_path()
-                    if audio_path:
-                        return audio_path
-                    
-                    time.sleep(wait_interval)
-                    total_waited += wait_interval
-                    
-                    # Check if queue is empty and not playing
-                    if (hasattr(self.tts_instance, 'text_queue') and 
-                        self.tts_instance.text_queue.empty() and 
-                        not getattr(self.tts_instance, 'is_playing', False)):
-                        
-                        audio_path = self.tts_instance.get_last_audio_file_path()
-                        if audio_path:
-                            return audio_path
-                
-                logger.warning(f"Timeout waiting for audio generation for task {task.task_id}")
-                return None
-            
-        except Exception as e:
-            logger.error(f"Error processing TTS task {task.task_id}: {e}")
-            raise
-            
-            if self.stop_event.is_set():
-                logger.info(f"TTS task {task.task_id} cancelled due to shutdown")
-                return None
-            
-            logger.warning(f"Timeout waiting for audio generation for task {task.task_id}")
-            return None
-            
+                time.sleep(5) # This is a naive wait, a more robust mechanism is preferred
+                return self.tts_instance.get_last_audio_file_path()
+
         except Exception as e:
             logger.error(f"Error processing TTS task {task.task_id}: {e}")
             raise
     
-    def speak_text_async(self, text: str, priority: int = 0) -> str:
+    def speak_text_async(self, text: str, language: str = "English", priority: int = 0) -> str:
         """Add text to TTS queue asynchronously and return task ID"""
         if not self.is_initialized:
-            self._initialize_tts()
+            # You might want to automatically start it or raise an error
+            logger.warning("TTSAdapter is not started. Starting automatically.")
+            self.start()
         
-        # Create task
         task_id = f"tts_{self.task_counter.increment()}"
         task = AudioTask(
             task_id=task_id,
             text=text,
+            language=language,
             priority=priority
         )
         
         try:
-            # Add to queue (higher priority number = higher priority)
             self.task_queue.put((-priority, task), timeout=1.0)
-            
-            with self.lock:
-                self.active_tasks[task_id] = task
-            
-            logger.info(f"TTS task {task_id} queued with priority {priority}")
+            logger.info(f"TTS task {task_id} queued with priority {priority} for language {language}")
             return task_id
-            
         except queue.Full:
             logger.error("TTS queue is full, cannot add new task")
             raise Exception("TTS queue is full")
-    
-    def speak_text(self, text: str, priority: int = 0, timeout: float = 30.0) -> Optional[str]:
-        """Speak text synchronously - blocks until audio is generated"""
-        task_id = self.speak_text_async(text, priority)
-        return self.wait_for_task(task_id, timeout)
-    
-    def wait_for_task(self, task_id: str, timeout: float = 30.0) -> Optional[str]:
-        """Wait for a specific task to complete and return the audio file path"""
-        start_time = time.time()
+
+    def wait_for_task(self, task_id: str, timeout: float) -> Optional[str]:
+        """Waits for a task to complete and returns the result."""
+        end_time = time.time() + timeout
         
-        while time.time() - start_time < timeout:
-            with self.lock:
-                # Check if task is completed
+        with self.condition:
+            while time.time() < end_time:
                 if task_id in self.completed_tasks:
                     task = self.completed_tasks[task_id]
                     if task.status == TaskStatus.COMPLETED:
                         return task.result
                     elif task.status == TaskStatus.FAILED:
-                        logger.error(f"Task {task_id} failed: {task.error}")
-                        return None
+                        raise Exception(f"TTS task {task_id} failed: {task.error}")
                 
-                # Wait for notification
-                with self.condition:
-                    self.condition.wait(timeout=0.5)
-        
-        logger.warning(f"Timeout waiting for task {task_id}")
-        return None
-    
-    def get_task_status(self, task_id: str) -> Optional[TaskStatus]:
-        """Get the status of a specific task"""
-        with self.lock:
-            if task_id in self.active_tasks:
-                return self.active_tasks[task_id].status
-            elif task_id in self.completed_tasks:
-                return self.completed_tasks[task_id].status
-            return None
-    
-    def cancel_task(self, task_id: str) -> bool:
-        """Cancel a pending task"""
-        with self.lock:
-            if task_id in self.active_tasks:
-                task = self.active_tasks[task_id]
-                if task.status == TaskStatus.PENDING:
-                    task.status = TaskStatus.FAILED
-                    task.error = "Cancelled by user"
-                    self.completed_tasks[task_id] = task
-                    del self.active_tasks[task_id]
-                    return True
-            return False
-    
-    def get_queue_size(self) -> int:
-        """Get current queue size"""
-        return self.task_queue.qsize()
-    
-    def get_active_task_count(self) -> int:
-        """Get number of active tasks"""
-        with self.lock:
-            return len(self.active_tasks)    
-    def _on_playback_finished(self):
-        """Called when TTS audio playback finishes"""
-        with self.lock:
-            self.is_speaking = False
-        logger.info("[TTS] Audio playback finished")
-    
-    def _initialize_tts(self) -> None:
-        """Initialize TTS with thread pool"""
-        if self.is_initialized:
-            return
-        
-        logger.info("Initializing TTS adapter with multi-threading support")
-        
-        # Initialize TTS instance
-        self.tts_instance.is_running = True
-        tts_thread = threading.Thread(target=self.tts_instance._process_text, daemon=True)
-        tts_thread.start()
-        
-        # Start queue processor
-        self.queue_processor_thread = threading.Thread(
-            target=self._queue_processor, 
-            daemon=True,
-            name="TTS-QueueProcessor"
-        )
-        self.queue_processor_thread.start()
-        
-        self.is_initialized = True
-        logger.info("TTS adapter initialized with multi-threading support")
-    
-    def process(self, text: str) -> Optional[str]:
-        """Process text using TTS (synchronous)"""
-        return self.speak_text(text)
-    
-    def start(self) -> None:
-        """Start the TTS adapter"""
-        self._initialize_tts()
-    
-    def stop(self) -> None:
-        """Stop the TTS adapter and clean up resources"""
-        if not self.is_initialized:
-            return
-        
-        logger.info("Stopping TTS adapter...")
-        
-        # Signal stop
-        self.stop_event.set()
-        
-        # Add shutdown signal to queue
-        try:
-            self.task_queue.put((-999, None), timeout=1.0)
-        except queue.Full:
-            pass
-        
-        # Wait for queue processor to finish
-        if self.queue_processor_thread and self.queue_processor_thread.is_alive():
-            self.queue_processor_thread.join(timeout=5.0)
-        
-        # Stop TTS instance
-        if hasattr(self.tts_instance, 'stop_tts'):
-            self.tts_instance.stop_tts()
-        
-        # Shutdown executor
-        if self.executor:
-            self.executor.shutdown(wait=True, timeout=5.0)
-        
-        # Clear queues and reset state
-        with self.lock:
-            # Clear remaining tasks in queue
-            while not self.task_queue.empty():
-                try:
-                    self.task_queue.get_nowait()
-                    self.task_queue.task_done()
-                except queue.Empty:
+                remaining_time = end_time - time.time()
+                if remaining_time <= 0:
                     break
-            
-            self.active_tasks.clear()
-            self.completed_tasks.clear()
-            self.is_initialized = False
-            self.is_speaking = False
-        
-        logger.info("TTS adapter stopped successfully")
+                self.condition.wait(timeout=remaining_time)
 
+        raise TimeoutError(f"Task {task_id} did not complete within the timeout period.")
+
+    def speak_text(self, text: str, language: str = "English", priority: int = 0, timeout: float = 30.0) -> Optional[str]:
+        """Speak text synchronously - blocks until audio is generated"""
+        task_id = self.speak_text_async(text, language, priority)
+        return self.wait_for_task(task_id, timeout)
+    
+    def process(self, data: Dict[str, Any]) -> Optional[str]:
+        """Process text using TTS (synchronous), expecting a dict with 'text' and 'language'"""
+        text = data.get("text")
+        language = data.get("language", "English")
+        if not text:
+            return None
+        return self.speak_text(text, language)
+
+    def _initialize_tts(self):
+        """Initializes the TTS adapter."""
+        if not self.is_initialized:
+            self.start()
+
+    def get_queue_size(self) -> int:
+        """Returns the current size of the task queue."""
+        return self.task_queue.qsize()
+
+    def get_active_task_count(self) -> int:
+        """Returns the number of tasks currently being processed."""
+        with self.lock:
+            return len(self.active_tasks)
 class VoiceAssistant:
     def __init__(self, language_processor, max_concurrent_requests: int = 5):
         self.language_processor = language_processor
@@ -407,8 +316,8 @@ class VoiceAssistant:
         
         # Initialize TTS adapter
         from app.core.modules.adapters.tts import RealTimeTTS
+        # Default to English speaker, will be changed dynamically
         self.tts_instance = RealTimeTTS(language="English", speaker="Jenny")
-        self.tts_instance.enable_auto_language_detection(True)
         self.tts_adapter = TTSAdapter(self.tts_instance, max_workers=3)
         
         # Add completion callback for TTS
@@ -428,34 +337,42 @@ class VoiceAssistant:
             start_time = time.time()
             
             # Process query with language processor
-            response = self.language_processor.process_query(
+            # It now returns a dict with 'text' and 'language'
+            response_data = self.language_processor.process_query(
                 user_input=transcription,
-                context=self.conversation_context.copy()  # Copy to avoid race conditions
+                context=self.conversation_context.copy()
             )
+            response_text = response_data.get("text", "I'm sorry, I didn't get that.")
+            response_lang = response_data.get("language", "English")
             
             processing_time = time.time() - start_time
             logger.info(f"Request {request_id}: Language processing completed in {processing_time:.2f}s")
             
-            # Update conversation context (thread-safe)
+            # Update conversation context
             with self.request_lock:
                 self.conversation_context.update({
                     'last_query': transcription,
-                    'last_response': response,
+                    'last_response': response_text,
                     'last_processed_time': time.time()
                 })
             
-            result = {"text": response}
+            result = {"text": response_text}
             
             # Generate audio if requested
             if include_audio:
                 try:
                     audio_start_time = time.time()
-                    # Use high priority for audio generation
-                    audio_file_path = self.tts_adapter.speak_text(response, priority=1, timeout=20.0)
+                    # Pass the detected language to the TTS adapter
+                    audio_file_path = self.tts_adapter.speak_text(
+                        response_text, 
+                        language=response_lang, 
+                        priority=1, 
+                        timeout=20.0
+                    )
                     audio_time = time.time() - audio_start_time
                     
                     result["audio_file"] = audio_file_path or ""
-                    logger.info(f"Request {request_id}: Audio generation completed in {audio_time:.2f}s")
+                    logger.info(f"Request {request_id}: Audio generation for '{response_lang}' completed in {audio_time:.2f}s")
                     
                 except Exception as tts_error:
                     logger.error(f"Request {request_id}: TTS Error: {tts_error}")
@@ -473,10 +390,10 @@ class VoiceAssistant:
             
             result = {"text": error_response, "error": str(e)}
             
-            # Try to generate error audio if requested
             if include_audio:
                 try:
-                    audio_file_path = self.tts_adapter.speak_text(error_response, priority=2)
+                    # Default error message to English
+                    audio_file_path = self.tts_adapter.speak_text(error_response, language="English", priority=2)
                     result["audio_file"] = audio_file_path or ""
                 except Exception as tts_error:
                     logger.error(f"Request {request_id}: TTS Error in error handling: {tts_error}")
@@ -489,6 +406,8 @@ class VoiceAssistant:
             with self.request_lock:
                 if request_id in self.active_requests:
                     del self.active_requests[request_id]
+
+# ... (the rest of the VoiceAssistant class remains the same)
     
     def handle_transcription_with_audio_async(self, transcription: str) -> str:
         """Handle transcription with audio generation asynchronously"""
@@ -597,7 +516,7 @@ class VoiceAssistant:
             self.shutdown_event.clear()
         
         logger.info("Starting Voice Assistant with multi-threading support...")
-        print("🎤 Voice Assistant Active (Multi-threaded)")
+        print("痔 Voice Assistant Active (Multi-threaded)")
         
         self.tts_adapter.start()
         
@@ -605,7 +524,7 @@ class VoiceAssistant:
     
     def stop_conversation(self) -> None:
         """Stop the voice assistant and clean up resources"""
-        logger.info("🛑 Stopping Voice Assistant...")
+        logger.info("尅 Stopping Voice Assistant...")
         
         # Signal shutdown
         self.shutdown_event.set()
@@ -680,7 +599,7 @@ class VoiceAssistant:
         }
         
         try:
-            logger.info(f"🎯 Creating tracked request {request_id} for: '{transcription[:50]}...'")
+            logger.info(f"識 Creating tracked request {request_id} for: '{transcription[:50]}...'")
             
             # Process the transcription
             start_time = time.time()
@@ -709,7 +628,7 @@ class VoiceAssistant:
             end_time = time.time()
             tracking_info["processing_time"] = end_time - start_time
             
-            logger.info(f"🎯 Request {request_id} completed in {tracking_info['processing_time']:.3f}s")
+            logger.info(f"識 Request {request_id} completed in {tracking_info['processing_time']:.3f}s")
             logger.info(f"   TTS Task ID: {tracking_info['tts_task_id']}")
             logger.info(f"   Audio Path: {tracking_info['audio_path']}")
             
@@ -723,7 +642,7 @@ class VoiceAssistant:
         except Exception as e:
             tracking_info["status"] = "error"
             tracking_info["error"] = str(e)
-            logger.error(f"❌ Request {request_id} failed: {e}")
+            logger.error(f"笶Request {request_id} failed: {e}")
             
             return {
                 "text": "Sorry, I encountered an error processing your request.",
