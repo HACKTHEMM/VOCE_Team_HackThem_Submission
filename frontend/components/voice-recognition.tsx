@@ -420,7 +420,7 @@ export function VoiceRecognition({
 
       {/* Status indicator */}
       {getStatusText() && (
-        <div className="absolute -bottom-12 text-xs text-center whitespace-nowrap max-w-40">
+        <div className="absolute -bottom-16 text-xs text-center whitespace-nowrap max-w-48 left-1/2 transform -translate-x-1/2">
           <span
             className={
               errorState
