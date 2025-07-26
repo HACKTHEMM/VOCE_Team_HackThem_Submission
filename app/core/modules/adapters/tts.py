@@ -84,6 +84,16 @@ class RealTimeTTS:
     def enable_auto_language_detection(self, enable=True):
         self.auto_detect_language = enable
     
+    def convert_text_and_get_path(self, text, timeout=30.0):
+        """Convert text to speech and return the audio file path (sync)."""
+        self.ensure_tts_ready()
+        try:
+            future = self.executor.submit(self._process_single_text, text)
+            return future.result(timeout=timeout)
+        except Exception as e:
+            print(f"Error in convert_text_and_get_path: {e}")
+            return None
+    
     def convert_text_with_language(self, text, language=None, speaker=None):
         # Ensure TTS is ready
         self.ensure_tts_ready()

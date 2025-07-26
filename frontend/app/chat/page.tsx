@@ -380,7 +380,7 @@ export default function ChatPage() {
     console.log(`Audio ${newAudioState ? 'enabled' : 'disabled'}`)
   }
   const handleSendMessage = async (content: string) => {
-    if (!content.trim()) return
+    if (!content) return
 
     // Prevent duplicate submissions
     if (isTyping) return
@@ -388,7 +388,7 @@ export default function ChatPage() {
     const userMessage: Message = {
       id: Date.now().toString(),
       type: "user",
-      content: content.trim(),
+      content: content,
       timestamp: new Date(),
       language: currentLanguage,
     }
