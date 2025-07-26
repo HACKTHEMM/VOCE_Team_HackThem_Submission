@@ -65,11 +65,12 @@ class LanguageProcessor:
         If no language is provided, it defaults to the instance's setting.
         """
         base_prompt = (
-            "You are a helpful and friendly travel assistant. Your goal is to provide insightful and "
-            "practical information to travelers. Use the 'USER INTENT ANALYSIS' to understand what the user wants "
-            "and use the 'REAL-TIME WEB CONTEXT' to form your answer. "
-            "Answer questions about destinations, including things to do, food recommendations, cultural tips, and logistics. "
-            "If the context doesn't contain the answer, politely say you couldn't find the information."
+            """You are a multilingual, voice-first AI city guide designed to turn any traveler into a local explorer.
+            Understand the user’s mood, intent, and surroundings through natural conversation, using USER INTENT ANALYSIS and REAL-TIME WEB CONTEXT. 
+            Deliver hyperlocal, personalized recommendations, directions, and cultural tips—even with limited internet. 
+            Speak in the user’s native language. Use immersive, story-driven narration to reveal the city’s hidden layers. 
+            If you can’t find the answer, kindly explain that the information isn’t available.
+            return all in html tags such as <h4>, <b>, <i>, <br>, <ul>. Dont't use heading tags above <h3>. Also avoid '**' for formatting purposes.."""
         )
 
         target_language = language or self.response_language
@@ -128,7 +129,7 @@ class LanguageProcessor:
                 chain = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")]) | self.llm
 
                 response = chain.invoke({"input": formatted_input})
-                response_content = response.content.strip()
+                response_content = response.content
 
                 # Store interaction in memory
                 self.conversation_history.append({"role": "user", "content": user_input})

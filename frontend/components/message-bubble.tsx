@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { User, Bot, Copy, Check } from "lucide-react"
 import { format } from "date-fns"
 import { useToast } from "@/hooks/use-toast"
+import createDOMPurify from 'dompurify';
 
 interface Message {
   id: string
@@ -20,11 +21,14 @@ interface MessageBubbleProps {
   message: Message
 }
 
+const DOMPurify = typeof window !== 'undefined' ? createDOMPurify(window) : null;
+
 export function MessageBubble({ message }: MessageBubbleProps) {
   const [isCopied, setIsCopied] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const { toast } = useToast()
   const isUser = message.type === "user"
+  const safeHtml = DOMPurify ? DOMPurify.sanitize(message.content) : message.content;
 
   const handleCopy = async () => {
     try {
@@ -83,7 +87,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <p className="text-sm leading-relaxed font-medium">{message.content}</p>
+            <div className="text-sm leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: safeHtml }}/>
             
             {/* Copy button - appears on hover */}
             <button

@@ -7,6 +7,7 @@ from abc import ABC, abstractmethod
 import logging
 from dataclasses import dataclass
 from enum import Enum
+from html.parser import HTMLParser
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -363,6 +364,7 @@ class VoiceAssistant:
                 try:
                     audio_start_time = time.time()
                     # Pass the detected language to the TTS adapter
+                    response_text = self.get_text_from_html(response_text)
                     audio_file_path = self.tts_adapter.speak_text(
                         response_text, 
                         language=response_lang, 
@@ -406,6 +408,19 @@ class VoiceAssistant:
             with self.request_lock:
                 if request_id in self.active_requests:
                     del self.active_requests[request_id]
+        
+    def get_text_from_html(self, html):
+        texts = []
+
+        def handle_data(data):
+            if data.strip():
+                texts.append(data.strip())
+        
+        parser = HTMLParser()
+        parser.handle_data = handle_data
+        parser.feed(html)
+
+        return ' '.join(texts)
 
 # ... (the rest of the VoiceAssistant class remains the same)
     
