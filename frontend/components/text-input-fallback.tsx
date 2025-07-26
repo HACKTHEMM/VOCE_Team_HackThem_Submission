@@ -43,7 +43,7 @@ export function TextInputFallback({
           onChange={(e) => setInputValue(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder={placeholder}
-          className="bg-white/[0.04] backdrop-blur-lg border border-[#BBA588]/20 text-[#ECE8D9] placeholder-[#B6B6B6]/60 pl-10 focus:bg-white/[0.08] focus:border-[#BBA588]/40 transition-all duration-300 hover:bg-white/[0.06] shadow-lg"
+          className="bg-white/[0.04] backdrop-blur-lg border border-[#BBA588]/20 text-[#847561] placeholder-[#B6B6B6]/60 pl-10 focus:bg-white/[0.08] focus:border-[#BBA588]/40 transition-all duration-300 hover:bg-white/[0.06] shadow-lg"
           disabled={disabled}
         />
       </div>
