@@ -7,7 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { VoiceRecognition } from "@/components/voice-recognition"
 import { TextInputFallback } from "@/components/text-input-fallback"
 import { MessageBubble } from "@/components/message-bubble"
-import { ProductCard } from "@/components/product-card"
+import { ProductCard } from "@/components/product-card" // Changed from ProductCard
 import { LanguageSelector } from "@/components/language-selector"
 import { ApiStatus } from "@/components/api-status"
 import { ArrowLeft, AlertTriangle, MessageSquare, Volume2, VolumeX } from "lucide-react"
@@ -20,7 +20,7 @@ interface Message {
   content: string
   timestamp: Date
   language?: string
-  products?: any[]
+  places?: any[] // Changed from products
   sentiment?: "positive" | "neutral" | "negative"
   audioFile?: string
 }
@@ -30,7 +30,7 @@ export default function ChatPage() {
     {
       id: "1",
       type: "assistant",
-      content: "Hello! I'm your AI sales assistant. How can I help you today? आप कैसे हैं?",
+      content: "Hello! I'm your AI travel assistant. How can I help you explore the city today? आप कैसे हैं?",
       timestamp: new Date(),
       sentiment: "positive",
     },
@@ -427,7 +427,7 @@ export default function ChatPage() {
         id: assistantMessageId,
         type: "assistant",
         content: data.text || "Sorry, I couldn't generate a response.", timestamp: new Date(),
-        products: data.products || [],
+        places: data.places || [], // Changed from products
         sentiment: "positive",
         audioFile: data.audio_file || "",
       }
@@ -442,12 +442,12 @@ export default function ChatPage() {
       console.log("Audio URL from API:", data.audio_url)
       console.log("Static audio URL from API:", data.static_audio_url)
       console.log("Audio filename from API:", data.audio_filename)
-      console.log("Products from API:", data.products)
-      if (data.products && Array.isArray(data.products)) {
-        console.log("Products array length:", data.products.length)
-        data.products.forEach((product: any, index: number) => {
-          console.log(`Product ${index}:`, product)
-          console.log(`Product ${index} properties:`, Object.keys(product))
+      console.log("Places from API:", data.places) // Changed from products
+      if (data.places && Array.isArray(data.places)) { // Changed from products
+        console.log("Places array length:", data.places.length) // Changed from products
+        data.places.forEach((place: any, index: number) => { // Changed from products
+          console.log(`Place ${index}:`, place) // Changed from product
+          console.log(`Place ${index} properties:`, Object.keys(place)) // Changed from product
         })
       }
       console.log("Current isAudioEnabled:", isAudioEnabled)
@@ -528,7 +528,7 @@ export default function ChatPage() {
                   <h1 className="text-lg sm:text-xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] truncate font-serif-display">Voce Chat</h1>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-[#8E735B] rounded-full animate-pulse shrink-0"></div>
-                    <span className="text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588] font-medium truncate font-serif">AI Assistant Online</span>
+                    <span className="text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588] font-medium truncate font-serif">AI Travel Assistant</span>
                   </div>
                 </div>
               </div>
@@ -585,30 +585,30 @@ export default function ChatPage() {
               <Alert className="glass-classic border-[#BBA588]/50 dark:border-[#8E735B]/30 shadow-lg animate-in slide-in-from-top-4 duration-500">
                 <AlertTriangle className="h-4 w-4 text-[#8E735B] dark:text-[#BBA588]" />
                 <AlertDescription className="text-[#2D2C2A] dark:text-[#ECE8D9] font-serif">
-                  You're currently offline. Voice recognition won't work, but you can still type messages.
+                  You're currently offline. Voice commands won't work, but you can still type messages. The full experience is available via a simple phone call, no internet needed.
                 </AlertDescription>
               </Alert>
             )}            {messages.map((message) => (
               <div key={message.id} className="animate-in slide-in-from-bottom-4 duration-500">
                 <MessageBubble message={message} />
-                {message.products && message.products.length > 0 && (
+                {message.places && message.places.length > 0 && ( // Changed from products
                   <div className="mt-4 sm:mt-6">
                     <div className="mb-2 text-sm text-[#8E735B] dark:text-[#BBA588] font-medium font-serif">
-                      Found {message.products.length} products:
+                      Found {message.places.length} places: // Changed from products
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                      {message.products.map((product, index) => {
-                        console.log(`Rendering product ${index}:`, product)
+                      {message.places.map((place, index) => { // Changed from products
+                        console.log(`Rendering place ${index}:`, place) // Changed from product
                         try {
-                          return <ProductCard key={product.id || product.product_id || `product-${index}`} product={product} />
+                          return <ProductCard key={place.id || place.place_id || `place-${index}`} product={place} /> // Changed from ProductCard
                         } catch (error) {
-                          console.error(`Error rendering product ${index}:`, error, product)
+                          console.error(`Error rendering place ${index}:`, error, place) // Changed from product
                           return (
-                            <div key={`error-product-${index}`} className="p-4 border-2 border-[#BBA588]/50 rounded-lg bg-[#F3F1E9] dark:bg-[#1E1E1E]/20">
+                            <div key={`error-place-${index}`} className="p-4 border-2 border-[#BBA588]/50 rounded-lg bg-[#F3F1E9] dark:bg-[#1E1E1E]/20">
                               <p className="text-[#8E735B] dark:text-[#BBA588] text-sm font-serif">
-                                Error displaying product {index}. Check console for details.
+                                Error displaying place {index}. Check console for details.
                               </p>
-                              <pre className="text-xs mt-2 overflow-auto font-mono">{JSON.stringify(product, null, 2)}</pre>
+                              <pre className="text-xs mt-2 overflow-auto font-mono">{JSON.stringify(place, null, 2)}</pre>
                             </div>
                           )
                         }
@@ -617,10 +617,10 @@ export default function ChatPage() {
                   </div>
                 )}
 
-                {/* Show if no products */}
-                {message.type === "assistant" && (!message.products || message.products.length === 0) && (
+                {/* Show if no places */}
+                {message.type === "assistant" && (!message.places || message.places.length === 0) && (
                   <div className="mt-2 text-xs text-[#7C6D64] dark:text-[#BBA588] font-serif">
-                    No products in this response.
+                    No places found in this response.
                   </div>
                 )}
               </div>
@@ -659,7 +659,7 @@ export default function ChatPage() {
                   </div>
                   <div className="text-center space-y-1 px-4">
                     <p className="text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-medium font-serif">
-                      {isListening ? "🎤 Listening... Click to stop" : "Click to start speaking"}
+                      {isListening ? "🎤 Listening... Ask me anything about the city" : "Tap to ask a question"}
                     </p>
                     <p className="text-xs text-[#7C6D64] dark:text-[#BBA588] font-serif">
                       Speak naturally in {currentLanguage === 'hi' ? 'Hindi or English' : 'English'}
@@ -673,13 +673,13 @@ export default function ChatPage() {
                 <div className="flex items-center justify-center px-4">
                   <div className="flex items-center space-x-2 sm:space-x-3 w-full max-w-sm">
                     <div className="h-px bg-gradient-to-r from-transparent via-[#BBA588] dark:via-[#8E735B] to-transparent flex-1"></div>
-                    <span className="text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588] font-medium px-2 whitespace-nowrap font-serif">or type your message</span>
+                    <span className="text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588] font-medium px-2 whitespace-nowrap font-serif">or type your question</span>
                     <div className="h-px bg-gradient-to-r from-transparent via-[#BBA588] dark:via-[#8E735B] to-transparent flex-1"></div>
                   </div>
                 </div>
                 <TextInputFallback
                   onSend={handleSendMessage}
-                  placeholder={`Type your message... ${currentLanguage === "hi" ? "(हिंदी में टाइप करें)" : "(Type in English)"}`}
+                  placeholder={`Ask for recommendations, directions, or translations...`}
                   disabled={isTyping}
                 />
               </div>
