@@ -2,67 +2,67 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Check, Star, Zap, Crown } from "lucide-react"
+import { Check, Star, Zap, Crown, Briefcase, User, MapPinned } from "lucide-react"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
 
 export default function PricingPage() {
   const plans = [
     {
-      name: "Starter",
-      price: "₹999",
-      period: "/month",
-      description: "Perfect for small businesses getting started with AI voice",
+      name: "Traveler",
+      price: "₹499",
+      period: "/trip (7 days)",
+      description: "Perfect for a single trip to explore a new city like a local.",
       features: [
-        "Up to 1,000 conversations/month",
-        "Basic voice recognition",
-        "3 Indian languages support",
-        "Email support",
-        "Basic analytics",
-        "Standard response time"
+        "Up to 30 calls per trip",
+        "Unlimited local recommendations",
+        "Support in 5 core languages",
+        "Standard SMS & Email support",
+        "Access to essential city info",
+        "Offline access via phone call"
       ],
-      icon: <Zap className="h-6 w-6" />,
+      icon: <User className="h-6 w-6" />,
       popular: false,
-      cta: "Start Free Trial"
+      cta: "Start Your Trip"
     },
     {
-      name: "Professional",
-      price: "₹2,999",
+      name: "Explorer",
+      price: "₹1,499",
       period: "/month",
-      description: "Ideal for growing businesses with higher volume needs",
+      description: "For frequent travelers who want seamless adventures everywhere.",
       features: [
-        "Up to 10,000 conversations/month",
-        "Advanced voice recognition",
-        "All 10+ Indian languages",
-        "Priority support",
-        "Advanced analytics & insights",
-        "Custom integrations",
-        "Multi-channel support",
-        "Real-time monitoring"
+        "Up to 100 calls per month",
+        "All features of the Traveler plan",
+        "Support for all 15+ languages",
+        "Priority phone & chat support",
+        "Personalized travel history",
+        "Early access to new city guides",
+        "Family sharing (up to 2 users)",
+        "Exclusive partner discounts"
       ],
-      icon: <Star className="h-6 w-6" />,
+      icon: <MapPinned className="h-6 w-6" />,
       popular: true,
-      cta: "Start Free Trial"
+      cta: "Become an Explorer"
     },
     {
-      name: "Enterprise",
+      name: "Partner",
       price: "Custom",
       period: "",
-      description: "Custom solutions for large enterprises with specific needs",
+      description: "For hotels & travel agencies to enhance their guest experience.",
       features: [
-        "Unlimited conversations",
-        "Custom voice models",
-        "All languages + custom dialects",
-        "24/7 dedicated support",
-        "Enterprise-grade security",
-        "Custom integrations",
-        "On-premise deployment",
-        "SLA guarantees",
-        "Custom training & onboarding"
+        "Unlimited calls for your guests",
+        "Custom branded welcome message",
+        "Integration with your booking system",
+        "Dedicated account manager",
+        "Analytics on guest engagement",
+        "Co-branded marketing materials",
+        "24/7 priority partner support",
+        "Custom local recommendations",
+        "Flexible billing options"
       ],
-      icon: <Crown className="h-6 w-6" />,
+      icon: <Briefcase className="h-6 w-6" />,
       popular: false,
-      cta: "Contact Sales"
+      cta: "Contact Partnerships"
     }
   ]
   return (
@@ -79,18 +79,18 @@ export default function PricingPage() {
         <div className="pt-20 sm:pt-24 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto text-center">
             <Badge className="mb-6 sm:mb-8 bg-gradient-to-r from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] text-[#8E735B] border-[#BBA588]/60 dark:from-[#1E1E1E]/80 dark:via-[#2A2A2A]/80 dark:to-[#1E1E1E]/80 dark:text-[#BBA588] dark:border-[#BBA588]/20 px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium shadow-lg backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:scale-105 font-serif">
-              💰 Simple, Transparent Pricing
+              ✈️ Plans for Every Journey
             </Badge>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 sm:mb-8 leading-tight font-serif-display">
-              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 sm:mb-3">Choose Your</span>
+              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 sm:mb-3">Your Adventure,</span>
               <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent animate-gradient">
-                Perfect Plan
+                Your Perfect Plan
               </span>
             </h1>
 
             <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed mb-12 sm:mb-16 font-medium px-4 sm:px-0 font-serif">
-              Start with our free trial and scale as you grow. All plans include our core AI voice features with no hidden fees.
+              Begin your adventure with a free discovery call. Simple plans for every type of traveler, with no hidden fees or need for an internet connection.
             </p>
           </div>
         </div>      {/* Pricing Cards */}
@@ -100,10 +100,10 @@ export default function PricingPage() {
               {plans.map((plan) => (
                 <Card
                   key={plan.name}
-                  className={`relative group glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden h-full ${plan.popular
+                  className={`relative group glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden h-full flex flex-col ${plan.popular
                       ? 'ring-2 ring-[#BBA588]/50 dark:ring-[#BBA588]/50 border-[#BBA588]/60 dark:border-[#BBA588]/40'
                       : 'hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40'
-                    } ${plan.name === 'Professional' ? 'md:col-span-2 lg:col-span-1' : ''}`}
+                    } ${plan.name === 'Explorer' ? 'md:col-span-2 lg:col-span-1' : ''}`}
                 >
                   {plan.popular && (
                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -138,12 +138,12 @@ export default function PricingPage() {
                       )}
                     </div>
 
-                    <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-xs sm:text-sm leading-relaxed font-serif">
+                    <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-xs sm:text-sm leading-relaxed font-serif min-h-[40px]">
                       {plan.description}
                     </p>
                   </CardHeader>
 
-                  <CardContent className="px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8 flex flex-col h-full">
+                  <CardContent className="px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8 flex flex-col h-full flex-grow">
                     <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-grow">
                       {plan.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-start space-x-3">
@@ -162,7 +162,7 @@ export default function PricingPage() {
                         }`}
                       asChild
                     >
-                      <Link href={plan.cta === "Contact Sales" ? "/contact" : "/chat"}>
+                      <Link href={plan.cta === "Contact Partnerships" ? "/contact" : "/chat"}>
                         {plan.cta}
                       </Link>
                     </Button>
@@ -182,19 +182,19 @@ export default function PricingPage() {
               <div className="space-y-4 sm:space-y-6">
                 <div>
                   <h3 className="text-base sm:text-lg font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 font-serif-display">
-                    Is there a free trial?
+                    Can I try Voce for free?
                   </h3>
                   <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm leading-relaxed font-serif">
-                    Yes! All plans come with a 14-day free trial. No credit card required to get started.
+                    Yes! Your first call to Voce is on us. Experience the magic of having a local guide in your pocket, completely free.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-base sm:text-lg font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 font-serif-display">
-                    Can I change plans anytime?
+                    Can I change my plan?
                   </h3>
                   <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm leading-relaxed font-serif">
-                    Absolutely! You can upgrade or downgrade your plan at any time. Changes take effect immediately.
+                    Absolutely! You can upgrade from a trip pass to a monthly Explorer plan at any time. Changes take effect immediately.
                   </p>
                 </div>
               </div>
@@ -202,19 +202,19 @@ export default function PricingPage() {
               <div className="space-y-4 sm:space-y-6">
                 <div>
                   <h3 className="text-base sm:text-lg font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 font-serif-display">
-                    What languages are supported?
+                    Do I need an app or internet?
                   </h3>
                   <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm leading-relaxed font-serif">
-                    We support 10+ Indian languages including Hindi, Bengali, Tamil, Telugu, and more, plus English.
+                    No! That's the best part. Voce works with a simple phone call from any mobile or landline phone. No app, no data, no Wi-Fi required.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-base sm:text-lg font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 font-serif-display">
-                    Is my data secure?
+                    Is my personal data secure?
                   </h3>
                   <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm leading-relaxed font-serif">
-                    Yes! We use enterprise-grade security with end-to-end encryption and comply with all data protection regulations.
+                    Yes. We are committed to traveler privacy. All calls are confidential and we use enterprise-grade security to protect your information.
                   </p>
                 </div>
               </div>

@@ -12,12 +12,12 @@ import {
   TrendingUp,
   Users,
   MessageSquare,
-  Phone,
+  MapPin,
   Target,
   Clock,
   Zap,
   Eye,
-  Calendar,
+  Languages,
   Filter,
   Download,
   RefreshCw
@@ -26,7 +26,7 @@ import {
 export default function AnalyticsPage() {
   const metrics = [
     {
-      title: "Total Conversations",
+      title: "Total Traveler Queries",
       value: "12,486",
       change: "+23.5%",
       changeType: "positive",
@@ -34,15 +34,15 @@ export default function AnalyticsPage() {
       color: "classic-bronze"
     },
     {
-      title: "Conversion Rate",
-      value: "34.2%",
+      title: "Successful Recommendations",
+      value: "89.7%",
       change: "+5.2%",
       changeType: "positive",
       icon: <Target className="h-5 w-5" />,
       color: "classic-walnut"
     },
     {
-      title: "Active Users",
+      title: "Active Travelers",
       value: "8,247",
       change: "+12.8%",
       changeType: "positive",
@@ -59,39 +59,39 @@ export default function AnalyticsPage() {
     }
   ]
 
-  const channels = [
-    { name: "Voice Calls", value: 45, count: "5,617", color: "bg-[#8E735B]" },
-    { name: "Chat Messages", value: 30, count: "3,746", color: "bg-[#BBA588]" },
-    { name: "WhatsApp", value: 15, count: "1,872", color: "bg-[#7C6D64]" },
-    { name: "SMS", value: 10, count: "1,251", color: "bg-[#BBA588]/80" }
+  const languages = [
+    { name: "English", value: 45, count: "5,617 queries", color: "bg-[#8E735B]" },
+    { name: "Hindi", value: 30, count: "3,746 queries", color: "bg-[#BBA588]" },
+    { name: "Tamil", value: 15, count: "1,872 queries", color: "bg-[#7C6D64]" },
+    { name: "Bengali", value: 10, count: "1,251 queries", color: "bg-[#BBA588]/80" }
   ]
 
   const recentActivity = [
     {
-      type: "conversation",
+      type: "query",
       user: "Priya Sharma",
-      action: "Completed lead qualification call",
+      action: "Asked for directions to the City Palace",
       time: "2 minutes ago",
       status: "success"
     },
     {
-      type: "conversion",
+      type: "action",
       user: "Rajesh Kumar",
-      action: "Converted to premium plan",
+      action: "Found a local guide for Lake Pichola",
       time: "5 minutes ago",
       status: "success"
     },
     {
       type: "alert",
       user: "System",
-      action: "High volume detected - Mumbai region",
+      action: "High query volume near Udaipur City Bus Stand",
       time: "8 minutes ago",
       status: "warning"
     },
     {
-      type: "conversation",
+      type: "query",
       user: "Anita Patel",
-      action: "Started product demo conversation",
+      action: "Requested a 2-day itinerary for local sights",
       time: "12 minutes ago",
       status: "info"
     }
@@ -103,22 +103,26 @@ export default function AnalyticsPage() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-48 -right-48 w-96 h-96 gradient-classic-mesh rounded-full blur-3xl opacity-30 animate-float"></div>
         <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-gradient-to-tr from-[#BBA588]/20 via-[#8E735B]/20 to-[#7C6D64]/20 rounded-full blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-[#BBA588]/10 to-[#8E735B]/10 rounded-full blur-2xl animate-pulse-slow"></div>      </div>      {/* Enhanced Navigation */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-[#BBA588]/10 to-[#8E735B]/10 rounded-full blur-2xl animate-pulse-slow"></div>
+      </div>
+
+      {/* Enhanced Navigation */}
       <Navbar />
 
-      <div className="relative z-10">        {/* Header Section */}
+      <div className="relative z-10">
+        {/* Header Section */}
         <div className="pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6 sm:mb-8 space-y-4 lg:space-y-0">
               <div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 leading-tight font-serif-display">
-                  <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 sm:mb-2">Analytics</span>
+                  <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 sm:mb-2">Traveler</span>
                   <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent animate-gradient">
                     Dashboard
                   </span>
                 </h1>
                 <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg leading-relaxed font-medium max-w-2xl font-serif">
-                  Real-time insights and performance metrics for your sophisticated AI sales conversations
+                  Real-time insights into traveler engagement and exploration patterns with Voce.
                 </p>
               </div>
 
@@ -128,14 +132,14 @@ export default function AnalyticsPage() {
                   className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40 transition-all duration-300 w-full sm:w-auto font-serif"
                 >
                   <Filter className="h-4 w-4 mr-2" />
-                  Filter
+                  Filter by City
                 </Button>
                 <Button
                   variant="outline"
                   className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40 transition-all duration-300 w-full sm:w-auto font-serif"
                 >
                   <Download className="h-4 w-4 mr-2" />
-                  Export
+                  Export Report
                 </Button>
                 <Button className="btn-classic text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto font-serif">
                   <RefreshCw className="h-4 w-4 mr-2" />
@@ -144,7 +148,9 @@ export default function AnalyticsPage() {
               </div>
             </div>
           </div>
-        </div>        {/* Metrics Grid */}
+        </div>
+
+        {/* Metrics Grid */}
         <div className="px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 md:mb-12">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
@@ -179,37 +185,39 @@ export default function AnalyticsPage() {
               ))}
             </div>
           </div>
-        </div>        {/* Charts Section */}
+        </div>
+
+        {/* Charts Section */}
         <div className="px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 md:mb-12">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
-              {/* Conversation Channels */}
+              {/* Language Distribution */}
               <div className="lg:col-span-2">
                 <Card className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40 hover:shadow-xl transition-all duration-300 rounded-2xl">
                   <CardHeader className="pb-4 sm:pb-6">
                     <CardTitle className="flex items-center text-[#2D2C2A] dark:text-[#ECE8D9] text-lg sm:text-xl font-serif-display">
-                      <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3 text-[#8E735B] dark:text-[#BBA588]" />
-                      Conversation Channels
+                      <Languages className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3 text-[#8E735B] dark:text-[#BBA588]" />
+                      Language Distribution
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="px-4 sm:px-6">
                     <div className="space-y-4 sm:space-y-6">
-                      {channels.map((channel, index) => (
-                        <div key={channel.name} className="space-y-2">
+                      {languages.map((lang, index) => (
+                        <div key={lang.name} className="space-y-2">
                           <div className="flex justify-between items-center">
                             <span className="text-sm font-medium text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">
-                              {channel.name}
+                              {lang.name}
                             </span>
                             <div className="text-right">
                               <span className="text-sm font-bold text-[#2D2C2A] dark:text-[#ECE8D9] font-serif-display">
-                                {channel.count}
+                                {lang.count}
                               </span>
                               <span className="text-xs text-[#7C6D64] dark:text-[#BBA588] ml-2 font-serif">
-                                ({channel.value}%)
+                                ({lang.value}%)
                               </span>
                             </div>
                           </div>
-                          <Progress value={channel.value} className="h-2 sm:h-3" />
+                          <Progress value={lang.value} className="h-2 sm:h-3" />
                         </div>
                       ))}
                     </div>
@@ -230,16 +238,16 @@ export default function AnalyticsPage() {
                     <div className="space-y-4 sm:space-y-6">
                       <div className="text-center p-4 sm:p-6 rounded-xl bg-gradient-to-r from-[#BBA588]/10 to-[#8E735B]/10 dark:from-[#BBA588]/20 dark:to-[#8E735B]/20 border border-[#BBA588]/30 dark:border-[#BBA588]/20">
                         <div className="text-2xl sm:text-3xl font-bold text-[#8E735B] dark:text-[#BBA588] mb-2 font-serif-display">
-                          94.2%
+                          98.5%
                         </div>
                         <div className="text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588] font-medium font-serif">
-                          Success Rate
+                          Query Success Rate
                         </div>
                       </div>
 
                       <div className="space-y-3 sm:space-y-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-xs sm:text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">Accuracy</span>
+                          <span className="text-xs sm:text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">Info Accuracy</span>
                           <span className="font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] text-sm sm:text-base font-serif-display">96.8%</span>
                         </div>
                         <div className="flex justify-between items-center">
@@ -247,7 +255,7 @@ export default function AnalyticsPage() {
                           <span className="font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] text-sm sm:text-base font-serif-display">99.9%</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-xs sm:text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">Satisfaction</span>
+                          <span className="text-xs sm:text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">Traveler Satisfaction</span>
                           <span className="font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] text-sm sm:text-base font-serif-display">4.8/5</span>
                         </div>
                       </div>
@@ -257,14 +265,16 @@ export default function AnalyticsPage() {
               </div>
             </div>
           </div>
-        </div>        {/* Recent Activity */}
+        </div>
+
+        {/* Recent Activity */}
         <div className="px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 md:pb-24">
           <div className="max-w-7xl mx-auto">
             <Card className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40 hover:shadow-xl transition-all duration-300 rounded-2xl">
               <CardHeader className="pb-4 sm:pb-6">
                 <CardTitle className="flex items-center text-[#2D2C2A] dark:text-[#ECE8D9] text-lg sm:text-xl font-serif-display">
                   <Clock className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3 text-[#8E735B] dark:text-[#BBA588]" />
-                  Recent Activity
+                  Recent Traveler Activity
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 sm:px-6">
@@ -275,8 +285,8 @@ export default function AnalyticsPage() {
                           activity.status === 'warning' ? 'bg-[#8E735B]/20 dark:bg-[#8E735B]/30' :
                             'bg-[#7C6D64]/20 dark:bg-[#7C6D64]/30'
                         } flex-shrink-0`}>
-                        {activity.type === 'conversation' && <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 text-[#8E735B] dark:text-[#BBA588]" />}
-                        {activity.type === 'conversion' && <Target className="h-3 w-3 sm:h-4 sm:w-4 text-[#8E735B] dark:text-[#BBA588]" />}
+                        {activity.type === 'query' && <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 text-[#8E735B] dark:text-[#BBA588]" />}
+                        {activity.type === 'action' && <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-[#8E735B] dark:text-[#BBA588]" />}
                         {activity.type === 'alert' && <Zap className="h-3 w-3 sm:h-4 sm:w-4 text-[#7C6D64] dark:text-[#BBA588]" />}
                       </div>
                       <div className="flex-1 min-w-0">

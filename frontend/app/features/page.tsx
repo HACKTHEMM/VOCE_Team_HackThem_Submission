@@ -11,82 +11,82 @@ export default function FeaturesPage() {
     icon: <Mic className="h-8 w-8 sm:h-10 sm:w-10" />,
     title: "Voice-First Interface",
     description:
-      "Natural voice interactions with real-time speech recognition and synthesis. Speak naturally in your preferred language and get instant responses.",
+      "Simply call a local number and start talking. Voce understands natural language, allowing you to ask for recommendations, directions, or translations just like you would with a local friend.",
     benefits: [
-      "Hands-free operation",
-      "Natural conversation flow",
-      "Accessibility for all users",
-      "Faster than typing",
+      "No app download required",
+      "No internet or data needed",
+      "Hands-free and convenient",
+      "Accessible to anyone with a phone",
     ],
   },
   {
     icon: <Globe className="h-8 w-8 sm:h-10 sm:w-10" />,
     title: "Multilingual Support",
     description:
-      "Communicate seamlessly in multiple Indian languages including Hindi, Bengali, Telugu, Tamil, Marathi, Gujarati, Kannada, Malayalam, and Punjabi.",
+      "Break through language barriers instantly. Communicate seamlessly in multiple languages to ask for help, order food, or bargain at a local market with confidence.",
     benefits: [
-      "Native language support",
-      "Real-time language switching",
+      "Real-time translation",
+      "Understand and be understood by locals",
       "Cultural context awareness",
-      "Regional dialect understanding",
+      "Navigate foreign environments with ease",
     ],
   },
   {
     icon: <MessageSquare className="h-8 w-8 sm:h-10 sm:w-10" />,
     title: "Contextual Conversations",
     description:
-      "Our AI understands context, remembers previous interactions, and provides empathetic responses that feel natural and human-like.",
+      "Our AI remembers your journey. It understands the context of your questions, recalls previous conversations, and provides relevant suggestions for a truly personalized adventure.",
     benefits: [
-      "Remembers conversation history",
-      "Understands implicit references",
-      "Handles complex queries",
-      "Provides personalized responses",
+      "Remembers your travel history",
+      "Understands follow-up questions",
+      "Provides personalized recommendations",
+      "Feels like talking to a real person",
     ],
   },
   {
     icon: <Brain className="h-8 w-8 sm:h-10 sm:w-10" />,
-    title: "Advanced AI Understanding",
+    title: "Deep Local Knowledge",
     description:
-      "Powered by state-of-the-art language models that understand nuance, sentiment, and can interpret vague or ambiguous queries with remarkable accuracy.",
-    benefits: ["Sentiment analysis", "Intent recognition", "Entity extraction", "Knowledge graph integration"],
+      "Powered by advanced AI that goes beyond generic tourist spots. Discover hidden gems, local eateries, and authentic experiences that you won't find in a typical travel guide.",
+    benefits: ["Insider recommendations", "Off-the-beaten-path suggestions", "Authentic cultural experiences", "Real-time event information"],
   },
   {
     icon: <Sparkles className="h-8 w-8 sm:h-10 sm:w-10" />,
-    title: "Smart Product Recommendations",
+    title: "Smart Travel Recommendations",
     description:
-      "Get personalized product recommendations based on your preferences, budget, and needs, with detailed comparisons and feature highlights.",
-    benefits: ["Personalized suggestions", "Feature-based matching", "Price comparison", "Alternative options"],
+      "Get personalized suggestions based on your interests, location, and the time of day. Voce helps you find the perfect restaurant, museum, or viewpoint for your mood.",
+    benefits: ["Personalized itinerary planning", "Location-aware suggestions", "Budget-friendly options", "Real-time weather considerations"],
   },
   {
     icon: <Zap className="h-8 w-8 sm:h-10 sm:w-10" />,
-    title: "Agentic Framework",
+    title: "Agentic Capabilities",
     description:
-      "Our AI can perform complex tasks autonomously, from researching products to processing orders and handling customer service inquiries.",
+      "Voce can do more than just talk. It can book a taxi, make a restaurant reservation, or purchase tickets for an attraction on your behalf, all through simple voice commands.",
     benefits: [
-      "Autonomous task execution",
-      "Multi-step reasoning",
-      "Decision making capabilities",
-      "Process automation",
+      "Autonomous task completion",
+      "Hands-free booking and reservations",
+      "Simplifies complex travel logistics",
+      "Saves you time and hassle",
     ],
   },
   {
     icon: <Layers className="h-8 w-8 sm:h-10 sm:w-10" />,
-    title: "Omnichannel Integration",
+    title: "Offline Functionality",
     description:
-      "Seamlessly integrate with your existing systems including CRM, inventory management, and e-commerce platforms for a unified customer experience.",
+      "Voce is designed for the real world of travel, where internet can be unreliable. Access all features through a standard phone call, without needing a data connection.",
     benefits: [
-      "CRM integration",
-      "E-commerce platform compatibility",
-      "Inventory synchronization",
-      "Order management",
+      "Works without an internet connection",
+      "Reliable in remote areas",
+      "No expensive data roaming charges",
+      "Consistent access to information",
     ],
   },
   {
     icon: <Shield className="h-8 w-8 sm:h-10 sm:w-10" />,
-    title: "Enterprise Ready",
+    title: "Safe & Reliable",
     description:
-      "Built with security, scalability, and reliability in mind. Deploy with confidence knowing your data is protected and your customers are well-served.",
-    benefits: ["End-to-end encryption", "GDPR compliance", "Scalable architecture", "99.9% uptime guarantee"],
+      "Travel with peace of mind. Voce provides access to emergency services, local safety information, and reliable assistance whenever you need it.",
+    benefits: ["24/7 availability", "Access to emergency contacts", "Privacy-focused design", "Trustworthy local information"],
   },
   ]
 
@@ -102,18 +102,18 @@ export default function FeaturesPage() {
       <Navbar />      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 relative z-10">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <Badge className="mb-6 sm:mb-8 bg-gradient-to-r from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] text-[#8E735B] border-[#BBA588]/60 dark:from-[#1E1E1E]/80 dark:via-[#2A2A2A]/80 dark:to-[#1E1E1E]/80 dark:text-[#BBA588] dark:border-[#BBA588]/20 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-semibold shadow-lg shadow-[#BBA588]/10 rounded-full animate-fade-in font-serif">
-            ✨ Powerful AI Features
+            ✨ Your AI Travel Companion
           </Badge>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 sm:mb-8 leading-tight font-serif-display">
             <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 sm:mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              Advanced Capabilities for
+              Explore Like a Local,
             </span>
             <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent animate-gradient animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              Modern Sales
+              Anywhere in the World
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#5A5A5A] dark:text-[#B6B6B6] mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed font-serif animate-fade-in px-2 sm:px-4" style={{ animationDelay: '0.6s' }}>
-            Discover how Voce transforms customer interactions with cutting-edge AI technology and intuitive design.
+            Voce transforms any traveler into a local adventurer with an AI voice agent, available through a simple phone call. No apps, no setup, no internet needed.
           </p>
         </div>        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
           {features.map((feature, index) => (
@@ -147,17 +147,17 @@ export default function FeaturesPage() {
           ))}
         </div>        <div className="mt-16 sm:mt-20 md:mt-24 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent mb-6 sm:mb-8 font-serif-display">
-            Ready to Experience These Features?
+            Ready to Start Your Adventure?
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <Link href="/chat">
               <Button size="lg" className="w-full sm:w-auto btn-classic text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 shadow-2xl hover:shadow-3xl shadow-[#BBA588]/25 hover:shadow-[#BBA588]/40 transition-all duration-300 transform hover:scale-105 rounded-xl sm:rounded-2xl font-semibold font-serif-display">
-                Try Demo Now
+                Try Voce Now
               </Button>
             </Link>
             <Link href="/contact">
               <Button size="lg" variant="outline" className="w-full sm:w-auto btn-classic-outline text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl transition-all duration-300 hover:shadow-xl backdrop-blur-sm font-semibold font-serif-display">
-                Contact Sales
+                Learn More
               </Button>
             </Link>
           </div>

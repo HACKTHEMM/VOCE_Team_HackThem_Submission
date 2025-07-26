@@ -34,7 +34,7 @@ export default function SecurityPage() {
     {
       icon: <Lock className="h-6 w-6" />,
       title: "End-to-End Encryption",
-      description: "All voice and text communications are encrypted using AES-256 encryption",
+      description: "All voice communications are encrypted using AES-256 to protect your conversations.",
       details: [
         "AES-256 encryption for data at rest",
         "TLS 1.3 for data in transit",
@@ -44,19 +44,19 @@ export default function SecurityPage() {
     },
     {
       icon: <UserCheck className="h-6 w-6" />,
-      title: "Identity & Access Management",
-      description: "Comprehensive authentication and authorization controls",
+      title: "Traveler Account Protection",
+      description: "Secure controls to protect your traveler profile and call history.",
       details: [
         "Multi-factor authentication (MFA)",
-        "Single Sign-On (SSO) integration",
-        "Role-based access control (RBAC)",
-        "API key management and rotation"
+        "Single Sign-On (SSO) with trusted providers",
+        "Role-based access for partner portals",
+        "Secure credential storage"
       ]
     },
     {
       icon: <Server className="h-6 w-6" />,
       title: "Infrastructure Security",
-      description: "Secure cloud infrastructure with enterprise-grade protection",
+      description: "Secure cloud infrastructure with enterprise-grade protection for high availability.",
       details: [
         "AWS SOC 2 compliant infrastructure",
         "Network segmentation and firewalls",
@@ -67,12 +67,12 @@ export default function SecurityPage() {
     {
       icon: <Database className="h-6 w-6" />,
       title: "Data Protection",
-      description: "Comprehensive data security and privacy safeguards",
+      description: "Comprehensive safeguards to protect your personal information and travel data.",
       details: [
         "Data loss prevention (DLP)",
         "Automated backup and recovery",
-        "Data retention policies",
-        "Secure data disposal"
+        "User-controlled data retention policies",
+        "Secure data disposal upon request"
       ]
     }
   ]
@@ -120,7 +120,7 @@ export default function SecurityPage() {
         "Static Application Security Testing (SAST)",
         "Dynamic Application Security Testing (DAST)",
         "Dependency vulnerability scanning",
-        "Regular security assessments"
+        "Regular third-party security assessments"
       ]
     },
     {
@@ -130,7 +130,7 @@ export default function SecurityPage() {
         "Network traffic encryption",
         "Firewall and intrusion prevention",
         "DDoS protection and monitoring",
-        "VPN access for remote connections"
+        "Secure access for remote employees"
       ]
     },
     {
@@ -148,9 +148,9 @@ export default function SecurityPage() {
       practices: [
         "24/7 security monitoring (SOC)",
         "Incident response procedures",
-        "Regular security training",
+        "Regular security training for all staff",
         "Vendor security assessments",
-        "Business continuity planning"
+        "Business continuity and disaster recovery planning"
       ]
     }
   ]
@@ -225,7 +225,7 @@ export default function SecurityPage() {
         <div className="max-w-7xl mx-auto">          {/* Header */}
           <div className="text-center mb-12 sm:mb-16">
             <Badge className="mb-4 sm:mb-6 bg-gradient-to-r from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] text-[#8E735B] border-[#BBA588]/50 dark:from-[#1E1E1E]/80 dark:via-[#2A2A2A]/80 dark:to-[#1E1E1E]/80 dark:text-[#BBA588] dark:border-[#BBA588]/30 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-md font-serif">
-              🔒 Enterprise-Grade Security
+              🔒 Your Trusted Travel Companion
             </Badge>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif-display">
@@ -237,7 +237,7 @@ export default function SecurityPage() {
 
             <p className="text-lg sm:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] max-w-3xl mx-auto leading-relaxed px-4 font-serif">
               Voce is built with security and privacy at its core. We implement enterprise-grade
-              security controls to protect your data and ensure compliance with global standards.
+              security controls to protect your personal information and travel memories.
             </p>
           </div>          {/* Security Features */}
           <div className="mb-12 sm:mb-16">

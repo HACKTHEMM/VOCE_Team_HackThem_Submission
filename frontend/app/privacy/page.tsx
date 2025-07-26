@@ -24,7 +24,7 @@ import {
 import Link from "next/link"
 
 export default function PrivacyPage() {
-  const lastUpdated = "December 15, 2023"
+  const lastUpdated = "July 15, 2025"
 
   const sections = [
     {
@@ -35,28 +35,28 @@ export default function PrivacyPage() {
         {
           subtitle: "Information You Provide",
           points: [
-            "Account information (name, email, phone number)",
-            "Voice recordings and chat messages during conversations",
-            "Profile preferences and settings",
-            "Payment and billing information",
-            "Support communications and feedback"
+            "Account information (name, email, phone number) for your traveler profile",
+            "Voice recordings of your calls for recommendations and assistance",
+            "Travel preferences, interests, and past destinations",
+            "Payment and billing information for trip passes or subscriptions",
+            "Support communications and feedback on your travel experiences"
           ]
         },
         {
           subtitle: "Automatically Collected Information",
           points: [
             "Device information (IP address, browser type, operating system)",
-            "Usage analytics (feature usage, session duration, interaction patterns)",
-            "Technical logs for debugging and performance monitoring",
-            "Cookies and similar tracking technologies"
+            "Usage data (call duration, features used, cities explored)",
+            "Technical logs for debugging and improving call quality",
+            "Cookies and similar technologies for website functionality"
           ]
         },
         {
           subtitle: "Third-Party Information",
           points: [
-            "Integration data from connected CRM and e-commerce platforms",
-            "Social media profile information (if you choose to connect)",
-            "Publicly available business information for verification"
+            "Booking information from our travel partners (e.g., hotels) if you link your reservation",
+            "Social media profile information if you use it to sign in",
+            "Location information (city-level) to provide relevant guidance"
           ]
         }
       ]
@@ -69,28 +69,28 @@ export default function PrivacyPage() {
         {
           subtitle: "Core Service Delivery",
           points: [
-            "Process and respond to your voice and text conversations",
-            "Provide AI-powered sales assistance and recommendations",
-            "Maintain conversation history and context",
-            "Enable multilingual communication capabilities"
+            "Process your voice requests to provide local recommendations and guidance",
+            "Provide AI-powered travel assistance and personalized suggestions",
+            "Maintain your travel history to offer tailored future experiences",
+            "Enable multilingual communication with local services and contacts"
           ]
         },
         {
           subtitle: "Service Improvement",
           points: [
-            "Improve AI model accuracy and response quality",
-            "Develop new features and capabilities",
-            "Analyze usage patterns to optimize performance",
-            "Conduct research and development"
+            "Improve our AI's accuracy for travel-related queries",
+            "Develop new features to make your travels easier",
+            "Analyze usage patterns to enhance the user experience",
+            "Conduct anonymized research to understand traveler needs"
           ]
         },
         {
           subtitle: "Business Operations",
           points: [
-            "Process payments and manage subscriptions",
-            "Provide customer support and technical assistance",
-            "Send service updates and important notifications",
-            "Ensure security and prevent fraud"
+            "Process payments for your trip passes and subscriptions",
+            "Provide customer support and resolve any travel-related issues",
+            "Send service updates and important travel notifications",
+            "Ensure the security of our platform and prevent misuse"
           ]
         }
       ]
@@ -101,28 +101,28 @@ export default function PrivacyPage() {
       icon: <Users className="h-5 w-5" />,
       content: [
         {
-          subtitle: "We Do Not Sell Personal Data",
+          subtitle: "We Do Not Sell Your Personal Data",
           points: [
-            "Voce never sells your personal information to third parties",
+            "Voce will never sell your personal information to third parties",
             "We do not use your data for advertising outside our platform",
-            "Your conversation data remains confidential and private"
+            "Your call recordings and travel history remain confidential"
           ]
         },
         {
           subtitle: "Limited Sharing Scenarios",
           points: [
-            "Service providers (cloud hosting, payment processing, analytics)",
-            "Legal compliance (when required by law or legal process)",
-            "Business transfers (in case of merger, acquisition, or sale)",
-            "Consent-based sharing (only with your explicit permission)"
+            "With service providers (cloud hosting, payment processing) who help us operate",
+            "To comply with legal obligations or lawful requests",
+            "During business transfers like a merger or acquisition",
+            "With your explicit consent, for example, to make a booking on your behalf"
           ]
         },
         {
-          subtitle: "Integrated Platform Data",
+          subtitle: "Travel Partner Data",
           points: [
-            "Data synchronization with your connected CRM systems",
-            "Integration updates to your e-commerce platforms",
-            "Only data necessary for the integration functionality"
+            "We may share necessary details with a hotel or tour operator to confirm a reservation you requested",
+            "Only the minimum information required for the booking is shared",
+            "This is only done with your explicit instruction during a call"
           ]
         }
       ]
@@ -135,28 +135,28 @@ export default function PrivacyPage() {
         {
           subtitle: "Technical Safeguards",
           points: [
-            "End-to-end encryption for all voice and text communications",
-            "AES-256 encryption for data at rest",
-            "TLS 1.3 encryption for data in transit",
-            "Regular security audits and penetration testing"
+            "End-to-end encryption for all voice communications",
+            "AES-256 encryption for your data when stored on our servers",
+            "TLS 1.3 encryption for data transmitted over networks",
+            "Regular security audits and penetration testing by experts"
           ]
         },
         {
           subtitle: "Access Controls",
           points: [
-            "Multi-factor authentication for team accounts",
-            "Role-based access control with granular permissions",
-            "Regular access reviews and deprovisioning",
-            "Secure API authentication with rate limiting"
+            "Multi-factor authentication available for your account",
+            "Strict internal access controls for Voce employees",
+            "Regular reviews of access policies and procedures",
+            "Secure API authentication for our travel partners"
           ]
         },
         {
           subtitle: "Compliance & Certifications",
           points: [
             "SOC 2 Type II certified security controls",
-            "GDPR compliance for European users",
+            "GDPR compliance for European travelers",
             "ISO 27001 information security standards",
-            "Regular third-party security assessments"
+            "Commitment to adhering to global privacy best practices"
           ]
         }
       ]
@@ -169,19 +169,19 @@ export default function PrivacyPage() {
         {
           subtitle: "Data Access & Control",
           points: [
-            "View and download your personal data at any time",
-            "Update or correct your account information",
-            "Delete your account and associated data",
-            "Export conversation history and settings"
+            "View and download your personal data at any time from your account",
+            "Update or correct your account and travel profile information",
+            "Delete your account and all associated data permanently",
+            "Export your call and travel history"
           ]
         },
         {
           subtitle: "Communication Preferences",
           points: [
-            "Opt-out of marketing communications",
-            "Control notification settings and frequency",
-            "Choose which data to share with integrations",
-            "Manage cookie and tracking preferences"
+            "Opt-out of promotional communications at any time",
+            "Control your notification settings for service alerts",
+            "Manage which data is shared with any connected travel partners",
+            "Manage cookie preferences for our website"
           ]
         },
         {
@@ -189,8 +189,8 @@ export default function PrivacyPage() {
           points: [
             "GDPR rights for EU residents (access, rectification, erasure)",
             "CCPA rights for California residents",
-            "Data localization options for enterprise customers",
-            "Right to data portability across platforms"
+            "The right to data portability to move your data",
+            "Lodge a complaint with your local data protection authority"
           ]
         }
       ]
@@ -203,28 +203,28 @@ export default function PrivacyPage() {
         {
           subtitle: "Retention Periods",
           points: [
-            "Active account data: Retained while account is active",
-            "Conversation history: Retained for 3 years after last activity",
-            "Analytics data: Aggregated and anonymized after 2 years",
-            "Support tickets: Retained for 5 years for quality assurance"
+            "Active account data: Retained as long as your account is active",
+            "Call history: Retained for your convenience, can be deleted by you at any time",
+            "Anonymized analytics data may be kept for service improvement",
+            "Support correspondence: Retained to ensure quality service"
           ]
         },
         {
           subtitle: "Automatic Deletion",
           points: [
-            "Inactive accounts automatically deleted after 2 years",
-            "Temporary data (cache, logs) deleted within 30 days",
-            "Payment information purged after subscription ends",
-            "Marketing data removed upon opt-out request"
+            "Inactive accounts are automatically deleted after 2 years",
+            "Temporary data like system logs are cleared within 30 days",
+            "Billing information is purged after a subscription ends, as required by law",
+            "Marketing data is removed immediately upon opt-out request"
           ]
         },
         {
           subtitle: "User-Initiated Deletion",
           points: [
-            "Immediate account deletion available in settings",
-            "Conversation data deleted within 30 days of request",
-            "Some data may be retained for legal compliance",
-            "Anonymized analytics data may be preserved"
+            "Immediate account deletion is available in your settings",
+            "Your personal data is typically deleted within 30 days of a request",
+            "Some data may be retained for a limited time for legal or security reasons",
+            "Anonymized analytics data is not personally identifiable and may be preserved"
           ]
         }
       ]
@@ -253,8 +253,8 @@ export default function PrivacyPage() {
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] max-w-3xl mx-auto leading-relaxed mb-4 sm:mb-6 px-2 font-serif">
-            We're committed to protecting your privacy and being transparent about how we collect,
-            use, and protect your personal information.
+            We are committed to protecting your privacy and being transparent about how we handle
+            your travel data and personal information.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-xs sm:text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">
@@ -286,11 +286,11 @@ export default function PrivacyPage() {
                   </div>
                   <div className="flex items-start sm:items-center space-x-3">
                     <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-[#8E735B] dark:text-[#BBA588] flex-shrink-0 mt-0.5 sm:mt-0" />
-                    <span className="text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">End-to-end encryption for all communications</span>
+                    <span className="text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">End-to-end encryption for all calls</span>
                   </div>
                   <div className="flex items-start sm:items-center space-x-3">
                     <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-[#8E735B] dark:text-[#BBA588] flex-shrink-0 mt-0.5 sm:mt-0" />
-                    <span className="text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">Full control over your data and privacy settings</span>
+                    <span className="text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">You have full control over your travel data</span>
                   </div>
                 </div>
                 <div className="space-y-3">
@@ -304,7 +304,7 @@ export default function PrivacyPage() {
                   </div>
                   <div className="flex items-start sm:items-center space-x-3">
                     <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-[#8E735B] dark:text-[#BBA588] flex-shrink-0 mt-0.5 sm:mt-0" />
-                    <span className="text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">Transparent data practices</span>
+                    <span className="text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">Transparent data and privacy practices</span>
                   </div>
                 </div>
               </div>
@@ -313,7 +313,7 @@ export default function PrivacyPage() {
         </div>          {/* Privacy Sections */}
         <div className="space-y-8 sm:space-y-12">
           {sections.map((section, index) => (
-            <Card key={index} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg">
+            <Card key={index} id={section.id} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg scroll-mt-20">
               <CardHeader className="pb-4 sm:pb-6">
                 <CardTitle className="flex flex-col sm:flex-row items-start sm:items-center text-xl sm:text-2xl text-[#2D2C2A] dark:text-[#ECE8D9] font-serif-display">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-[#8E735B] to-[#BBA588] rounded-lg flex items-center justify-center text-[#F3F1E9] mb-3 sm:mb-0 sm:mr-4 flex-shrink-0">
@@ -351,10 +351,10 @@ export default function PrivacyPage() {
                 <FileText className="h-6 w-6 sm:h-8 sm:w-8 text-[#F3F1E9]" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 sm:mb-4 font-serif-display">
-                Questions About Privacy?
+                Questions About Your Privacy?
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] mb-6 sm:mb-8 max-w-2xl mx-auto px-2 font-serif">
-                We're here to help you understand how we protect your data.
+                We're here to help you understand how we protect your travel data.
                 Contact our privacy team for any questions or concerns.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
@@ -372,9 +372,9 @@ export default function PrivacyPage() {
 
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-[#BBA588]/30 dark:border-[#BBA588]/20">
                 <p className="text-xs sm:text-sm text-[#5A5A5A] dark:text-[#B6B6B6] px-2 break-words font-serif">
-                  <span className="block sm:inline">Privacy Officer Contact: privacy@Voce.ai</span>
+                  <span className="block sm:inline">Privacy Officer Contact: privacy@voce.ai</span>
                   <span className="hidden sm:inline mx-2">|</span>
-                  <span className="block sm:inline mt-1 sm:mt-0">Data Protection Officer: dpo@Voce.ai</span>
+                  <span className="block sm:inline mt-1 sm:mt-0">Data Protection Officer: dpo@voce.ai</span>
                 </p>
               </div>
             </CardContent>

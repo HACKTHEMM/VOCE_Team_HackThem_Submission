@@ -15,7 +15,7 @@ import {
   Clock,
   Server,
   Database,
-  Wifi,
+  PhoneCall,
   Shield,
   Zap,
   Globe,
@@ -24,7 +24,10 @@ import {
   Bell,
   Activity,
   Mic,
-  ArrowRight
+  ArrowRight,
+  ClipboardCheck,
+  User,
+  MapPinned
 } from "lucide-react"
 import Link from "next/link"
 
@@ -41,59 +44,59 @@ export default function StatusPage() {
 
   const systemStatus = {
     overall: "operational", // operational, degraded, outage
-    uptime: "99.97%",
-    responseTime: "142ms",
-    lastIncident: "Dec 8, 2024"
+    uptime: "99.98%",
+    responseTime: "112ms",
+    lastIncident: "Jul 15, 2025"
   }
 
   const services = [
     {
-      name: "Voice AI API",
+      name: "Primary Voice Agent",
       status: "operational",
       uptime: "99.99%",
       responseTime: "98ms",
-      description: "Voice recognition and synthesis services",
-      icon: <Wifi className="h-5 w-5" />
+      description: "Real-time travel guidance and local information",
+      icon: <PhoneCall className="h-5 w-5" />
     },
     {
-      name: "Chat API",
+      name: "Booking & Reservations",
       status: "operational",
       uptime: "99.98%",
       responseTime: "145ms",
-      description: "Text-based conversation processing",
-      icon: <Server className="h-5 w-5" />
+      description: "Connecting to partners for reservations",
+      icon: <ClipboardCheck className="h-5 w-5" />
     },
     {
-      name: "Analytics Platform",
+      name: "Personalization Engine",
       status: "operational",
       uptime: "99.96%",
       responseTime: "234ms",
-      description: "Real-time analytics and reporting",
+      description: "Tailoring recommendations based on preferences",
       icon: <Activity className="h-5 w-5" />
     },
     {
-      name: "Database Cluster",
+      name: "Traveler Data Storage",
       status: "operational",
       uptime: "99.99%",
       responseTime: "12ms",
-      description: "Primary data storage systems",
+      description: "Secure storage for travel profiles and history",
       icon: <Database className="h-5 w-5" />
     },
     {
-      name: "CDN Network",
+      name: "Global Content Delivery",
       status: "operational",
       uptime: "99.95%",
       responseTime: "67ms",
-      description: "Global content delivery network",
+      description: "Ensuring fast access to local guides and information",
       icon: <Globe className="h-5 w-5" />
     },
     {
-      name: "Authentication Services",
+      name: "User Account Services",
       status: "operational",
       uptime: "99.97%",
       responseTime: "89ms",
-      description: "User authentication and security",
-      icon: <Shield className="h-5 w-5" />
+      description: "Traveler authentication and profile security",
+      icon: <User className="h-5 w-5" />
     }
   ]
 
@@ -127,50 +130,50 @@ export default function StatusPage() {
   const recentIncidents = [
     {
       id: 1,
-      title: "Temporary API Rate Limiting Issues",
+      title: "Temporary Voice Agent Delays",
       status: "resolved",
       impact: "minor",
-      startTime: "Dec 8, 2024 14:30 UTC",
-      resolvedTime: "Dec 8, 2024 15:45 UTC",
+      startTime: "Jul 15, 2025 14:30 UTC",
+      resolvedTime: "Jul 15, 2025 15:45 UTC",
       duration: "1h 15m",
-      description: "Some users experienced rate limiting errors on voice API endpoints. Issue resolved by scaling backend infrastructure."
+      description: "Some travelers experienced brief delays in call responses. Issue resolved by scaling backend infrastructure."
     },
     {
       id: 2,
       title: "Scheduled Database Maintenance",
       status: "completed",
       impact: "none",
-      startTime: "Dec 5, 2024 02:00 UTC",
-      resolvedTime: "Dec 5, 2024 04:30 UTC",
+      startTime: "Jul 12, 2025 02:00 UTC",
+      resolvedTime: "Jul 12, 2025 04:30 UTC",
       duration: "2h 30m",
       description: "Planned database optimization and security updates completed successfully with no user impact."
     },
     {
       id: 3,
-      title: "CDN Cache Refresh Delays",
+      title: "CDN Cache Refresh Delays in Southeast Asia",
       status: "resolved",
       impact: "minor",
-      startTime: "Dec 2, 2024 08:15 UTC",
-      resolvedTime: "Dec 2, 2024 09:00 UTC",
+      startTime: "Jul 10, 2025 08:15 UTC",
+      resolvedTime: "Jul 10, 2025 09:00 UTC",
       duration: "45m",
-      description: "Users in some regions experienced slower response times due to CDN cache refresh issues."
+      description: "Travelers in some regions experienced slower response times due to CDN cache refresh issues."
     }
   ]
 
   const upcomingMaintenance = [
     {
-      title: "API Gateway Security Updates",
-      scheduledTime: "Dec 22, 2024 02:00 UTC",
+      title: "Voice Gateway Security Updates",
+      scheduledTime: "Aug 5, 2025 02:00 UTC",
       duration: "2 hours",
       impact: "No expected impact",
-      description: "Routine security patches and performance optimizations"
+      description: "Routine security patches and performance optimizations for our voice infrastructure"
     },
     {
-      title: "Database Index Optimization",
-      scheduledTime: "Dec 28, 2024 01:00 UTC",
+      title: "Traveler Database Index Optimization",
+      scheduledTime: "Aug 12, 2025 01:00 UTC",
       duration: "3 hours",
       impact: "Minimal impact expected",
-      description: "Database performance improvements and index optimization"
+      description: "Database performance improvements for faster access to travel history and preferences"
     }
   ]
 
@@ -263,7 +266,7 @@ export default function StatusPage() {
                   Uptime
                 </div>
                 <div className="text-xs lg:text-sm text-[#7C6D64] dark:text-[#B6B6B6] font-serif">
-                  Above SLA target of 99.9%
+                  Above our commitment of 99.9%
                 </div>
               </CardContent>
             </Card>
@@ -283,7 +286,7 @@ export default function StatusPage() {
                   Response Time
                 </div>
                 <div className="text-xs lg:text-sm text-[#7C6D64] dark:text-[#B6B6B6] font-serif">
-                  Global average API response
+                  Global average call response
                 </div>
               </CardContent>
             </Card>
@@ -303,7 +306,7 @@ export default function StatusPage() {
                   Last Incident
                 </div>
                 <div className="text-xs lg:text-sm text-[#7C6D64] dark:text-[#B6B6B6] font-serif">
-                  Minor API rate limiting issue
+                  Minor voice agent delays
                 </div>
               </CardContent>
             </Card>
@@ -484,7 +487,7 @@ export default function StatusPage() {
                     Subscribe to Updates
                   </Button>
                   <Button asChild size="lg" variant="outline" className="btn-classic-outline shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm lg:text-lg px-6 lg:px-8 font-serif">
-                    <Link href="https://status.Voce.ai" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://status.voce.travel" target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-4 lg:h-5 w-4 lg:w-5 mr-2" />
                       <span className="hidden sm:inline">External Status Page</span>
                       <span className="sm:hidden">Status Page</span>

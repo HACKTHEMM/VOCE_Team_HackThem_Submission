@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
 import {
@@ -23,7 +22,9 @@ import {
   ExternalLink,
   Github,
   Send,
-  Mic
+  Globe,
+  MapPin,
+  Compass
 } from "lucide-react"
 import Link from "next/link"
 
@@ -33,60 +34,60 @@ export default function CommunityPage() {
   const communityStats = [
     {
       icon: <Users className="h-6 w-6" />,
-      title: "Active Members",
+      title: "Active Travelers",
       value: "12,500+",
-      description: "Developers and users worldwide",
+      description: "Explorers and adventurers worldwide",
       color: "from-[#BBA588] to-[#8E735B]"
     },
     {
       icon: <MessageCircle className="h-6 w-6" />,
-      title: "Discussions",
+      title: "Shared Stories",
       value: "3,200+",
-      description: "Topics and conversations",
+      description: "Travel experiences and tips",
       color: "from-[#8E735B] to-[#7C6D64]"
     },
     {
-      icon: <Award className="h-6 w-6" />,
-      title: "Solutions Shared",
+      icon: <MapPin className="h-6 w-6" />,
+      title: "Hidden Gems Uncovered",
       value: "8,900+",
-      description: "Community contributions",
+      description: "Community-sourced locations",
       color: "from-[#7C6D64] to-[#BBA588]"
     },
     {
       icon: <Star className="h-6 w-6" />,
-      title: "Expert Contributors",
+      title: "Local Experts",
       value: "450+",
-      description: "Verified community experts",
+      description: "Verified local guides & experts",
       color: "from-[#BBA588] to-[#8E735B]"
     }
   ]
 
   const discussionCategories = [
     {
-      icon: <BookOpen className="h-5 w-5" />,
+      icon: <Compass className="h-5 w-5" />,
       title: "Getting Started",
-      description: "New to Voce? Start here",
+      description: "New to Voce? Start your first adventure here",
       posts: 234,
       color: "bg-[#F3F1E9] text-[#8E735B] border-[#BBA588]"
     },
     {
       icon: <Lightbulb className="h-5 w-5" />,
       title: "Feature Requests",
-      description: "Suggest new features and improvements",
+      description: "Suggest new languages, cities, and travel features",
       posts: 167,
       color: "bg-[#ECE8D9] text-[#7C6D64] border-[#BBA588]"
     },
     {
-      icon: <MessageCircle className="h-5 w-5" />,
-      title: "General Discussion",
-      description: "Open conversations about AI and sales",
+      icon: <Globe className="h-5 w-5" />,
+      title: "Travel Stories",
+      description: "Share your journeys and experiences with the world",
       posts: 892,
       color: "bg-[#F3F1E9] text-[#8E735B] border-[#7C6D64]"
     },
     {
       icon: <TrendingUp className="h-5 w-5" />,
-      title: "Best Practices",
-      description: "Share tips, tricks, and success stories",
+      title: "Travel Hacks",
+      description: "Share tips, tricks, and advice for fellow travelers",
       posts: 456,
       color: "bg-[#ECE8D9] text-[#BBA588] border-[#8E735B]"
     }
@@ -94,76 +95,76 @@ export default function CommunityPage() {
 
   const featuredTopics = [
     {
-      title: "Multilingual Voice Recognition Best Practices",
-      author: "Sarah Chen",
+      title: "How I Navigated Tokyo's Metro Using Only Voce",
+      author: "Alex Carter",
       replies: 23,
       views: 1234,
       lastActivity: "2 hours ago",
-      tags: ["voice-ai", "multilingual", "best-practices"],
+      tags: ["japan", "tokyo", "travel-story"],
       featured: true
     },
     {
-      title: "Integration with Salesforce CRM - Complete Guide",
-      author: "Raj Patel",
+      title: "My Family's Food Tour of Rome, Guided by Voce",
+      author: "Isabella Rossi",
       replies: 45,
       views: 2156,
       lastActivity: "4 hours ago",
-      tags: ["integration", "salesforce", "guide"]
+      tags: ["italy", "foodie", "family-travel"]
     },
     {
-      title: "How I Increased Sales by 300% Using Voce",
-      author: "Emma Rodriguez",
+      title: "Found a Hidden Waterfall in Costa Rica Thanks to Voce",
+      author: "Maria Garcia",
       replies: 67,
       views: 3421,
       lastActivity: "6 hours ago",
-      tags: ["success-story", "sales", "case-study"]
+      tags: ["adventure", "costa-rica", "hidden-gem"]
     },
     {
-      title: "Custom Voice Models for Regional Dialects",
-      author: "Akash Kumar",
+      title: "Best Practices for Using Voce in Low-Connectivity Areas",
+      author: "Kenji Tanaka",
       replies: 18,
       views: 845,
       lastActivity: "8 hours ago",
-      tags: ["voice-models", "customization", "dialects"]
+      tags: ["tips", "offline", "tech"]
     },
     {
-      title: "API Rate Limiting and Optimization Tips",
-      author: "Jennifer Kim",
-      replies: 31,
-      views: 1567,
+      title: "Debate: Best Gelato in Florence? Let's Settle This!",
+      author: "Community Poll",
+      replies: 102,
+      views: 4567,
       lastActivity: "12 hours ago",
-      tags: ["api", "optimization", "development"]
+      tags: ["florence", "debate", "food"]
     }
   ]
 
   const communityExperts = [
     {
-      name: "Dr. Priya Sharma",
-      role: "AI Research Scientist",
+      name: "Isabella Rossi",
+      role: "Culinary Guide in Rome",
       contributions: 156,
-      expertise: ["Voice AI", "NLP", "Research"],
-      avatar: "PS"
+      expertise: ["Italian Cuisine", "Food Tours", "Local Markets"],
+      avatar: "IR"
     },
     {
-      name: "Marcus Johnson",
-      role: "Sales Technology Consultant",
+      name: "Kenji Tanaka",
+      role: "Local Fixer in Kyoto",
       contributions: 142,
-      expertise: ["Sales Strategy", "CRM Integration", "Analytics"],
-      avatar: "MJ"
+      expertise: ["Japanese Culture", "Hidden Temples", "Kyoto"],
+      avatar: "KT"
     },
     {
-      name: "Lisa Wang",
-      role: "Developer Advocate",
+      name: "Maria Garcia",
+      role: "Adventure Blogger",
       contributions: 138,
-      expertise: ["API Development", "Integration", "SDKs"],
-      avatar: "LW"
+      expertise: ["Solo Travel", "South America", "Budget Hacks"],
+      avatar: "MG"
     },
     {
-      name: "Ahmed Hassan",
-      role: "Multilingual AI Specialist",
+      name: "Alex Carter",
+      role: "Seasoned Globetrotter",
       contributions: 124,
-      expertise: ["Multilingual AI", "Localization", "Cultural Adaptation"],
-      avatar: "AH"
+      expertise: ["Off-the-path", "Travel Safety", "Backpacking"],
+      avatar: "AC"
     }
   ]
   return (
@@ -181,33 +182,33 @@ export default function CommunityPage() {
         <div className="max-w-7xl mx-auto">          {/* Header */}
           <div className="text-center mb-12 sm:mb-16">
             <Badge className="mb-4 sm:mb-6 bg-gradient-to-r from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] text-[#8E735B] border-[#BBA588]/60 dark:from-[#1E1E1E]/80 dark:via-[#2A2A2A]/80 dark:to-[#1E1E1E]/80 dark:text-[#BBA588] dark:border-[#BBA588]/20 px-3 sm:px-4 py-2 text-sm font-medium shadow-md rounded-full font-serif">
-              🤝 Join Our Community
+              ✈️ Join Our Global Community
             </Badge>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif-display">
-              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-2">Voce</span>
+              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-2">The Voce</span>
               <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent">
-                Community
+                Traveler's Hub
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 font-serif">
-              Connect with developers, share knowledge, and build amazing experiences together.
-              Join thousands of AI enthusiasts and sales professionals in our vibrant community.
+              Connect with fellow adventurers, share authentic experiences, and get insider tips.
+              This is where your next journey begins, with thousands of explorers making travel less foreign.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
               <Button asChild size="lg" className="btn-classic text-base sm:text-lg px-6 sm:px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-serif">
                 <Link href="https://discord.gg/Voce" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-4 sm:h-5 w-4 sm:w-5 mr-2" />
-                  Join Discord
+                  Join our Travel Hub
                   <ExternalLink className="h-3 sm:h-4 w-3 sm:w-4 ml-2" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="btn-classic-outline text-base sm:text-lg px-6 sm:px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-serif">
                 <Link href="https://github.com/Voce/community" target="_blank" rel="noopener noreferrer">
                   <Github className="h-4 sm:h-5 w-4 sm:w-5 mr-2" />
-                  GitHub Discussions
+                  Developer Corner
                   <ExternalLink className="h-3 sm:h-4 w-3 sm:w-4 ml-2" />
                 </Link>
               </Button>
@@ -240,7 +241,7 @@ export default function CommunityPage() {
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-[#7C6D64] dark:text-[#BBA588]" />
                   <Input
-                    placeholder="Search discussions, topics, and solutions..."
+                    placeholder="Search for destinations, tips, and stories..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10 sm:pl-12 pr-4 py-2 sm:py-3 text-base sm:text-lg bg-[#F3F1E9]/20 dark:bg-[#1E1E1E]/20 backdrop-blur-lg border border-[#BBA588]/30 dark:border-[#BBA588]/20 shadow-lg focus:bg-[#F3F1E9]/30 dark:focus:bg-[#1E1E1E]/30 focus:border-[#8E735B]/50 transition-all duration-300 font-serif"
@@ -252,18 +253,18 @@ export default function CommunityPage() {
               <div className="lg:w-1/3 flex gap-2 sm:gap-3">
                 <Button variant="outline" className="flex-1 bg-[#F3F1E9]/20 dark:bg-[#1E1E1E]/20 backdrop-blur-lg border border-[#BBA588]/30 dark:border-[#BBA588]/20 hover:bg-[#F3F1E9]/30 dark:hover:bg-[#1E1E1E]/30 transition-all duration-300 text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6] font-serif">
                   <Filter className="h-3 sm:h-4 w-3 sm:w-4 mr-1 sm:mr-2" />
-                  <span className="hidden sm:inline">Filter</span>
+                  <span className="hidden sm:inline">Filter Topics</span>
                 </Button>
                 <Button className="flex-1 btn-classic shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base font-serif">
                   <Send className="h-3 sm:h-4 w-3 sm:w-4 mr-1 sm:mr-2" />
-                  <span className="hidden sm:inline">New Topic</span>
-                  <span className="sm:hidden">New</span>
+                  <span className="hidden sm:inline">Share a Tip</span>
+                  <span className="sm:hidden">Share</span>
                 </Button>
               </div>
             </div>
           </div>          {/* Discussion Categories */}
           <div className="mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 px-4 sm:px-0 font-serif-display">Discussion Categories</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 px-4 sm:px-0 font-serif-display">Explore Discussions</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {discussionCategories.map((category, index) => (
                 <Card key={index} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer rounded-2xl">
@@ -291,7 +292,7 @@ export default function CommunityPage() {
             </div>
           </div>          {/* Featured Topics */}
           <div className="mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 px-4 sm:px-0 font-serif-display">Featured Discussions</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 px-4 sm:px-0 font-serif-display">Featured Stories & Tips</h2>
             <div className="space-y-3 sm:space-y-4">
               {featuredTopics.map((topic, index) => (
                 <Card key={index} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer rounded-2xl">
@@ -381,7 +382,7 @@ export default function CommunityPage() {
               <CardHeader className="p-4 sm:p-6">
                 <CardTitle className="flex items-center text-xl sm:text-2xl text-[#2D2C2A] dark:text-[#ECE8D9] font-serif-display">
                   <Heart className="h-5 sm:h-6 w-5 sm:w-6 mr-2 sm:mr-3 text-[#8E735B] dark:text-[#BBA588]" />
-                  Community Guidelines
+                  Our Travel Creed
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-4 sm:p-6 pt-0">
@@ -391,32 +392,32 @@ export default function CommunityPage() {
                     <ul className="space-y-2 text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6]">
                       <li className="flex items-start space-x-2">
                         <div className="w-2 h-2 bg-[#8E735B] rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="font-serif">Treat everyone with kindness and respect</span>
+                        <span className="font-serif">Treat every traveler with kindness and respect</span>
                       </li>
                       <li className="flex items-start space-x-2">
                         <div className="w-2 h-2 bg-[#8E735B] rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="font-serif">Welcome newcomers and help them get started</span>
+                        <span className="font-serif">Welcome newcomers and help them on their journey</span>
                       </li>
                       <li className="flex items-start space-x-2">
                         <div className="w-2 h-2 bg-[#8E735B] rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="font-serif">Avoid spam, self-promotion, and off-topic content</span>
+                        <span className="font-serif">Avoid spam, self-promotion, and irrelevant content</span>
                       </li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 sm:mb-4 font-serif-display">Share Knowledge</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 sm:mb-4 font-serif-display">Share Authentically</h3>
                     <ul className="space-y-2 text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6]">
                       <li className="flex items-start space-x-2">
                         <div className="w-2 h-2 bg-[#BBA588] rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="font-serif">Share your experiences and learnings</span>
+                        <span className="font-serif">Share your genuine travel experiences and learnings</span>
                       </li>
                       <li className="flex items-start space-x-2">
                         <div className="w-2 h-2 bg-[#BBA588] rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="font-serif">Provide constructive feedback and solutions</span>
+                        <span className="font-serif">Provide constructive feedback and helpful advice</span>
                       </li>
                       <li className="flex items-start space-x-2">
                         <div className="w-2 h-2 bg-[#BBA588] rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="font-serif">Credit others for their contributions</span>
+                        <span className="font-serif">Credit others for their tips and contributions</span>
                       </li>
                     </ul>
                   </div>
@@ -433,22 +434,22 @@ export default function CommunityPage() {
                   <Users className="h-6 sm:h-8 w-6 sm:w-8 text-white" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 sm:mb-4 font-serif-display">
-                  Ready to Join Our Community?
+                  Ready to Join the Adventure?
                 </h2>
                 <p className="text-lg sm:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed font-serif">
-                  Connect with like-minded developers, get help with your projects, and contribute to the future of AI-powered sales technology.
+                  Connect with like-minded explorers, get help with your travel plans, and contribute to a world with fewer barriers and more understanding.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <Button asChild size="lg" className="btn-classic text-base sm:text-lg px-6 sm:px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-serif">
                     <Link href="https://discord.gg/Voce" target="_blank" rel="noopener noreferrer">
-                      Join Discord Community
+                      Join Our Travel Hub
                       <ExternalLink className="h-4 w-4 ml-2" />
                     </Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="btn-classic-outline text-base sm:text-lg px-6 sm:px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-serif">
                     <Link href="https://github.com/Voce/community" target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 sm:h-5 w-4 sm:w-5 mr-2" />
-                      GitHub Community
+                      Suggest a Feature
                       <ExternalLink className="h-4 w-4 ml-2" />
                     </Link>
                   </Button>

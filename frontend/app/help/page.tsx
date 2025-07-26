@@ -9,7 +9,7 @@ import {
   Search,
   MessageCircle,
   Book,
-  Video,
+  Compass,
   FileText,
   Headphones,
   Users,
@@ -19,7 +19,9 @@ import {
   ArrowRight,
   ExternalLink,
   Star,
-  Clock
+  Clock,
+  Phone,
+  Utensils
 } from "lucide-react"
 import Link from "next/link"
 import { Footer } from "@/components/footer"
@@ -30,51 +32,51 @@ export default function HelpPage() {
 
   const popularArticles = [
     {
-      title: "Getting Started with Voce",
-      description: "Complete guide to setting up your first AI conversation",
+      title: "Your First Call with Voce: A Quick Start Guide",
+      description: "Learn how to make your first call and get instant local insights.",
       category: "Getting Started",
-      readTime: "5 min",
-      views: "12.5k",
+      readTime: "3 min",
+      views: "15.2k",
       rating: 4.9
     },
     {
-      title: "Voice Commands and Language Support",
-      description: "How to use voice features across 10+ Indian languages",
-      category: "Voice Features",
-      readTime: "8 min",
-      views: "9.2k",
+      title: "Breaking Language Barriers with Real-Time Translation",
+      description: "Communicate effortlessly with locals, from ordering food to asking for directions.",
+      category: "Translation",
+      readTime: "5 min",
+      views: "11.8k",
       rating: 4.8
     },
     {
-      title: "Integrating with Your CRM",
-      description: "Step-by-step integration with Salesforce, HubSpot, and more",
-      category: "Integrations",
-      readTime: "12 min",
-      views: "7.8k",
+      title: "Finding Hidden Gems: Getting Local Recommendations",
+      description: "Discover authentic restaurants, attractions, and experiences that aren't in the guidebooks.",
+      category: "Recommendations",
+      readTime: "7 min",
+      views: "9.5k",
+      rating: 4.9
+    },
+    {
+      title: "Navigating a New City Without Internet",
+      description: "Use Voce for step-by-step directions and public transport information, completely offline.",
+      category: "Navigation",
+      readTime: "6 min",
+      views: "8.1k",
       rating: 4.7
     },
     {
-      title: "API Authentication & Rate Limits",
-      description: "Understanding API keys, authentication, and usage limits",
-      category: "API",
-      readTime: "6 min",
-      views: "6.4k",
+      title: "How to Book a Taxi or Restaurant with Voce",
+      description: "Let your AI agent handle reservations and bookings for you with simple voice commands.",
+      category: "Bookings",
+      readTime: "4 min",
+      views: "6.7k",
       rating: 4.8
     },
     {
-      title: "Managing Team Permissions",
-      description: "Set up role-based access control for your team",
-      category: "Account Management",
-      readTime: "10 min",
-      views: "5.1k",
-      rating: 4.6
-    },
-    {
-      title: "Troubleshooting Common Issues",
-      description: "Quick fixes for the most common problems and errors",
-      category: "Troubleshooting",
-      readTime: "15 min",
-      views: "11.2k",
+      title: "Emergency Assistance and Safety Information",
+      description: "Learn how to quickly access local emergency services and safety tips.",
+      category: "Safety",
+      readTime: "2 min",
+      views: "10.4k",
       rating: 4.9
     }
   ]
@@ -83,43 +85,43 @@ export default function HelpPage() {
     {
       icon: <Zap className="h-6 w-6" />,
       title: "Getting Started",
-      description: "Basic setup and first steps",
-      articleCount: 12,
+      description: "Setup, first calls, and basic tips",
+      articleCount: 8,
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: <MessageCircle className="h-6 w-6" />,
-      title: "Voice & Chat Features",
-      description: "Using voice and text conversations",
-      articleCount: 18,
+      title: "Language & Translation",
+      description: "Breaking barriers with voice translation",
+      articleCount: 12,
       color: "from-violet-500 to-purple-500"
     },
     {
-      icon: <Globe className="h-6 w-6" />,
-      title: "Integrations",
-      description: "Connect with your existing tools",
-      articleCount: 25,
+      icon: <Compass className="h-6 w-6" />,
+      title: "Navigation & Transport",
+      description: "Find your way around without internet",
+      articleCount: 15,
       color: "from-green-500 to-emerald-500"
     },
     {
-      icon: <Book className="h-6 w-6" />,
-      title: "API Documentation",
-      description: "Developer guides and references",
-      articleCount: 32,
+      icon: <Utensils className="h-6 w-6" />,
+      title: "Dining & Activities",
+      description: "Discover, book, and enjoy like a local",
+      articleCount: 22,
       color: "from-orange-500 to-red-500"
     },
     {
       icon: <Shield className="h-6 w-6" />,
-      title: "Security & Privacy",
-      description: "Data protection and compliance",
-      articleCount: 8,
+      title: "Safety & Emergencies",
+      description: "Travel with peace of mind",
+      articleCount: 7,
       color: "from-pink-500 to-rose-500"
     },
     {
-      icon: <Users className="h-6 w-6" />,
-      title: "Account Management",
-      description: "Billing, teams, and settings",
-      articleCount: 15,
+      icon: <Phone className="h-6 w-6" />,
+      title: "Account & Numbers",
+      description: "Manage your Voce access numbers",
+      articleCount: 10,
       color: "from-indigo-500 to-blue-500"
     }
   ]
@@ -128,24 +130,24 @@ export default function HelpPage() {
     {
       icon: <MessageCircle className="h-8 w-8" />,
       title: "Live Chat Support",
-      description: "Get instant help from our support team",
+      description: "Get instant help from our travel experts",
       availability: "24/7 Available",
       action: "Start Chat",
       href: "/chat"
     },
     {
-      icon: <Video className="h-8 w-8" />,
-      title: "Video Tutorials",
-      description: "Watch step-by-step video guides",
-      availability: "50+ Videos",
-      action: "Watch Now",
-      href: "#tutorials"
+      icon: <Compass className="h-8 w-8" />,
+      title: "Traveler's Guidebook",
+      description: "Browse our guides for travel inspiration",
+      availability: "50+ City Guides",
+      action: "Read Guides",
+      href: "#guides"
     },
     {
       icon: <Users className="h-8 w-8" />,
-      title: "Community Forum",
-      description: "Connect with other Voce users",
-      availability: "5k+ Members",
+      title: "Adventurer's Forum",
+      description: "Share tips with other Voce travelers",
+      availability: "5k+ Adventurers",
       action: "Join Forum",
       href: "#community"
     }
@@ -171,18 +173,18 @@ export default function HelpPage() {
           {/* Header */}
           <div className="text-center mb-12 sm:mb-16">
             <Badge className="mb-4 sm:mb-6 bg-gradient-to-r from-[#F3F1E9] to-[#ECE8D9] text-[#8E735B] border-[#BBA588]/50 dark:from-[#1E1E1E]/80 dark:to-[#2A2A2A]/80 dark:text-[#BBA588] dark:border-[#BBA588]/30 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-md font-serif">
-              💡 Support Center
+              💡 Traveler Support
             </Badge>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif-display">
-              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 sm:mb-2">Help</span>
+              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 sm:mb-2">How Can We</span>
               <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent">
-                Center
+                Help Your Adventure?
               </span>
             </h1>
 
             <p className="text-base sm:text-lg lg:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 px-2 sm:px-0 font-serif">
-              Find answers, guides, and resources to help you get the most out of Voce
+              Find answers, guides, and resources to get the most out of your travels with Voce.
             </p>
 
             {/* Search Bar */}
@@ -191,7 +193,7 @@ export default function HelpPage() {
                 <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-[#7C6D64] dark:text-[#BBA588] h-4 w-4 sm:h-5 sm:w-5" />
                 <Input
                   type="text"
-                  placeholder="Search help articles..."
+                  placeholder="Search for 'translation', 'directions', 'safety'..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 sm:pl-12 pr-3 sm:pr-4 py-3 sm:py-4 lg:py-6 text-sm sm:text-base lg:text-lg glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg w-full font-serif"
@@ -201,7 +203,7 @@ export default function HelpPage() {
           </div>          {/* Support Options */}
           <div className="mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 text-center px-2 sm:px-0 font-serif-display">
-              Get Help Now
+              Need Assistance on Your Journey?
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-2 sm:px-0">
               {supportOptions.map((option, index) => (
@@ -237,7 +239,7 @@ export default function HelpPage() {
           </div>          {/* Categories */}
           <div className="mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 text-center px-2 sm:px-0 font-serif-display">
-              Browse by Category
+              Browse by Travel Category
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 px-2 sm:px-0">
               {categories.map((category, index) => (
@@ -274,7 +276,7 @@ export default function HelpPage() {
           </div>          {/* Popular Articles */}
           <div className="mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 text-center px-2 sm:px-0 font-serif-display">
-              {searchQuery ? `Search Results (${filteredArticles.length})` : 'Popular Articles'}
+              {searchQuery ? `Search Results (${filteredArticles.length})` : 'Popular Topics'}
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 px-2 sm:px-0">
               {filteredArticles.map((article, index) => (
@@ -305,7 +307,7 @@ export default function HelpPage() {
                       <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
                         <div className="flex items-center space-x-1">
                           <Clock className="h-3 w-3 flex-shrink-0" />
-                          <span className="truncate font-serif">{article.readTime}</span>
+                          <span className="truncate font-serif">{article.readTime} read</span>
                         </div>
                         <span className="truncate font-serif">{article.views} views</span>
                       </div>
@@ -324,7 +326,7 @@ export default function HelpPage() {
                   No articles found
                 </h3>
                 <p className="text-[#5A5A5A] dark:text-[#B6B6B6] mb-4 sm:mb-6 text-sm sm:text-base px-2 sm:px-0 font-serif">
-                  Try adjusting your search terms or browse our categories above
+                  Try adjusting your search terms or browse our travel categories above.
                 </p>
                 <Button variant="outline" onClick={() => setSearchQuery("")} className="text-sm sm:text-base btn-classic-outline">
                   Clear Search
@@ -336,13 +338,13 @@ export default function HelpPage() {
             <Card className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-2xl">
               <CardContent className="p-6 sm:p-8 lg:p-12">
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-[#8E735B] to-[#BBA588] rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                  <Headphones className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-white" />
+                  <Headphones className="h-6 w-6 sm:h-7 sm:h-7 lg:h-8 lg:w-8 text-white" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-3 sm:mb-4 font-serif-display">
-                  Still Need Help?
+                  Still Have Questions?
                 </h2>
                 <p className="text-base sm:text-lg lg:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] mb-6 sm:mb-8 max-w-xs sm:max-w-lg lg:max-w-2xl mx-auto font-serif">
-                  Our support team is here to help you succeed. Get personalized assistance from our experts.
+                  Our support team is here to ensure your travels are smooth and unforgettable.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-lg mx-auto">
                   <Link href="/contact" className="flex-1 sm:flex-none">

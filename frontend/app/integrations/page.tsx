@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
-import { Zap, Database, ShoppingCart, Mail, MessageSquare, Phone, Users, FileText, ExternalLink, ArrowRight } from "lucide-react"
+import { Plane, BedDouble, Utensils, Map, Users, FileText, ExternalLink, ArrowRight, Zap } from "lucide-react"
 import Image from "next/image"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
@@ -13,34 +13,34 @@ import { Navbar } from "@/components/navbar"
 export default function IntegrationsPage() {
   const categories = [
     {
-      name: "CRM Systems",
-      description: "Connect with your customer relationship management tools",
-      icon: <Users className="h-6 w-6" />,
+      name: "Booking Platforms",
+      description: "Connect with major travel and accommodation booking systems.",
+      icon: <BedDouble className="h-6 w-6" />,
       integrations: [
         {
-          name: "Salesforce",
-          description: "Sync customer data and call logs automatically",
+          name: "Booking.com",
+          description: "Access booking details and guest information seamlessly.",
           logo: "/placeholder.svg",
           status: "Available",
           popular: true
         },
         {
-          name: "HubSpot",
-          description: "Integrate with your sales pipeline and contacts",
+          name: "Expedia",
+          description: "Integrate with your property listings and reservations.",
           logo: "/placeholder.svg",
           status: "Available",
           popular: true
         },
         {
-          name: "Zoho CRM",
-          description: "Connect with India's leading CRM platform",
+          name: "Airbnb",
+          description: "Sync your hosting calendar and guest communications.",
           logo: "/placeholder.svg",
           status: "Available",
           popular: false
         },
         {
-          name: "Pipedrive",
-          description: "Streamline your sales process with voice insights",
+          name: "Traveloka",
+          description: "Connect with Southeast Asia's leading travel platform.",
           logo: "/placeholder.svg",
           status: "Coming Soon",
           popular: false
@@ -48,34 +48,34 @@ export default function IntegrationsPage() {
       ]
     },
     {
-      name: "E-commerce Platforms",
-      description: "Enhance your online store with voice assistance",
-      icon: <ShoppingCart className="h-6 w-6" />,
+      name: "Airline Systems",
+      description: "Enhance the travel experience with flight information.",
+      icon: <Plane className="h-6 w-6" />,
       integrations: [
         {
-          name: "Shopify",
-          description: "Voice-powered customer support for your store",
+          name: "Amadeus",
+          description: "Provide real-time flight status and booking information.",
           logo: "/placeholder.svg",
           status: "Available",
           popular: true
         },
         {
-          name: "WooCommerce",
-          description: "WordPress e-commerce voice integration",
+          name: "Sabre",
+          description: "Access passenger name records and flight itineraries.",
           logo: "/placeholder.svg",
           status: "Available",
           popular: false
         },
         {
-          name: "Magento",
-          description: "Enterprise e-commerce voice solutions",
+          name: "Galileo",
+          description: "Integrate with a global distribution system for travel.",
           logo: "/placeholder.svg",
           status: "Beta",
           popular: false
         },
         {
-          name: "BigCommerce",
-          description: "Scale your voice commerce capabilities",
+          name: "Airline APIs",
+          description: "Direct integration with specific airline systems.",
           logo: "/placeholder.svg",
           status: "Coming Soon",
           popular: false
@@ -83,34 +83,34 @@ export default function IntegrationsPage() {
       ]
     },
     {
-      name: "Communication Tools",
-      description: "Integrate with your existing communication stack",
-      icon: <MessageSquare className="h-6 w-6" />,
+      name: "Local Services",
+      description: "Connect travelers with local experiences and services.",
+      icon: <Map className="h-6 w-6" />,
       integrations: [
         {
-          name: "WhatsApp Business",
-          description: "Voice-enabled WhatsApp customer support",
+          name: "Google Maps",
+          description: "Provide voice-guided navigation and local search.",
           logo: "/placeholder.svg",
           status: "Available",
           popular: true
         },
         {
-          name: "Slack",
-          description: "Team notifications and voice insights",
+          name: "TripAdvisor",
+          description: "Access reviews and recommendations for local attractions.",
           logo: "/placeholder.svg",
           status: "Available",
           popular: true
         },
         {
-          name: "Microsoft Teams",
-          description: "Enterprise communication integration",
+          name: "Uber",
+          description: "Enable voice-activated ride-hailing for travelers.",
           logo: "/placeholder.svg",
           status: "Beta",
           popular: false
         },
         {
-          name: "Telegram",
-          description: "Voice bot for Telegram channels",
+          name: "Zomato",
+          description: "Discover and book tables at local restaurants.",
           logo: "/placeholder.svg",
           status: "Coming Soon",
           popular: false
@@ -118,34 +118,34 @@ export default function IntegrationsPage() {
       ]
     },
     {
-      name: "Analytics & Reporting",
-      description: "Connect with your business intelligence tools",
-      icon: <Database className="h-6 w-6" />,
+      name: "Hospitality Management",
+      description: "Connect with property and guest management systems.",
+      icon: <Utensils className="h-6 w-6" />,
       integrations: [
         {
-          name: "Google Analytics",
-          description: "Track voice interaction metrics",
+          name: "Oracle Opera",
+          description: "Integrate with your property management system.",
           logo: "/placeholder.svg",
           status: "Available",
           popular: true
         },
         {
-          name: "Mixpanel",
-          description: "Advanced conversation analytics",
+          name: "Cloudbeds",
+          description: "Sync guest data and automate communication.",
           logo: "/placeholder.svg",
           status: "Available",
           popular: false
         },
         {
-          name: "Tableau",
-          description: "Visualize voice interaction data",
+          name: "Mews",
+          description: "Connect with a modern, cloud-based PMS.",
           logo: "/placeholder.svg",
           status: "Beta",
           popular: false
         },
         {
-          name: "Power BI",
-          description: "Microsoft business intelligence integration",
+          name: "Guestly",
+          description: "Streamline guest services and communication.",
           logo: "/placeholder.svg",
           status: "Coming Soon",
           popular: false
@@ -177,18 +177,18 @@ export default function IntegrationsPage() {
       <div className="relative pt-16 sm:pt-20 lg:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <Badge className="mb-4 sm:mb-6 bg-gradient-to-r from-[#F3F1E9] to-[#ECE8D9] text-[#8E735B] border-[#BBA588]/50 dark:from-[#1E1E1E]/80 dark:to-[#2A2A2A]/80 dark:text-[#BBA588] dark:border-[#BBA588]/30 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium shadow-md font-serif">
-            🔗 Seamless Integrations
+            🔗 Seamless Connections for Travelers
           </Badge>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif-display">
             <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 sm:mb-2">Connect With</span>
             <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent animate-gradient">
-              Your Stack
+              Your Journey
             </span>
           </h1>
 
           <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-10 lg:mb-12 px-4 sm:px-0 font-serif">
-            Voce integrates seamlessly with your existing tools and workflows. Connect with popular platforms to supercharge your voice AI capabilities.
+            Voce integrates seamlessly with your favorite travel tools and services. Connect with popular platforms to supercharge your AI-powered travel assistance.
           </p>
 
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 px-4 sm:px-0">
@@ -285,81 +285,81 @@ export default function IntegrationsPage() {
                 ))}
               </div>
             </div>
-          ))}
+          ))}z
         </div>
       </div>      {/* API Section */}
-      <div className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6 sm:mb-8">
-                Build Custom Integrations
-              </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
-                Don't see your platform? Use our comprehensive REST API and webhooks to build custom integrations. Our developer-friendly documentation makes it easy to get started.
-              </p>
+      <div className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F3F1E9]/50 dark:bg-[#2A2A2A]/50 backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+          <div className="order-2 lg:order-1">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 font-serif-display">
+              Build Custom Travel Integrations
+            </h2>
+            <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 font-serif">
+              Don't see your platform? Use our comprehensive REST API and webhooks to build custom integrations for any travel service. Our developer-friendly documentation makes it easy to get started.
+            </p>
 
-              <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                <div className="flex items-center space-x-3">
-                  <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
-                  <span className="text-slate-700 dark:text-slate-300 text-sm sm:text-base">RESTful API with OpenAPI specification</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
-                  <span className="text-slate-700 dark:text-slate-300 text-sm sm:text-base">Real-time webhooks for events</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
-                  <span className="text-slate-700 dark:text-slate-300 text-sm sm:text-base">SDKs for popular languages</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
-                  <span className="text-slate-700 dark:text-slate-300 text-sm sm:text-base">Comprehensive documentation</span>
-                </div>
+            <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+              <div className="flex items-center space-x-3">
+                <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-[#8E735B] dark:text-[#BBA588] flex-shrink-0" />
+                <span className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm sm:text-base font-serif">RESTful API with OpenAPI specification</span>
               </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Button className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white h-11 sm:h-12 px-6 sm:px-8" asChild>
-                  <Link href="/api">
-                    View API Docs
-                  </Link>
-                </Button>
-                <Button variant="outline" className="h-11 sm:h-12 px-6 sm:px-8" asChild>
-                  <Link href="/contact">
-                    Request Integration
-                  </Link>
-                </Button>
+              <div className="flex items-center space-x-3">
+                <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-[#8E735B] dark:text-[#BBA588] flex-shrink-0" />
+                <span className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm sm:text-base font-serif">Real-time webhooks for travel events</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-[#8E735B] dark:text-[#BBA588] flex-shrink-0" />
+                <span className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm sm:text-base font-serif">SDKs for popular languages</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-[#8E735B] dark:text-[#BBA588] flex-shrink-0" />
+                <span className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm sm:text-base font-serif">Comprehensive documentation</span>
               </div>
             </div>
-            <div className="order-1 lg:order-2 glass-strong rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl">
-              <div className="bg-slate-900 dark:bg-slate-800 rounded-lg p-4 sm:p-6 text-green-400 font-mono text-xs sm:text-sm overflow-x-auto whitespace-nowrap sm:whitespace-normal">
-                <div className="mb-3 sm:mb-4 text-slate-400">// Example API Integration</div>
-                <div className="space-y-1 sm:space-y-2">
-                  <div><span className="text-blue-400">POST</span> /api/v1/conversations</div>
-                  <div className="text-slate-400">{`{`}</div>
-                  <div className="ml-2 sm:ml-4">"audio": "base64_encoded_audio",</div>
-                  <div className="ml-2 sm:ml-4">"language": "hi-IN",</div>
-                  <div className="ml-2 sm:ml-4">"webhook_url": "your-webhook"</div>
-                  <div className="text-slate-400">{`}`}</div>
-                  <div className="mt-3 sm:mt-4 text-slate-400">// Response</div>
-                  <div className="text-slate-400">{`{`}</div>
-                  <div className="ml-2 sm:ml-4">"transcript": "नमस्ते",</div>
-                  <div className="ml-2 sm:ml-4">"confidence": 0.95,</div>
-                  <div className="ml-2 sm:ml-4">"language": "hi-IN"</div>
-                  <div className="text-slate-400">{`}`}</div>
-                </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Button className="bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] text-white hover:opacity-90 transition-opacity h-11 sm:h-12 px-6 sm:px-8 font-serif-display" asChild>
+                <Link href="/api">
+                  View API Docs
+                </Link>
+              </Button>
+              <Button variant="outline" className="h-11 sm:h-12 px-6 sm:px-8 border-[#BBA588]/40 text-[#8E735B] dark:text-[#BBA588] hover:bg-[#8E735B]/10 dark:hover:bg-[#BBA588]/10 font-serif-display" asChild>
+                <Link href="/contact">
+                  Request Integration
+                </Link>
+              </Button>
+            </div>
+          </div>
+          <div className="order-1 lg:order-2 glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl">
+            <div className="bg-[#2D2C2A] rounded-lg p-4 sm:p-6 text-[#ECE8D9] font-mono text-xs sm:text-sm overflow-x-auto">
+              <div className="mb-3 sm:mb-4 text-[#7C6D64]">{'// Example API Integration: Find a local restaurant'}</div>
+              <div className="space-y-1 sm:space-y-2 whitespace-nowrap">
+                <div><span className="text-[#BBA588]">POST</span> /api/v1/query</div>
+                <div className="text-[#7C6D64]">{`{`}</div>
+                <div className="ml-2 sm:ml-4"><span className="text-[#D4C3A9]">{`"audio"`}</span>: <span className="text-[#BBA588]">{`"base64_encoded_audio_of_find_restaurants"`}</span>,</div>
+                <div className="ml-2 sm:ml-4"><span className="text-[#D4C3A9]">{`"location"`}</span>: <span className="text-[#BBA588]">{`"current"`}</span>,</div>
+                <div className="ml-2 sm:ml-4"><span className="text-[#D4C3A9]">{`"webhook_url"`}</span>: <span className="text-[#BBA588]">{`"your-webhook"`}</span></div>
+                <div className="text-[#7C6D64]">{`}`}</div>
+                <div className="mt-3 sm:mt-4 text-[#7C6D64]">{'// Response'}</div>
+                <div className="text-[#7C6D64]">{`{`}</div>
+                <div className="ml-2 sm:ml-4"><span className="text-[#D4C3A9]">{`"transcript"`}</span>: <span className="text-[#BBA588]">{`"Find restaurants near me"`}</span>,</div>
+                <div className="ml-2 sm:ml-4"><span className="text-[#D4C3A9]">{`"intent"`}</span>: <span className="text-[#BBA588]">{`"find_restaurant"`}</span>,</div>
+                <div className="ml-2 sm:ml-4"><span className="text-[#D4C3A9]">{`"results"`}</span>: [...]</div>
+                <div className="text-[#7C6D64]">{`}`}</div>
               </div>
             </div>
           </div>
         </div>
-      </div>      {/* CTA Section */}
+      </div>
+    </div>      {/* CTA Section */}
       <div className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] mb-6 sm:mb-8 font-serif-display">
-            Ready to Integrate?
+            Ready to Transform Your Travels?
           </h2>
           <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg lg:text-xl mb-10 sm:mb-12 leading-relaxed px-4 sm:px-0 font-serif">
-            Start connecting Voce with your existing tools today. Our team is here to help you every step of the way.
+            Start connecting Voce with your travel apps and services today. Our team is here to help you create unforgettable, authentic experiences.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">

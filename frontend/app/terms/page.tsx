@@ -25,8 +25,8 @@ import {
 import Link from "next/link"
 
 export default function TermsPage() {
-  const lastUpdated = "December 15, 2023"
-  const effectiveDate = "January 1, 2024"
+  const lastUpdated = "July 15, 2025"
+  const effectiveDate = "August 1, 2025"
 
   const sections = [
     {
@@ -37,19 +37,19 @@ export default function TermsPage() {
         {
           subtitle: "Agreement to Terms",
           points: [
-            "By accessing or using Voce services, you agree to be bound by these Terms of Service",
-            "If you do not agree to these terms, you may not use our services",
-            "These terms apply to all users, including visitors, registered users, and enterprise customers",
-            "Additional terms may apply to specific features or enterprise plans"
+            "By accessing or using the Voce service, you agree to be bound by these Terms of Service.",
+            "If you do not agree to these terms, you may not use our services.",
+            "These terms apply to all users, including individual travelers and partner accounts (e.g., hotels).",
+            "Additional terms may apply to specific features or partner plans."
           ]
         },
         {
           subtitle: "Capacity to Enter Agreement",
           points: [
-            "You must be at least 18 years old to use Voce services",
-            "If you're using Voce on behalf of an organization, you have authority to bind that organization",
-            "You represent that all information provided is accurate and complete",
-            "You will keep your account information up to date"
+            "You must be at least 18 years old to create an account and use Voce services.",
+            "If you're using Voce on behalf of an organization, you confirm you have the authority to bind that organization.",
+            "You represent that all information you provide is accurate and complete.",
+            "You will keep your account and contact information up to date."
           ]
         }
       ]
@@ -62,28 +62,28 @@ export default function TermsPage() {
         {
           subtitle: "What Voce Provides",
           points: [
-            "AI-powered conversational sales assistant with voice and text capabilities",
-            "Multilingual support for 10+ Indian languages and English",
-            "Integration with CRM systems, e-commerce platforms, and business tools",
-            "Analytics and insights for conversation performance and customer behavior"
+            "An AI-powered voice agent that provides travel guidance and local information via a phone call.",
+            "Multilingual support to help travelers overcome language barriers.",
+            "The ability to connect with travel partners for bookings and reservations, at your request.",
+            "Personalized travel recommendations and a history of your explored places."
           ]
         },
         {
           subtitle: "Service Availability",
           points: [
-            "We aim for 99.9% uptime but do not guarantee uninterrupted service",
-            "Services may be temporarily unavailable for maintenance or updates",
-            "We reserve the right to modify or discontinue features with notice",
-            "Enterprise customers receive priority support and SLA guarantees"
+            "We aim for high availability but do not guarantee uninterrupted service.",
+            "Services may be temporarily unavailable for maintenance, updates, or unforeseen outages.",
+            "We reserve the right to modify or discontinue features with reasonable notice.",
+            "Partner accounts may have specific support terms and Service Level Agreements (SLAs)."
           ]
         },
         {
           subtitle: "Service Limitations",
           points: [
-            "Voce is not a replacement for human judgment or decision-making",
-            "AI responses are generated based on training data and may not always be perfect",
-            "We do not guarantee specific business outcomes or sales results",
-            "Use of the service is subject to fair use policies and rate limits"
+            "Voce is a travel guide, not a replacement for human judgment or emergency services.",
+            "AI-generated information may not always be perfect; please verify critical details like opening hours.",
+            "We are not responsible for the quality or safety of services provided by third-party venues we recommend.",
+            "Use of the service is subject to fair use policies to ensure availability for all travelers."
           ]
         }
       ]
@@ -96,28 +96,28 @@ export default function TermsPage() {
         {
           subtitle: "Account Security",
           points: [
-            "You are responsible for maintaining the confidentiality of your account credentials",
-            "You must notify us immediately of any unauthorized use of your account",
-            "You are liable for all activities that occur under your account",
-            "Use strong passwords and enable two-factor authentication when available"
+            "You are responsible for maintaining the confidentiality of your account credentials.",
+            "You must notify us immediately of any unauthorized use of your account.",
+            "You are liable for all activities that occur under your account.",
+            "Use a strong, unique password and enable two-factor authentication if available."
           ]
         },
         {
           subtitle: "Acceptable Use",
           points: [
-            "Use Voce only for lawful business purposes",
-            "Do not attempt to hack, reverse engineer, or compromise our systems",
-            "Respect the privacy and rights of other users and customers",
-            "Do not use the service to spam, harass, or engage in fraudulent activities"
+            "Use Voce only for lawful, travel-related purposes.",
+            "Do not attempt to hack, reverse engineer, or compromise our systems.",
+            "Respect the privacy and rights of others when using the service.",
+            "Do not use the service to spam, harass, or engage in fraudulent activities."
           ]
         },
         {
           subtitle: "Prohibited Activities",
           points: [
-            "Uploading malicious code, viruses, or harmful content",
-            "Attempting to gain unauthorized access to our systems or user data",
-            "Using the service for illegal activities or to violate applicable laws",
-            "Reselling or redistributing our services without authorization"
+            "Uploading malicious code, viruses, or harmful content.",
+            "Attempting to gain unauthorized access to our systems or other users' data.",
+            "Using the service for illegal activities or to violate applicable laws.",
+            "Reselling or redistributing our services without explicit authorization."
           ]
         }
       ]
@@ -130,28 +130,28 @@ export default function TermsPage() {
         {
           subtitle: "Your Data Ownership",
           points: [
-            "You retain ownership of all data you input into Voce",
-            "We do not claim ownership of your conversation data or business information",
-            "You grant us a limited license to process your data to provide our services",
-            "You can export or delete your data at any time through your account settings"
+            "You retain ownership of all personal data and travel history you create with Voce.",
+            "We do not claim ownership of your call recordings or travel preferences.",
+            "You grant us a limited license to process your data solely to provide and improve our services.",
+            "You can export or delete your data at any time through your account settings."
           ]
         },
         {
           subtitle: "Data Processing",
           points: [
-            "We process your data in accordance with our Privacy Policy",
-            "Data is used to provide services, improve AI models, and ensure security",
-            "We may aggregate and anonymize data for research and development purposes",
-            "Third-party integrations may involve data sharing as described in our Privacy Policy"
+            "We process your data in accordance with our Privacy Policy.",
+            "Data is used to provide the service, improve AI model accuracy, and ensure security.",
+            "We may aggregate and anonymize data for research to understand traveler trends.",
+            "Data sharing with travel partners (for bookings) only occurs with your explicit consent."
           ]
         },
         {
           subtitle: "Data Security",
           points: [
-            "We implement industry-standard security measures to protect your data",
-            "All communications are encrypted in transit and at rest",
-            "We conduct regular security audits and compliance assessments",
-            "In case of a data breach, we will notify affected users as required by law"
+            "We implement industry-standard security measures to protect your data.",
+            "All voice communications are encrypted in transit and at rest.",
+            "We conduct regular security audits and compliance assessments.",
+            "In case of a data breach, we will notify affected users as required by law."
           ]
         }
       ]
@@ -162,30 +162,30 @@ export default function TermsPage() {
       icon: <CreditCard className="h-5 w-5" />,
       content: [
         {
-          subtitle: "Subscription Plans",
+          subtitle: "Plans and Passes",
           points: [
-            "Voce offers various subscription plans with different features and limits",
-            "Billing cycles are monthly or annual, as selected during signup",
-            "All fees are in Indian Rupees (INR) unless otherwise specified",
-            "Prices are subject to change with 30 days' notice to existing customers"
+            "Voce offers various plans, including per-trip passes and monthly subscriptions for frequent travelers.",
+            "Billing cycles are specified at the time of purchase.",
+            "All fees are in Indian Rupees (INR) unless otherwise specified.",
+            "Prices are subject to change with 30 days' notice to existing subscribers."
           ]
         },
         {
           subtitle: "Payment Terms",
           points: [
-            "Payment is due in advance for each billing period",
-            "We accept major credit cards, debit cards, and digital payment methods",
-            "Failed payments may result in service suspension or account termination",
-            "You are responsible for any bank charges, taxes, or payment processing fees"
+            "Payment is due in advance for each pass or billing period.",
+            "We accept major credit cards, debit cards, and popular digital payment methods.",
+            "Failed payments may result in service suspension or account termination.",
+            "You are responsible for any applicable taxes or payment processing fees."
           ]
         },
         {
           subtitle: "Refunds and Cancellations",
           points: [
-            "You may cancel your subscription at any time through your account settings",
-            "Cancellations take effect at the end of the current billing period",
-            "No refunds are provided for partial billing periods, except as required by law",
-            "Enterprise customers may have different refund terms in their service agreement"
+            "You may cancel your subscription at any time through your account settings.",
+            "Cancellations take effect at the end of the current billing period.",
+            "No refunds are provided for trip passes or partial billing periods, except as required by law.",
+            "Partners may have different refund terms as outlined in their service agreement."
           ]
         }
       ]
@@ -199,18 +199,18 @@ export default function TermsPage() {
           subtitle: "Voce IP Rights",
           points: [
             "Voce and all related technology are owned by Voce Technologies Pvt. Ltd.",
-            "Our trademarks, logos, and brand elements are protected intellectual property",
-            "You may not copy, modify, or create derivative works of our software",
-            "Any feedback or suggestions you provide may be used by us without compensation"
+            "Our trademarks, logos, and brand elements are protected intellectual property.",
+            "You may not copy, modify, or create derivative works of our service or software.",
+            "Any feedback or suggestions you provide may be used by us without compensation."
           ]
         },
         {
           subtitle: "User Content License",
           points: [
-            "You retain ownership of content you create using Voce",
-            "You grant us a license to host, display, and process your content to provide services",
-            "This license is limited, non-exclusive, and terminates when you delete content",
-            "You are responsible for ensuring you have rights to any content you upload"
+            "You retain ownership of the personal content and data you generate.",
+            "You grant us a license to host, display, and process your content to provide the service.",
+            "This license is limited, non-exclusive, and terminates when you delete your content.",
+            "You are responsible for ensuring you have the right to any information you provide."
           ]
         }
       ]
@@ -223,19 +223,19 @@ export default function TermsPage() {
         {
           subtitle: "Service Disclaimers",
           points: [
-            "Voce is provided \"as is\" without warranties of any kind",
-            "We do not guarantee that the service will be error-free or uninterrupted",
-            "AI-generated responses may not always be accurate or appropriate",
-            "You use the service at your own risk and discretion"
+            "The Voce service is provided \"as is\" without warranties of any kind.",
+            "We do not guarantee that the service will be error-free or uninterrupted.",
+            "AI-generated responses may not always be accurate or complete. You use the information at your own risk.",
+            "Voce is not liable for the actions, quality, or safety of any third-party services it may suggest."
           ]
         },
         {
           subtitle: "Liability Limitations",
           points: [
-            "Our total liability is limited to the amount you paid in the last 12 months",
-            "We are not liable for indirect, incidental, or consequential damages",
-            "This includes lost profits, data loss, or business interruption",
-            "Some jurisdictions may not allow these limitations, so they may not apply to you"
+            "Our total liability is limited to the amount you paid to us in the last 12 months.",
+            "We are not liable for indirect, incidental, or consequential damages.",
+            "This includes lost enjoyment, data loss, or travel interruption.",
+            "Some jurisdictions may not allow these limitations, so they may not apply to you."
           ]
         }
       ]
@@ -248,19 +248,19 @@ export default function TermsPage() {
         {
           subtitle: "Termination by You",
           points: [
-            "You may terminate your account at any time through account settings",
-            "Upon termination, your access to the service will be immediately revoked",
-            "Your data will be deleted according to our data retention policy",
-            "Some provisions of these terms will survive termination"
+            "You may terminate your account at any time through your account settings.",
+            "Upon termination, your access to the service will be immediately revoked.",
+            "Your data will be deleted according to our data retention policy.",
+            "Some provisions of these terms, such as liability limitations, will survive termination."
           ]
         },
         {
           subtitle: "Termination by Voce",
           points: [
-            "We may terminate accounts for violation of these terms or applicable laws",
-            "We may suspend service for non-payment or other billing issues",
-            "In case of termination for cause, no refunds will be provided",
-            "We will provide notice when possible, except in cases of serious violations"
+            "We may terminate accounts for violation of these terms or applicable laws.",
+            "We may suspend service for non-payment or other billing issues.",
+            "In case of termination for cause, no refunds will be provided.",
+            "We will provide notice when possible, except in cases of serious violations."
           ]
         }
       ]
@@ -291,8 +291,8 @@ export default function TermsPage() {
             </h1>
 
             <p className="text-base sm:text-lg lg:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] max-w-3xl mx-auto leading-relaxed mb-4 sm:mb-6 px-4 sm:px-6 font-serif">
-              These terms govern your use of Voce services. Please read them carefully
-              as they contain important information about your rights and obligations.
+              These terms govern your use of the Voce travel assistance service. Please read them carefully
+              as they contain important information about your rights and obligations as a traveler.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm text-[#7C6D64] dark:text-[#B6B6B6] px-4">
@@ -320,7 +320,7 @@ export default function TermsPage() {
                     </h3>
                     <p className="text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6] leading-relaxed font-serif">
                       These Terms of Service constitute a legally binding agreement between you and
-                      Voce Technologies Pvt. Ltd. By using our services, you acknowledge that
+                      Voce Technologies Pvt. Ltd. By using our service, you acknowledge that
                       you have read, understood, and agree to be bound by these terms. If you are
                       entering into this agreement on behalf of a company or other legal entity,
                       you represent that you have the authority to bind such entity to these terms.
@@ -391,7 +391,7 @@ export default function TermsPage() {
                   <p className="text-sm sm:text-base text-[#5A5A5A] dark:text-[#B6B6B6] leading-relaxed font-serif">
                     Before filing any formal legal proceedings, we encourage you to contact us at legal@Voce.ai
                     to seek a resolution. We are committed to resolving disputes amicably and in good faith.
-                    For enterprise customers, specific dispute resolution procedures may be outlined in your service agreement.
+                    For partners, specific dispute resolution procedures may be outlined in your service agreement.
                   </p>
                 </div>
               </CardContent>

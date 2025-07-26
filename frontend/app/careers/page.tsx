@@ -28,25 +28,25 @@ import { Navbar } from "@/components/navbar"
 export default function CareersPage() {
   const openPositions = [
     {
-      title: "Senior AI Engineer",
+      title: "Senior AI Engineer (Travel)",
       department: "Engineering",
       location: "Bangalore, India",
       type: "Full-time",
       experience: "5+ years",
       icon: <Code className="h-6 w-6" />,
-      description: "Build and enhance our AI voice models for multilingual conversations",
-      skills: ["Python", "TensorFlow", "PyTorch", "NLP", "Speech Recognition"],
+      description: "Build and enhance our core AI to provide authentic, real-time travel guidance without internet.",
+      skills: ["Python", "NLP", "Speech Recognition", "Offline Models", "Geo-spatial AI"],
       urgent: true
     },
     {
-      title: "Product Manager - Voice AI",
+      title: "Product Manager - Traveler Experience",
       department: "Product",
       location: "Bangalore, India",
       type: "Full-time",
       experience: "4+ years",
       icon: <PieChart className="h-6 w-6" />,
-      description: "Lead product strategy for our voice AI platform and user experience",
-      skills: ["Product Strategy", "AI/ML", "User Research", "Analytics", "Agile"],
+      description: "Lead the product strategy for Voce, ensuring a seamless and magical experience for every traveler.",
+      skills: ["Product Strategy", "Voice UI/UX", "User Research", "Travel Tech", "Agile"],
       urgent: false
     },
     {
@@ -56,41 +56,41 @@ export default function CareersPage() {
       type: "Full-time",
       experience: "3+ years",
       icon: <Shield className="h-6 w-6" />,
-      description: "Scale our infrastructure to support millions of voice interactions",
-      skills: ["AWS", "Kubernetes", "Docker", "CI/CD", "Monitoring"],
+      description: "Scale our infrastructure to ensure reliable, instant connections for travelers anywhere in the world.",
+      skills: ["AWS", "Kubernetes", "Docker", "CI/CD", "Telecom APIs"],
       urgent: false
     },
     {
-      title: "Marketing Manager",
+      title: "Growth Marketing Manager (Travel)",
       department: "Marketing",
       location: "Bangalore, India",
       type: "Full-time",
       experience: "3+ years",
       icon: <Megaphone className="h-6 w-6" />,
-      description: "Drive growth marketing and brand awareness in the Indian market",
-      skills: ["Digital Marketing", "Content Strategy", "Analytics", "B2B Marketing"],
+      description: "Drive awareness and adoption of Voce among global travelers and travel communities.",
+      skills: ["Digital Marketing", "Community Building", "B2C Marketing", "Content Strategy"],
       urgent: false
     },
     {
-      title: "Customer Success Manager",
+      title: "Traveler Support Specialist",
       department: "Customer Success",
       location: "Bangalore, India",
       type: "Full-time",
       experience: "2+ years",
       icon: <Headphones className="h-6 w-6" />,
-      description: "Ensure customer satisfaction and drive adoption of Voce",
-      skills: ["Customer Relations", "SaaS", "Account Management", "Communication"],
+      description: "Be the friendly voice of Voce, ensuring every traveler feels supported and empowered on their journey.",
+      skills: ["Customer Empathy", "Problem-Solving", "Communication", "Travel Knowledge"],
       urgent: false
     },
     {
-      title: "UI/UX Designer",
+      title: "Conversation Designer",
       department: "Design",
       location: "Remote",
       type: "Full-time",
       experience: "3+ years",
       icon: <Zap className="h-6 w-6" />,
-      description: "Design intuitive interfaces for our voice AI platform",
-      skills: ["Figma", "User Research", "Prototyping", "Design Systems", "Voice UI"],
+      description: "Design intuitive and delightful voice conversations that make travelers feel like locals.",
+      skills: ["Voice UI", "Conversation Flow", "Figma", "User Research", "Copywriting"],
       urgent: false
     }
   ]
@@ -99,41 +99,41 @@ export default function CareersPage() {
     {
       icon: <Heart className="h-8 w-8" />,
       title: "Health & Wellness",
-      description: "Comprehensive health insurance, mental health support, and wellness programs"
+      description: "Comprehensive health insurance, mental health support, and wellness programs to keep you at your best."
     },
     {
       icon: <TrendingUp className="h-8 w-8" />,
       title: "Growth & Learning",
-      description: "Learning budget, conference attendance, and career development opportunities"
+      description: "Learning budget, conference attendance, and career development opportunities to fuel your curiosity."
     },
     {
       icon: <Globe className="h-8 w-8" />,
-      title: "Flexible Work",
-      description: "Remote-first culture with flexible hours and work-life balance"
+      title: "Flexible Work & Travel",
+      description: "Remote-first culture with flexible hours and perks that encourage you to explore the world."
     },
     {
       icon: <Users className="h-8 w-8" />,
       title: "Equity & Inclusion",
-      description: "Stock options, inclusive culture, and diverse team from across India"
+      description: "Stock options, inclusive culture, and a diverse team passionate about connecting the world."
     }
   ]
 
   const values = [
     {
-      title: "Innovation First",
-      description: "We're constantly pushing the boundaries of what's possible with AI and voice technology"
+      title: "Be the Traveler",
+      description: "We build with empathy, putting the traveler's needs and experiences at the heart of every decision."
     },
     {
-      title: "Customer Obsessed",
-      description: "Every decision we make is centered around delivering value to our customers"
+      title: "Explore Uncharted Territory",
+      description: "We are pioneers, constantly pushing the boundaries of technology to solve real-world travel challenges."
     },
     {
-      title: "Inclusive Culture",
-      description: "We celebrate diversity and create an environment where everyone can thrive"
+      title: "Speak the Local Language",
+      description: "We celebrate diversity, foster clear communication, and create an inclusive environment for everyone."
     },
     {
-      title: "Ownership Mindset",
-      description: "Take ownership, make decisions, and have the autonomy to drive impact"
+      title: "Own Your Adventure",
+      description: "Take ownership, make decisions, and have the autonomy to drive impact on a global scale."
     }
   ]
   return (
@@ -151,19 +151,18 @@ export default function CareersPage() {
           {/* Header */}
           <div className="text-center mb-12 sm:mb-16">
             <Badge className="mb-4 sm:mb-6 bg-gradient-to-r from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] text-[#8E735B] border-[#BBA588]/50 dark:from-[#1E1E1E]/80 dark:via-[#2A2A2A]/80 dark:to-[#1E1E1E]/80 dark:text-[#BBA588] dark:border-[#BBA588]/30 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium shadow-md font-serif">
-              🚀 Join Our Mission
+              🚀 Join Our Adventure
             </Badge>
 
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 px-2 font-serif-display">
-              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 sm:mb-2">Build the Future of</span>
+              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-1 sm:mb-2">Turn Every Traveler into a</span>
               <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent">
-                Voice AI
+                Local Adventurer
               </span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 font-serif">
-              Join our passionate team of innovators building AI technology that understands and speaks
-              every language, empowering businesses across India and beyond.
+              Every year, millions of travelers face language barriers and unreliable internet, missing out on authentic experiences. At Voce, we're closing that gap with an AI voice agent that works with a simple phone call—no app, no internet needed.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 md:space-x-6 text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588]">
@@ -177,7 +176,7 @@ export default function CareersPage() {
               </div>
               <div className="flex items-center space-x-2">
                 <Globe className="h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="font-serif">Remote-First</span>
+                <span className="font-serif">Connecting the Globe</span>
               </div>
             </div>
           </div>{/* Open Positions */}
@@ -297,7 +296,7 @@ export default function CareersPage() {
                 Our Values
               </h2>
               <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 font-serif">
-                These principles guide everything we do and how we work together.
+                These principles guide how we build, travel, and work together.
               </p>
             </div>
 
@@ -325,18 +324,17 @@ export default function CareersPage() {
                 Don't See Your Role?
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] mb-6 sm:mb-8 max-w-2xl mx-auto px-4 font-serif">
-                We're always looking for exceptional talent. Send us your resume and let's explore
-                how you can contribute to the future of voice AI.
+                We're always looking for passionate explorers and builders. Send us your resume and let's see how you can help redefine the way people experience the world.
               </p>
               <div className="flex flex-col space-y-3 sm:space-y-4 justify-center max-w-xs sm:max-w-sm mx-auto">
                 <Link href="/contact">
                   <Button size="lg" className="w-full btn-classic text-white text-sm sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-serif">
-                    Send Your Resume
+                    Share Your Story
                   </Button>
                 </Link>
                 <Link href="/about">
                   <Button size="lg" variant="outline" className="w-full border-2 border-[#BBA588] text-[#8E735B] dark:text-[#BBA588] hover:bg-[#BBA588]/20 dark:hover:bg-[#BBA588]/20 backdrop-blur-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm sm:text-base px-6 sm:px-8 py-2.5 sm:py-3 font-serif">
-                    Learn About Us
+                    Learn About Our Mission
                   </Button>
                 </Link>
               </div>

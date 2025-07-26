@@ -16,7 +16,9 @@ import {
   Bookmark,
   Eye,
   ThumbsUp,
-  Filter
+  Filter,
+  Globe,
+  Compass
 } from "lucide-react"
 import Link from "next/link"
 import { Footer } from "@/components/footer"
@@ -28,42 +30,42 @@ export default function BlogPage() {
 
   const categories = [
     "All",
-    "AI Technology",
+    "Travel Tech",
     "Product Updates",
-    "Customer Stories",
-    "Industry Insights",
+    "Explorer Stories",
+    "Destination Guides",
     "Company News",
     "Tutorials"
   ]
 
   const featuredPost = {
-    title: "The Future of Multilingual AI: Breaking Language Barriers in Sales",
-    excerpt: "Explore how advanced AI models are revolutionizing cross-cultural communication and enabling businesses to connect with customers in their native languages.",
+    title: "The Future of Multilingual AI: Breaking Language Barriers for Travelers",
+    excerpt: "Explore how advanced AI models are revolutionizing cross-cultural communication, enabling travelers to connect with local cultures in their native languages.",
     author: "Dr. Priya Sharma",
-    date: "December 12, 2024",
+    date: "July 15, 2025",
     readTime: "8 min read",
-    tags: ["AI Technology", "Multilingual", "Sales"],
+    tags: ["AI Technology", "Multilingual", "Travel"],
     views: 2847,
     likes: 156
   }
 
   const blogPosts = [
     {
-      title: "How Voice AI is Transforming Customer Service in India",
-      excerpt: "Discover the impact of voice AI technology on customer service across various industries in the Indian market.",
+      title: "How Voice AI is Transforming Solo Travel in India",
+      excerpt: "Discover the impact of voice AI technology on the solo travel experience, offering safety, discovery, and authentic connection across India.",
       author: "Ankit Gupta",
-      date: "December 8, 2024",
+      date: "July 10, 2025",
       readTime: "5 min read",
-      category: "Industry Insights",
-      tags: ["Voice AI", "Customer Service", "India Market"],
+      category: "Travel Tech",
+      tags: ["Voice AI", "Solo Travel", "Indian Tourism"],
       views: 1542,
       likes: 89
     },
     {
       title: "Building Inclusive AI: Lessons from Indian Languages",
-      excerpt: "Our journey in creating AI that understands and respects the linguistic diversity of India.",
+      excerpt: "Our journey in creating an AI that understands and respects the rich linguistic diversity of India, making travel more accessible for everyone.",
       author: "Sneha Reddy",
-      date: "November 25, 2024",
+      date: "June 28, 2025",
       readTime: "7 min read",
       category: "AI Technology",
       tags: ["AI Ethics", "Inclusion", "Cultural AI"],
@@ -71,13 +73,13 @@ export default function BlogPage() {
       likes: 127
     },
     {
-      title: "Getting Started with Voce API: A Developer's Guide",
-      excerpt: "Complete tutorial on integrating Voce's voice AI capabilities into your applications.",
-      author: "Vikram Mehta",
-      date: "November 20, 2024",
-      readTime: "12 min read",
-      category: "Tutorials",
-      tags: ["API", "Integration", "Developer Guide"],
+      title: "Finding Hidden Gems in Udaipur with Voce",
+      excerpt: "A step-by-step guide on how to use Voce to move beyond the usual tourist spots and discover the authentic heart of Udaipur.",
+      author: "Aarav Singh",
+      date: "June 22, 2025",
+      readTime: "6 min read",
+      category: "Destination Guides",
+      tags: ["Udaipur", "Travel Guide", "Local Secrets"],
       views: 4234,
       likes: 312
     }
@@ -104,18 +106,18 @@ export default function BlogPage() {
         <div className="pt-20 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto text-center">
             <Badge className="mb-6 sm:mb-8 bg-gradient-to-r from-[#F3F1E9] via-[#ECE8D9] to-[#F3F1E9] text-[#8E735B] border-[#BBA588]/60 dark:from-[#1E1E1E]/80 dark:via-[#2A2A2A]/80 dark:to-[#1E1E1E]/80 dark:text-[#BBA588] dark:border-[#BBA588]/20 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-semibold shadow-lg shadow-[#BBA588]/10 rounded-full animate-fade-in font-serif">
-              📚 Insights & Updates
+              🧭 Explorer's Log
             </Badge>
 
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 sm:mb-12 leading-tight font-serif-display">
-              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 sm:mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>Our</span>
+              <span className="block text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 sm:mb-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>The Voce</span>
               <span className="block bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent animate-gradient animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                Blog
+                Journal
               </span>
             </h1>
 
             <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-lg sm:text-xl lg:text-2xl max-w-5xl mx-auto leading-relaxed font-light animate-fade-in px-4 font-serif" style={{ animationDelay: '0.6s' }}>
-              Discover insights, updates, and stories from the world of AI-powered voice technology and timeless sales innovation.
+              Discover insights, travel stories, and updates from the world of AI-powered exploration and authentic travel.
             </p>
           </div>
         </div>        {/* Search and Filters */}
@@ -125,7 +127,7 @@ export default function BlogPage() {
               <div className="relative flex-1 max-w-full md:max-w-md">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#7C6D64] dark:text-[#BBA588]" />
                 <Input
-                  placeholder="Search articles..."
+                  placeholder="Search stories & guides..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 font-serif"
@@ -163,7 +165,7 @@ export default function BlogPage() {
               <div className="flex flex-col lg:flex-row">
                 <div className="lg:w-1/2">
                   <div className="aspect-video bg-gradient-to-br from-[#BBA588]/20 to-[#8E735B]/20 flex items-center justify-center">
-                    <div className="text-4xl sm:text-6xl">🎯</div>
+                    <Globe className="text-4xl sm:text-6xl text-white/50" />
                   </div>
                 </div>
                 <div className="lg:w-1/2 p-6 sm:p-8">
@@ -215,10 +217,10 @@ export default function BlogPage() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0">
               <h2 className="text-2xl sm:text-3xl font-bold text-[#2D2C2A] dark:text-[#ECE8D9] font-serif-display">
-                Latest Articles
+                Latest from the Journal
               </h2>
               <Badge variant="secondary" className="px-3 py-1 self-start sm:self-auto bg-[#BBA588]/20 text-[#8E735B] dark:bg-[#BBA588]/30 dark:text-[#BBA588] font-serif">
-                {filteredPosts.length} articles
+                {filteredPosts.length} stories
               </Badge>
             </div>
 
@@ -226,7 +228,7 @@ export default function BlogPage() {
               {filteredPosts.map((post, index) => (
                 <Card key={index} className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group overflow-hidden rounded-2xl">
                   <div className="aspect-video bg-gradient-to-br from-[#BBA588]/20 to-[#8E735B]/20 flex items-center justify-center">
-                    <div className="text-3xl sm:text-4xl">📝</div>
+                    <Compass className="text-3xl sm:text-4xl text-white/50" />
                   </div>
 
                   <CardContent className="p-4 sm:p-6">
@@ -315,8 +317,8 @@ export default function BlogPage() {
                   Stay Updated
                 </h2>
                 <p className="text-lg sm:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] mb-8 max-w-2xl mx-auto px-4 font-serif">
-                  Subscribe to our newsletter and get the latest insights, product updates,
-                  and industry trends delivered to your inbox.
+                  Subscribe to our newsletter and get the latest travel tips, destination guides,
+                  and product updates delivered to your inbox.
                 </p>
 
                 <div className="flex flex-col gap-4 justify-center max-w-md mx-auto">
@@ -331,7 +333,7 @@ export default function BlogPage() {
 
                 <div className="mt-8 pt-8 border-t border-[#BBA588]/30 dark:border-[#BBA588]/20">
                   <p className="text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588] font-serif">
-                    Join 10,000+ subscribers | Unsubscribe anytime | No spam, ever
+                    Join 10,000+ explorers | Unsubscribe anytime | No spam, ever
                   </p>
                 </div>
               </CardContent>

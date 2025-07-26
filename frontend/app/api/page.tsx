@@ -23,7 +23,8 @@ import {
   FileText,
   Webhook,
   MessageSquare,
-  BarChart3
+  BarChart3,
+  MapPin
 } from "lucide-react"
 import Link from "next/link"
 
@@ -39,15 +40,15 @@ export default function APIPage() {
     {
       method: "POST",
       path: "/start-assistant/",
-      description: "Start a conversation with the AI voice assistant",
-      params: ["transcript", "session_id"],
-      response: "AI response with text, audio file path, and audio URLs",
+      description: "Start a new travel assistance conversation",
+      params: ["query", "session_id", "location"],
+      response: "AI response with text, audio file path, and relevant location data",
       icon: <MessageSquare className="h-4 w-4" />
     },
     {
       method: "GET",
       path: "/get-audio/{session_id}",
-      description: "Get generated audio file for a session",
+      description: "Get the generated audio guide for a session's response",
       params: ["session_id"],
       response: "WAV audio file for direct playback",
       icon: <Play className="h-4 w-4" />
@@ -55,7 +56,7 @@ export default function APIPage() {
     {
       method: "GET",
       path: "/get-latest-response/{session_id}",
-      description: "Get latest response data including audio URLs",
+      description: "Get the latest response data including audio URLs and points of interest",
       params: ["session_id"],
       response: "Response text, audio URLs, and metadata",
       icon: <Database className="h-4 w-4" />
@@ -63,22 +64,22 @@ export default function APIPage() {
     {
       method: "POST",
       path: "/get-transcript",
-      description: "Test endpoint for transcript processing",
+      description: "Test endpoint for processing a traveler's spoken query",
       params: ["transcript", "session_id"],
-      response: "Acknowledgment of received transcript",
+      response: "Acknowledgment of received transcript for processing",
       icon: <Terminal className="h-4 w-4" />
     },
     {
       method: "POST",
       path: "/api/v1/voice/synthesize",
-      description: "Convert text to speech in multiple languages",
+      description: "Convert text to speech for creating custom travel guides",
       params: ["text", "language", "voice_id", "speed"],
       response: "Audio file URL and metadata",
       icon: <Play className="h-4 w-4" />
     },
     {
       method: "POST", path: "/api/v1/voice/transcribe",
-      description: "Convert speech to text with language detection",
+      description: "Convert a traveler's speech to text with language detection",
       params: ["audio_file", "language_hint"],
       response: "Transcribed text with confidence scores",
       icon: <Terminal className="h-4 w-4" />
@@ -92,13 +93,13 @@ const Voce = new Voce({
   baseURL: 'https://api.Voce.ai/v1'
 });
 
-// Start a conversation
+// Get a local recommendation
 const response = await Voce.chat({
-  message: 'मुझे एक नया स्मार्टफोन चाहिए',
+  message: 'मुझे उदयपुर में सबसे अच्छा रेस्टोरेंट बताओ',
   language: 'hi',
   context: {
-    user_profile: 'tech_enthusiast',
-    budget_range: '20000-40000'
+    location: 'Udaipur, Rajasthan',
+    interests: ['food', 'history']
   }
 });
 
@@ -110,28 +111,28 @@ from Voce import Voce
 # Initialize client
 client = Voce(api_key="your-api-key")
 
-# Start conversation
+# Ask for directions
 response = client.chat(
-    message="I need a laptop for coding",
+    message="Where can I find a local guide for a city tour?",
     language="en",
     context={
-        "user_profile": "developer",
-        "budget_range": "50000-80000"
+        "location": "Udaipur, Rajasthan",
+        "interests": ["sightseeing", "local_culture"]
     }
 )
 
 print(response.message)`,
 
-    curl: `# Chat with AI Assistant
+    curl: `# Get a travel recommendation
 curl -X POST https://api.Voce.ai/v1/chat \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "message": "मुझे एक गेमिंग लैपटॉप चाहिए",
+    "message": "नाव की सवारी के लिए सबसे अच्छी जगह कौन सी है?",
     "language": "hi",
     "context": {
-      "budget_range": "60000-100000",
-      "use_case": "gaming"
+      "location": "Udaipur, Rajasthan",
+      "activity": "boating"
     }
   }'`
   }
@@ -162,8 +163,8 @@ curl -X POST https://api.Voce.ai/v1/chat \\
             </h1>
 
             <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12 md:mb-16 font-medium px-4 sm:px-0 font-serif">
-              Build sophisticated AI-powered sales applications with our comprehensive API.
-              Support for voice, chat, and multilingual interactions with timeless elegance.
+              Build immersive travel experiences with our comprehensive API.
+              Integrate intelligent voice guidance, multilingual support, and local insights into your applications.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-md sm:max-w-none mx-auto">
@@ -188,7 +189,7 @@ curl -X POST https://api.Voce.ai/v1/chat \\
                 Quick Start Guide
               </h2>
               <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg px-4 sm:px-0 font-serif">
-                Get up and running with Voce API in just three elegant steps
+                Get up and running with the Voce API in just three simple steps.
               </p>
             </div>
 
@@ -196,23 +197,23 @@ curl -X POST https://api.Voce.ai/v1/chat \\
               {[
                 {
                   step: "01",
-                  icon: <Key className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+                  icon: <Key className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:h-8" />,
                   title: "Get API Key",
-                  description: "Sign up for a distinguished account and get your API key from the developer dashboard",
+                  description: "Sign up for a free account and get your API key from the developer dashboard.",
                   color: "from-[#8E735B] to-[#BBA588]"
                 },
                 {
                   step: "02",
-                  icon: <Code className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+                  icon: <Code className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:h-8" />,
                   title: "Install SDK",
-                  description: "Choose from our sophisticated JavaScript, Python, or REST API to integrate with your application",
+                  description: "Choose from our JavaScript, Python, or REST API to integrate with your application.",
                   color: "from-[#BBA588] to-[#7C6D64]"
                 },
                 {
                   step: "03",
-                  icon: <Terminal className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />,
+                  icon: <Terminal className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:h-8" />,
                   title: "Start Building",
-                  description: "Make your first API call and start building timeless AI-powered sales conversations",
+                  description: "Make your first API call and start building immersive AI-powered travel experiences.",
                   color: "from-[#7C6D64] to-[#8E735B]"
                 }
               ].map((item, index) => (
@@ -244,7 +245,7 @@ curl -X POST https://api.Voce.ai/v1/chat \\
                 API Endpoints
               </h2>
               <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg px-4 sm:px-0 font-serif">
-                Comprehensive endpoints for all your sophisticated AI sales conversation needs
+                Comprehensive endpoints for all your travel application's voice AI needs.
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
@@ -296,7 +297,7 @@ curl -X POST https://api.Voce.ai/v1/chat \\
                 Code Examples
               </h2>
               <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg px-4 sm:px-0 font-serif">
-                Ready-to-use code snippets in your favorite programming language
+                Ready-to-use code snippets for your travel application.
               </p>
             </div>
 
@@ -348,7 +349,7 @@ curl -X POST https://api.Voce.ai/v1/chat \\
                 API Features
               </h2>
               <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg px-4 sm:px-0 font-serif">
-                Everything you need to build world-class AI sales applications with timeless elegance
+                Everything you need to build world-class AI travel applications.
               </p>
             </div>
 
@@ -357,19 +358,19 @@ curl -X POST https://api.Voce.ai/v1/chat \\
                 {
                   icon: <Globe className="h-5 w-5 sm:h-6 sm:w-6" />,
                   title: "Multilingual Support",
-                  description: "Support for 10+ Indian languages plus English with automatic language detection and seamless switching",
+                  description: "Support for 10+ Indian languages plus English with automatic language detection and seamless switching.",
                   color: "from-[#8E735B] to-[#BBA588]"
                 },
                 {
                   icon: <Shield className="h-5 w-5 sm:h-6 sm:w-6" />,
-                  title: "Enterprise Security",
-                  description: "End-to-end encryption, SOC 2 compliance, GDPR ready, and enterprise-grade security standards",
+                  title: "Traveler Data Security",
+                  description: "End-to-end encryption, SOC 2 compliance, and GDPR ready to protect traveler privacy.",
                   color: "from-[#BBA588] to-[#7C6D64]"
                 },
                 {
                   icon: <Zap className="h-5 w-5 sm:h-6 sm:w-6" />,
                   title: "Real-time Processing",
-                  description: "Streaming responses with WebSocket support for real-time conversations and instant feedback",
+                  description: "Streaming responses with WebSocket support for real-time conversations and instant guidance.",
                   color: "from-[#7C6D64] to-[#8E735B]"
                 }
               ].map((feature, index) => (
@@ -402,7 +403,7 @@ curl -X POST https://api.Voce.ai/v1/chat \\
                   Ready to Get Started?
                 </h2>
                 <p className="text-base sm:text-lg md:text-xl text-[#5A5A5A] dark:text-[#B6B6B6] mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0 font-serif">
-                  Join thousands of developers building amazing AI-powered sales applications with Voce API
+                  Join developers building the next generation of travel applications with the Voce API.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
                   <Link href="/contact" className="w-full sm:w-auto">

@@ -10,27 +10,21 @@ import { Navbar } from "@/components/navbar"
 export default function AboutPage() {
   const team = [
     {
-      name: "Rajesh Kumar",
+      name: "Vansh Bhatnagar",
       role: "CEO & Co-founder",
-      bio: "Former AI researcher at IIT Delhi with 15+ years in voice technology",
+      bio: "An avid traveler and former AI researcher with 15+ years in voice technology.",
       image: "/placeholder-user.jpg"
     },
     {
-      name: "Priya Sharma",
+      name: "Toheed Akhtar",
       role: "CTO & Co-founder",
-      bio: "Ex-Google engineer specializing in multilingual NLP and speech recognition",
+      bio: "Ex-Google engineer specializing in multilingual NLP to bridge communication gaps abroad.",
       image: "/placeholder-user.jpg"
     },
     {
-      name: "Arjun Patel",
+      name: "Raghavendra Baheti",
       role: "Head of Product",
-      bio: "Product leader with expertise in conversational AI and user experience",
-      image: "/placeholder-user.jpg"
-    },
-    {
-      name: "Sneha Reddy",
-      role: "Head of AI Research",
-      bio: "PhD in Machine Learning with focus on Indian language processing",
+      bio: "Product leader passionate about creating seamless and authentic travel experiences.",
       image: "/placeholder-user.jpg"
     }
   ]
@@ -38,46 +32,46 @@ export default function AboutPage() {
   const values = [
     {
       icon: <Heart className="h-8 w-8" />,
-      title: "Empathy First",
-      description: "We believe technology should understand and respond to human emotions, creating meaningful connections."
+      title: "Empathy for the Traveler",
+      description: "We build with a deep understanding of the challenges and desires of exploring a new place."
     },
     {
       icon: <Globe className="h-8 w-8" />,
-      title: "Cultural Inclusivity",
-      description: "Every language and dialect matters. We're building AI that celebrates India's linguistic diversity."
+      title: "Authentic Exploration",
+      description: "We believe in technology that encourages genuine cultural immersion and moves beyond the typical tourist path."
     },
     {
       icon: <Lightbulb className="h-8 w-8" />,
-      title: "Innovation",
-      description: "Constantly pushing the boundaries of what's possible with voice AI and conversational technology."
+      title: "Seamless Innovation",
+      description: "Constantly pushing the boundaries to make powerful AI feel as simple and natural as a phone call."
     },
     {
       icon: <Users className="h-8 w-8" />,
-      title: "Community",
-      description: "Building technology that brings people together and empowers businesses to serve better."
+      title: "Fostering Connection",
+      description: "Building technology that closes the gaps created by language and empowers human connection."
     }
   ]
 
   const milestones = [
     {
-      year: "2023",
-      title: "Company Founded",
-      description: "Started with a vision to democratize AI voice technology for Indian businesses"
+      year: "June 2025",
+      title: "The Journey Begins",
+      description: "Founded with a vision to solve the disconnection faced by millions of travelers."
     },
     {
-      year: "2024",
-      title: "First Product Launch",
-      description: "Launched Voce with support for 5 Indian languages"
+      year: "July 2025",
+      title: "First Adventures Powered",
+      description: "Launched Voce, guiding the first travelers with support for 5 Indian languages."
     },
     {
-      year: "2024",
-      title: "1000+ Customers",
-      description: "Reached our first major milestone serving businesses across India"
+      year: "August 2025",
+      title: "10,000+ Travelers Guided",
+      description: "Reached our first major milestone, helping explorers discover cities authentically."
     },
     {
-      year: "2025",
-      title: "Global Expansion",
-      description: "Expanding to serve Indian diaspora businesses worldwide"
+      year: "September 2025",
+      title: "Expanding Horizons",
+      description: "Expanding to new cities to help travelers feel like a local, worldwide."
     }
   ]
   return (
@@ -106,7 +100,7 @@ export default function AboutPage() {
             </h1>
 
             <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl lg:text-2xl max-w-5xl mx-auto leading-relaxed font-serif animate-fade-in px-4 sm:px-0" style={{ animationDelay: '0.6s' }}>
-              We're revolutionizing business communication with timeless AI-powered voice technology that understands elegance and sophistication.
+              We're a team of travelers, engineers, and storytellers dedicated to closing the gap between the typical tourist experience and the desire for authentic exploration.
             </p>
           </div>
         </div>        {/* Mission Section */}
@@ -118,22 +112,22 @@ export default function AboutPage() {
                   Our Mission
                 </h2>
                 <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 md:mb-10 font-serif">
-                  We believe that every customer deserves to be heard and understood with elegance and sophistication. Our timeless AI-powered voice technology creates meaningful connections through refined communication.
+                  To empower every traveler to feel like a local adventurer. We're breaking down barriers like language, unreliable internet, and generic digital tools with a simple, powerful AI voice agent.
                 </p>
                 <Card className="glass-classic border-[#BBA588]/40 dark:border-[#BBA588]/20 hover:border-[#BBA588]/60 dark:hover:border-[#BBA588]/40 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:scale-105 rounded-2xl sm:rounded-3xl">
                   <CardContent className="p-4 sm:p-6 md:p-8">
                     <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-6">
                       <div className="flex-shrink-0 mx-auto sm:mx-0">
                         <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#BBA588]/20 to-[#8E735B]/20 backdrop-blur-sm rounded-xl sm:rounded-2xl flex items-center justify-center text-[#8E735B] dark:text-[#BBA588] shadow-lg shadow-[#BBA588]/10">
-                          <Target className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />
+                          <Target className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:h-8" />
                         </div>
                       </div>
                       <div className="text-center sm:text-left">
                         <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#2D2C2A] dark:text-[#ECE8D9] mb-2 sm:mb-3 font-serif-display">
-                          Democratizing Timeless AI Technology
+                          Making Authentic Travel Accessible
                         </h3>
                         <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-sm sm:text-base md:text-lg leading-relaxed font-serif">
-                          Making sophisticated conversational AI accessible with classic elegance and professional refinement.
+                          Providing every traveler with a personal guide that requires no apps, no setup, and no internet.
                         </p>
                       </div>
                     </div>
@@ -147,8 +141,8 @@ export default function AboutPage() {
                   <CardContent className="p-4 sm:p-6 md:p-8">
                     <div className="aspect-video bg-gradient-to-br from-[#F3F1E9] to-[#ECE8D9] dark:from-[#1E1E1E]/80 dark:to-[#2A2A2A]/80 rounded-xl sm:rounded-2xl flex items-center justify-center">
                       <div className="text-center">
-                        <Mic className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 text-[#8E735B] dark:text-[#BBA588] mx-auto mb-3 sm:mb-4" />
-                        <p className="text-[#5A5A5A] dark:text-[#B6B6B6] font-medium text-sm sm:text-base font-serif">Classic AI Voice Technology</p>
+                        <Mic className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:h-16 text-[#8E735B] dark:text-[#BBA588] mx-auto mb-3 sm:mb-4" />
+                        <p className="text-[#5A5A5A] dark:text-[#B6B6B6] font-medium text-sm sm:text-base font-serif">Your Adventure, By Voice</p>
                       </div>
                     </div>
                   </CardContent>
@@ -164,7 +158,7 @@ export default function AboutPage() {
                 Our Values
               </h2>
               <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 sm:px-0 font-serif">
-                The timeless principles that guide everything we do and shape our vision for sophisticated AI communication.
+                The core principles that guide our quest to build a more connected and accessible world for travelers.
               </p>
             </div>
 
@@ -193,10 +187,10 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16 md:mb-20">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8 font-serif-display">
-                Meet Our Team
+                Meet the Adventurers
               </h2>
               <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 sm:px-0 font-serif">
-                Distinguished experts dedicated to revolutionizing business communication through timeless AI innovation.
+                The passionate explorers and technologists building Voce to redefine the travel experience.
               </p>
             </div>
 
@@ -229,7 +223,7 @@ export default function AboutPage() {
                 Our Journey
               </h2>
               <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 sm:px-0 font-serif">
-                Key milestones in our mission to transform business communication with timeless elegance.
+                Key milestones in our mission to transform how the world explores.
               </p>
             </div>
 
@@ -257,15 +251,15 @@ export default function AboutPage() {
         <div className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#8E735B] via-[#BBA588] to-[#7C6D64] bg-clip-text text-transparent mb-4 sm:mb-6 md:mb-8 font-serif-display">
-              Ready to Transform Your Business?
+              Ready to Explore Like a Local?
             </h2>
             <p className="text-[#5A5A5A] dark:text-[#B6B6B6] text-base sm:text-lg md:text-xl mb-8 sm:mb-10 md:mb-12 leading-relaxed px-4 sm:px-0 font-serif">
-              Join distinguished businesses already using Voce to revolutionize their customer interactions with timeless elegance.
+              Start your next adventure with Voce. No apps, no internet needed. Just authentic exploration at the sound of your voice.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
               <Link href="/chat">
                 <Button size="lg" className="w-full sm:w-auto btn-classic text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 shadow-2xl hover:shadow-3xl shadow-[#BBA588]/25 hover:shadow-[#BBA588]/40 transition-all duration-300 transform hover:scale-105 rounded-xl sm:rounded-2xl font-semibold font-serif-display">
-                  Try Demo Now
+                  Start Your Adventure
                 </Button>
               </Link>
               <Link href="/contact">

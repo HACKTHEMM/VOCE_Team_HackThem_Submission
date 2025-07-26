@@ -32,37 +32,37 @@ import Link from "next/link"
 export default function PressPage() {
   const pressReleases = [
     {
-      title: "Voce Raises $25M Series B to Accelerate AI Voice Technology Expansion",
+      title: "Voce Raises $25M Series B to Connect the World's Travelers",
       date: "December 10, 2024",
-      excerpt: "Leading voice AI platform secures funding from top-tier VCs to expand across Asia-Pacific markets and enhance multilingual capabilities.",
+      excerpt: "Leading travel AI company secures funding to expand its offline voice agent service to new continents and support more languages.",
       type: "Funding News",
       featured: true
     },
     {
-      title: "Voce Achieves SOC 2 Type II Certification for Enterprise Security",
+      title: "Voce Achieves SOC 2 Type II Certification, Ensuring Traveler Data Privacy",
       date: "November 28, 2024",
-      excerpt: "Platform demonstrates commitment to data security and privacy with industry-leading certification.",
+      excerpt: "The platform demonstrates its commitment to data security, ensuring that traveler information remains private and protected.",
       type: "Company News",
       featured: false
     },
     {
-      title: "Partnership with Microsoft Azure Brings Advanced AI to Enterprise Customers",
+      title: "Voce Partners with Global Hotel Alliance to Enhance Guest Experiences",
       date: "November 15, 2024",
-      excerpt: "Strategic partnership enables enterprise customers to deploy Voce's voice AI technology at scale.",
+      excerpt: "Strategic partnership enables international hotel guests to access local recommendations and services via a simple phone call.",
       type: "Partnership",
       featured: false
     },
     {
-      title: "Voce Named 'AI Startup of the Year' by TechCrunch India",
+      title: "Voce Named 'Travel Tech Innovator of the Year' by TechCrunch India",
       date: "October 22, 2024",
-      excerpt: "Recognition highlights company's innovation in multilingual voice AI and impact on Indian businesses.",
+      excerpt: "Recognition highlights the company's impact on making travel more accessible and authentic for millions.",
       type: "Award",
       featured: false
     },
     {
       title: "Voce Expands to Support 15 Indian Languages with 95%+ Accuracy",
       date: "October 8, 2024",
-      excerpt: "Major product update includes enhanced speech recognition for regional languages across India.",
+      excerpt: "A major update helps travelers overcome language barriers by providing expert local guidance in their native tongue.",
       type: "Product News",
       featured: false
     }
@@ -78,8 +78,8 @@ export default function PressPage() {
       downloadUrl: "#"
     },
     {
-      title: "Product Screenshots",
-      description: "UI screenshots and product demos",
+      title: "Product in Action",
+      description: "Images of travelers using Voce",
       type: "images",
       icon: <ImageIcon className="h-6 w-6" />,
       files: ["High-res PNG", "Web-optimized"],
@@ -102,8 +102,8 @@ export default function PressPage() {
       downloadUrl: "#"
     },
     {
-      title: "Product Demo Videos",
-      description: "Platform demonstrations and tutorials",
+      title: "Explainer Videos",
+      description: "Short videos explaining how Voce works",
       type: "video",
       icon: <Video className="h-6 w-6" />,
       files: ["MP4", "MOV"],
@@ -122,7 +122,7 @@ export default function PressPage() {
   const mediaCoverage = [
     {
       outlet: "TechCrunch",
-      title: "How Voce is Democratizing AI Voice Technology in India",
+      title: "How Voce is Helping Travelers Ditch Apps for Authentic Exploration",
       date: "December 5, 2024",
       type: "Feature Article",
       logo: "TC",
@@ -130,7 +130,7 @@ export default function PressPage() {
     },
     {
       outlet: "The Economic Times",
-      title: "Voice AI Startup Voce Targets $100M Revenue by 2025",
+      title: "Travel Tech Startup Voce Targets 10 Million Users by 2025",
       date: "November 25, 2024",
       type: "Business News",
       logo: "ET",
@@ -138,7 +138,7 @@ export default function PressPage() {
     },
     {
       outlet: "YourStory",
-      title: "From IIT to AI: The Voce Journey",
+      title: "From IIT to AI: The Journey to Build a Local Friend for Every Traveler",
       date: "November 12, 2024",
       type: "Founder Story",
       logo: "YS",
@@ -146,23 +146,23 @@ export default function PressPage() {
     },
     {
       outlet: "Inc42",
-      title: "Voce's Multilingual AI: Breaking Down Language Barriers",
+      title: "Voce's Multilingual AI: Breaking Down Language Barriers for Tourists",
       date: "October 30, 2024",
       type: "Product Review",
       logo: "I42",
       color: "from-purple-500 to-violet-500"
     },
     {
-      outlet: "BusinessWorld",
-      title: "The Future of Sales is Conversational: Voce's Vision",
+      outlet: "Condé Nast Traveller",
+      title: "The Future of Travel is Conversational: Voce's Vision",
       date: "October 15, 2024",
       type: "Industry Analysis",
-      logo: "BW",
+      logo: "CNT",
       color: "from-pink-500 to-rose-500"
     },
     {
       outlet: "Forbes India",
-      title: "30 Under 30: Voce's Young Founders Making Waves",
+      title: "30 Under 30: The Voce Founders Connecting Travelers to the World",
       date: "September 28, 2024",
       type: "Recognition",
       logo: "FI",
@@ -172,37 +172,37 @@ export default function PressPage() {
 
   const awards = [
     {
-      title: "AI Startup of the Year",
-      organization: "TechCrunch India",
+      title: "Travel Tech Innovator of the Year",
+      organization: "Skift IDEA Awards",
       year: "2024",
-      description: "Recognition for innovation in voice AI technology"
+      description: "For redefining in-destination experiences through voice AI."
     },
     {
-      title: "Best B2B SaaS Product",
-      organization: "SaaS India Awards",
+      title: "Best B2C Innovation",
+      organization: "Phocuswright Innovation Summit",
       year: "2024",
-      description: "Excellence in enterprise software solutions"
+      description: "Recognized for excellence in direct-to-consumer travel technology."
     },
     {
       title: "Emerging Technology Award",
       organization: "NASSCOM",
       year: "2024",
-      description: "Outstanding contribution to AI and emerging technologies"
+      description: "For outstanding contributions to AI in the Indian tourism sector."
     },
     {
       title: "Innovation in Multilingual AI",
       organization: "AI India Summit",
       year: "2023",
-      description: "Breakthrough in regional language processing"
+      description: "For breakthroughs in regional language processing for travelers."
     }
   ]
 
   const companyStats = [
     { label: "Founded", value: "2023" },
     { label: "Team Size", value: "50+" },
-    { label: "Customers", value: "1000+" },
+    { label: "Travelers Assisted", value: "1M+" },
     { label: "Languages Supported", value: "15" },
-    { label: "Revenue Growth", value: "500% YoY" },
+    { label: "User Growth", value: "500% YoY" },
     { label: "Funding Raised", value: "$30M" }
   ]
   return (
