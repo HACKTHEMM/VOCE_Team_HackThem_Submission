@@ -509,86 +509,71 @@ export default function ChatPage() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
-          <div className="border-t border-[#BBA588]/20 dark:border-[#BBA588]/20 glass-classic p-3 sm:p-6">
-            <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
-              {/* Enhanced Voice Input Section */}
-              <div className="flex items-center justify-center">
-                <div className="flex flex-col items-center space-y-3 sm:space-y-4">
-                  <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#BBA588]/20 via-[#8E735B]/20 to-[#7C6D64]/20 rounded-full blur-xl sm:blur-2xl animate-pulse-slow group-hover:blur-lg sm:group-hover:blur-xl transition-all duration-500"></div>
-                    <div className="relative bg-[#F3F1E9]/20 dark:bg-[#1E1E1E]/20 backdrop-blur-lg border border-[#BBA588]/30 dark:border-[#BBA588]/20 rounded-full p-3 sm:p-4 shadow-xl">
-                      <VoiceRecognition
-                        isListening={isListening}
-                        onListeningChange={handleVoiceListeningChange}
-                        onResult={handleVoiceResult}
-                        language={currentLanguage}
-                        size="md"
-                        isAudioPlaying={isAudioPlaying}
-                        onStopAudio={stopAudio}
-                      />
+          {/* Compact Input Area - Claude-like Design */}
+          <div className="border-t border-[#BBA588]/20 dark:border-[#BBA588]/20 glass-classic p-3 sm:p-4">
+            <div className="max-w-4xl mx-auto">
+              {/* Compact Input Row */}
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                {/* Voice Button */}
+                <div className="relative flex-shrink-0">
+                  <div className="relative bg-[#F3F1E9]/20 dark:bg-[#1E1E1E]/20 backdrop-blur-lg border border-[#BBA588]/30 dark:border-[#BBA588]/20 rounded-full p-2 shadow-lg">
+                    <VoiceRecognition
+                      isListening={isListening}
+                      onListeningChange={handleVoiceListeningChange}
+                      onResult={handleVoiceResult}
+                      language={currentLanguage}
+                      size="sm"
+                      isAudioPlaying={isAudioPlaying}
+                      onStopAudio={stopAudio}
+                    />
+                  </div>
+                </div>
+
+                {/* Text Input */}
+                <div className="flex-1">
+                  <TextInputFallback
+                    onSend={handleSendMessage}
+                    placeholder={isListening ? "🎤 Listening..." : "Ask for recommendations, directions, or translations..."}
+                    disabled={isTyping}
+                  />
+                </div>
+              </div>
+
+              {/* Compact Status Row */}
+              <div className="flex items-center justify-between mt-2 px-1">
+                <div className="flex items-center space-x-4 text-xs">
+                  {/* Voice Status */}
+                  {isListening && (
+                    <div className="flex items-center space-x-1 text-[#8E735B] dark:text-[#BBA588]">
+                      <span className="w-1.5 h-1.5 bg-[#8E735B] rounded-full animate-pulse"></span>
+                      <span className="font-serif">Listening</span>
                     </div>
-                  </div>
-                  <div className="text-center space-y-1 px-4">
-                    <p className="text-sm text-[#5A5A5A] dark:text-[#B6B6B6] font-medium font-serif">
-                      {isListening ? "🎤 Listening... Ask me anything about the city" : "Tap to ask a question"}
-                    </p>
-                    <p className="text-xs text-[#7C6D64] dark:text-[#BBA588] font-serif">
-                      Speak naturally in {currentLanguage === 'hi' ? 'Hindi or English' : 'English'}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                  )}
 
-              {/* Enhanced Text Input Fallback */}
-              <div className="space-y-4">
-                <div className="flex items-center justify-center px-4">
-                  <div className="flex items-center space-x-2 sm:space-x-3 w-full max-w-sm">
-                    <div className="h-px bg-gradient-to-r from-transparent via-[#BBA588] dark:via-[#8E735B] to-transparent flex-1"></div>
-                    <span className="text-xs sm:text-sm text-[#7C6D64] dark:text-[#BBA588] font-medium px-2 whitespace-nowrap font-serif">or type your question</span>
-                    <div className="h-px bg-gradient-to-r from-transparent via-[#BBA588] dark:via-[#8E735B] to-transparent flex-1"></div>
-                  </div>
-                </div>
-                <TextInputFallback
-                  onSend={handleSendMessage}
-                  placeholder={`Ask for recommendations, directions, or translations...`}
-                  disabled={isTyping}
-                />
-              </div>
+                  {/* Audio Status */}
+                  {isAudioPlaying && isAudioEnabled && (
+                    <div className="flex items-center space-x-1 text-[#8E735B] dark:text-[#BBA588]">
+                      <Volume2 className="h-3 w-3 animate-pulse" />
+                      <span className="font-serif">Playing</span>
+                    </div>
+                  )}
 
-              {/* Status Messages */}
-              {isListening && (
-                <div className="text-center text-[#7C6D64] dark:text-[#BBA588] text-sm animate-pulse px-4">
-                  <p className="flex items-center justify-center space-x-2">
-                    <span className="w-2 h-2 bg-[#8E735B] rounded-full animate-pulse"></span>
-                    <span className="font-serif">Listening... Speak clearly</span>
-                  </p>
+                  {!isAudioEnabled && (
+                    <div className="flex items-center space-x-1 text-[#7C6D64]/60 dark:text-[#BBA588]/60">
+                      <VolumeX className="h-3 w-3" />
+                      <span className="font-serif">Audio off</span>
+                    </div>
+                  )}
                 </div>
-              )}
 
-              {/* Audio Status */}
-              {!isAudioEnabled && (
-                <div className="text-center text-[#7C6D64] dark:text-[#BBA588] text-xs px-4">
-                  <p className="flex items-center justify-center space-x-2">
-                    <VolumeX className="h-3 w-3" />
-                    <span className="font-serif">Audio responses are disabled</span>
-                  </p>
+                {/* Language & Session Info */}
+                <div className="flex items-center space-x-2 text-xs text-[#7C6D64] dark:text-[#BBA588]">
+                  <span className="font-serif">
+                    {currentLanguage === 'hi' ? 'हिंदी/EN' : 'EN'}
+                  </span>
+                  <span className="text-[#7C6D64]/50 dark:text-[#BBA588]/50">•</span>
+                  <span className="font-mono">{sessionId.slice(-6)}</span>
                 </div>
-              )}
-
-              {/* Audio Playing Status */}
-              {isAudioPlaying && isAudioEnabled && (
-                <div className="text-center text-[#8E735B] dark:text-[#BBA588] text-xs px-4">
-                  <p className="flex items-center justify-center space-x-2">
-                    <Volume2 className="h-3 w-3 animate-pulse" />
-                    <span className="font-serif">Playing audio response...</span>
-                  </p>
-                </div>
-              )}
-
-              {/* Session Debug Info (remove in production) */}
-              <div className="text-center text-[#7C6D64] dark:text-[#BBA588] text-xs px-4">
-                <p className="font-mono">Session: {sessionId.slice(-8)}</p>
               </div>
             </div>
           </div>
