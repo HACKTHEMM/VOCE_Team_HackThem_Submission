@@ -1,6 +1,9 @@
 # Voce - AI Travel Companion
 A sophisticated conversational agent that transforms travelers into local adventurers through natural voice interactions and intelligent travel recommendations, accessible via simple phone calls without requiring apps or internet connection.
 
+## 🎥 Demo Video
+Watch our live demonstration: [Voce AI Travel Companion Demo](https://www.youtube.com/watch?v=cCTfVueSOMY)
+
 ## 🌟 Key Features
 🎤 **Real-time Voice Processing**: Advanced speech-to-text and text-to-speech capabilities
 🤖 **AI-Powered Local Guidance**: Natural language processing using Groq LLM (Gemma2-9B-IT model)
