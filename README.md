@@ -47,6 +47,7 @@ cd VoiceBot_HackThem_submission
 #### Create and Activate Virtual Environment
 ```bash
 # Create virtual environment
+
 python -m venv venv
 
 # Activate virtual environment
